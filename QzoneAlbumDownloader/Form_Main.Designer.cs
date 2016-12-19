@@ -1,6 +1,6 @@
 ﻿namespace QzoneAlbumDownloader
 {
-    partial class Form1
+    partial class Form_Main
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -28,9 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // Form_Main
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(1124, 694);
+            this.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Name = "Form_Main";
+            this.Text = "Form_Main";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
