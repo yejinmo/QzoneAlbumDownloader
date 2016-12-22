@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -16,6 +17,7 @@ namespace QzoneAlbumDownloader
 
         public static class UserInformation
         {
+            public static string QQNumber = string.Empty;
             public static string Cookie = string.Empty;
         }
 
@@ -31,7 +33,8 @@ namespace QzoneAlbumDownloader
 
         private void Form_Main_Load(object sender, EventArgs e)
         {
-
+            WebBrowser_Login.ScriptErrorsSuppressed = false;
+            WebBrowser_Login.DocumentCompleted += WebBrowser_Login_DocumentCompleted;
         }
 
         /// <summary>
@@ -92,7 +95,7 @@ namespace QzoneAlbumDownloader
                     ProcessBar_Detect.Visible = true;
                     Text_Detect_Number.ReadOlay = true;
                 });
-                Thread.Sleep(5000);
+                Thread.Sleep(1000);
                 Invoke((EventHandler)delegate
                 {
                     TabControl_Main.SelectedTab = TabPage_Login;
@@ -118,6 +121,26 @@ namespace QzoneAlbumDownloader
                     Text_Detect_Number.ReadOlay = false;
                 });
                 ThreadDetect = null;
+            }
+        }
+
+        #endregion
+
+        #region Login
+
+        private void WebBrowser_Login_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            string reg_str = @"\[http://(\d+).qzone.qq.com\]";
+            Regex reg = new Regex(reg_str);
+            MatchCollection mc = reg.Matches(WebBrowser_Login.DocumentTitle);
+            if (mc.Count == 0)
+                return;
+            else
+            {
+                UserInformation.QQNumber = mc[0].Groups[1].ToString();
+                UserInformation.Cookie = WebBrowser_Login.Document.Cookie;
+                WebBrowser_Login.Stop();
+                WebBrowser_Login.Navigate("");
             }
         }
 

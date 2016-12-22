@@ -126,14 +126,14 @@
             // ProcessBar_Detect
             // 
             this.ProcessBar_Detect.Depth = 0;
-            this.ProcessBar_Detect.Interval = 7;
+            this.ProcessBar_Detect.Interval = 5;
             this.ProcessBar_Detect.LengthValue = 300;
             this.ProcessBar_Detect.Location = new System.Drawing.Point(3, 76);
             this.ProcessBar_Detect.MouseState = MaterialSkin.MouseState.HOVER;
             this.ProcessBar_Detect.Name = "ProcessBar_Detect";
             this.ProcessBar_Detect.Processing = true;
             this.ProcessBar_Detect.Size = new System.Drawing.Size(850, 5);
-            this.ProcessBar_Detect.StepValue = 5;
+            this.ProcessBar_Detect.StepValue = 7;
             this.ProcessBar_Detect.TabIndex = 1;
             this.ProcessBar_Detect.Visible = false;
             // 
