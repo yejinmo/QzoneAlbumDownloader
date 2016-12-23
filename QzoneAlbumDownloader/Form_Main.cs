@@ -130,7 +130,7 @@ namespace QzoneAlbumDownloader
 
         private void WebBrowser_Login_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            string reg_str = @"\[http://(\d+).qzone.qq.com\]";
+            string reg_str =     @"\[http://(\d+).qzone.qq.com\]";
             Regex reg = new Regex(reg_str);
             MatchCollection mc = reg.Matches(WebBrowser_Login.DocumentTitle);
             if (mc.Count == 0)
