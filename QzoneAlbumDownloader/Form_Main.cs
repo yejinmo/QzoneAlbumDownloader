@@ -33,6 +33,7 @@ namespace QzoneAlbumDownloader
 
         private void Form_Main_Load(object sender, EventArgs e)
         {
+
             WebBrowser_Login.ScriptErrorsSuppressed = false;
             WebBrowser_Login.DocumentCompleted += WebBrowser_Login_DocumentCompleted;
         }
