@@ -31,8 +31,8 @@
             this.TabControl_Main = new MaterialSkin.Controls.MaterialTabControl();
             this.TabPage_Detect = new System.Windows.Forms.TabPage();
             this.Panel_Detect = new System.Windows.Forms.Panel();
+            this.Text_Detect_Number = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.Button_Detect_Enter = new MaterialSkin.Controls.MaterialFlatButton();
-            this.Text_Detect_Number = new MaterialSkin.Controls.MaterialSingleLineTextField_Examination();
             this.ProcessBar_Detect = new MaterialSkin.Controls.MaterialProcessBar();
             this.TabPage_Login = new System.Windows.Forms.TabPage();
             this.WebBrowser_Login = new System.Windows.Forms.WebBrowser();
@@ -72,13 +72,39 @@
             // Panel_Detect
             // 
             this.Panel_Detect.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Panel_Detect.Controls.Add(this.Button_Detect_Enter);
             this.Panel_Detect.Controls.Add(this.Text_Detect_Number);
+            this.Panel_Detect.Controls.Add(this.Button_Detect_Enter);
             this.Panel_Detect.Controls.Add(this.ProcessBar_Detect);
             this.Panel_Detect.Location = new System.Drawing.Point(52, 258);
             this.Panel_Detect.Name = "Panel_Detect";
-            this.Panel_Detect.Size = new System.Drawing.Size(857, 98);
+            this.Panel_Detect.Size = new System.Drawing.Size(857, 142);
             this.Panel_Detect.TabIndex = 2;
+            // 
+            // Text_Detect_Number
+            // 
+            this.Text_Detect_Number.Depth = 0;
+            this.Text_Detect_Number.ErrorModeColor = System.Drawing.Color.Red;
+            this.Text_Detect_Number.ErrorModeString = "";
+            this.Text_Detect_Number.FollowLabel = null;
+            this.Text_Detect_Number.FollowLabelColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Text_Detect_Number.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.Text_Detect_Number.ForeColor = System.Drawing.Color.Black;
+            this.Text_Detect_Number.Hint = "目标QQ号";
+            this.Text_Detect_Number.IsErrorMode = false;
+            this.Text_Detect_Number.Location = new System.Drawing.Point(3, 33);
+            this.Text_Detect_Number.MaxLength = 32767;
+            this.Text_Detect_Number.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Text_Detect_Number.Name = "Text_Detect_Number";
+            this.Text_Detect_Number.PasswordChar = '\0';
+            this.Text_Detect_Number.ReadOlay = false;
+            this.Text_Detect_Number.SelectedText = "";
+            this.Text_Detect_Number.SelectionLength = 0;
+            this.Text_Detect_Number.SelectionStart = 0;
+            this.Text_Detect_Number.Size = new System.Drawing.Size(708, 37);
+            this.Text_Detect_Number.TabIndex = 3;
+            this.Text_Detect_Number.TabStop = false;
+            this.Text_Detect_Number.UseSystemPasswordChar = false;
+            this.Text_Detect_Number.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Text_Detect_Number_KeyDown);
             // 
             // Button_Detect_Enter
             // 
@@ -93,35 +119,6 @@
             this.Button_Detect_Enter.Text = "访问";
             this.Button_Detect_Enter.UseVisualStyleBackColor = true;
             this.Button_Detect_Enter.Click += new System.EventHandler(this.Button_Detect_Enter_Click);
-            // 
-            // Text_Detect_Number
-            // 
-            this.Text_Detect_Number.BindingLabel = null;
-            this.Text_Detect_Number.CorrectForeColor = System.Drawing.Color.Black;
-            this.Text_Detect_Number.Depth = 0;
-            this.Text_Detect_Number.ErrorForeColor = System.Drawing.Color.Red;
-            this.Text_Detect_Number.ErrorModeColor = System.Drawing.Color.Red;
-            this.Text_Detect_Number.ErrorModeString = "";
-            this.Text_Detect_Number.FollowLabel = null;
-            this.Text_Detect_Number.FollowLabelColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Text_Detect_Number.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.Text_Detect_Number.ForeColor = System.Drawing.Color.Black;
-            this.Text_Detect_Number.Hint = "目标QQ号";
-            this.Text_Detect_Number.IsErrorMode = false;
-            this.Text_Detect_Number.Location = new System.Drawing.Point(3, 24);
-            this.Text_Detect_Number.MaxLength = 32767;
-            this.Text_Detect_Number.MouseState = MaterialSkin.MouseState.HOVER;
-            this.Text_Detect_Number.Name = "Text_Detect_Number";
-            this.Text_Detect_Number.PasswordChar = '\0';
-            this.Text_Detect_Number.ReadOlay = false;
-            this.Text_Detect_Number.SelectedText = "";
-            this.Text_Detect_Number.SelectionLength = 0;
-            this.Text_Detect_Number.SelectionStart = 0;
-            this.Text_Detect_Number.Size = new System.Drawing.Size(708, 51);
-            this.Text_Detect_Number.TabIndex = 0;
-            this.Text_Detect_Number.TabStop = false;
-            this.Text_Detect_Number.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.Text_Detect_Number.UseSystemPasswordChar = false;
             // 
             // ProcessBar_Detect
             // 
@@ -183,11 +180,11 @@
         private MaterialSkin.Controls.MaterialTabControl TabControl_Main;
         private System.Windows.Forms.TabPage TabPage_Detect;
         private System.Windows.Forms.TabPage TabPage_Login;
-        private MaterialSkin.Controls.MaterialSingleLineTextField_Examination Text_Detect_Number;
         private System.Windows.Forms.Panel Panel_Detect;
         private MaterialSkin.Controls.MaterialFlatButton Button_Detect_Enter;
         private MaterialSkin.Controls.MaterialProcessBar ProcessBar_Detect;
         private System.Windows.Forms.WebBrowser WebBrowser_Login;
+        private MaterialSkin.Controls.MaterialSingleLineTextField Text_Detect_Number;
     }
 }
 

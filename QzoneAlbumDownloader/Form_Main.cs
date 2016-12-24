@@ -19,6 +19,7 @@ namespace QzoneAlbumDownloader
         {
             public static string QQNumber = string.Empty;
             public static string Cookie = string.Empty;
+            public static string TargetQQNumber = string.Empty;
         }
 
         #endregion
@@ -61,7 +62,8 @@ namespace QzoneAlbumDownloader
         private void TabControl_Main_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (TabControl_Main.SelectedTab == TabPage_Login)
-                WebBrowser_Login.Navigate("http://www.qzone.com");
+                //WebBrowser_Login.Navigate("http://www.qzone.com");
+                WebBrowser_Login.Navigate(@"https://xui.ptlogin2.qq.com/cgi-bin/xlogin?appid=522005705&daid=4&s_url=https://mail.qq.com/cgi-bin/login?vt=passport%26vm=wpt%26ft=loginpage%26target=&style=25&low_login=1&proxy_url=https://mail.qq.com/proxy.html&need_qr=0&hide_border=1&border_radius=0&self_regurl=http://zc.qq.com/chs/index.html?type=1&app_id=11005?t=regist&pt_feedback_link=http://support.qq.com/discuss/350_1.shtml&css=https://res.mail.qq.com/zh_CN/htmledition/style/ptlogin_input24e6b9.css");
         }
 
         #endregion
@@ -95,6 +97,7 @@ namespace QzoneAlbumDownloader
                     ProcessBar_Detect.Value = 0;
                     ProcessBar_Detect.Visible = true;
                     Text_Detect_Number.ReadOlay = true;
+                    UserInformation.TargetQQNumber = Text_Detect_Number.Text;
                 });
                 Thread.Sleep(1000);
                 Invoke((EventHandler)delegate
@@ -125,13 +128,20 @@ namespace QzoneAlbumDownloader
             }
         }
 
+        private void Text_Detect_Number_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                Button_Detect_Enter.PerformClick();
+        }
+
         #endregion
 
         #region Login
 
         private void WebBrowser_Login_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            string reg_str =     @"\[http://(\d+).qzone.qq.com\]";
+            string reg_str = @"\[http://(\d+).qzone.qq.com\]";
+            //string reg_str = @"https://xui.ptlogin2.qq.com/cgi-bin/xlogin?appid=522005705&daid=4&s_url=https://mail.qq.com/cgi-bin/login?vt=passport%26vm=wpt%26ft=loginpage%26target=&style=25&low_login=1&proxy_url=https://mail.qq.com/proxy.html&need_qr=0&hide_border=1&border_radius=0&self_regurl=http://zc.qq.com/chs/index.html?type=1&app_id=11005?t=regist&pt_feedback_link=http://support.qq.com/discuss/350_1.shtml&css=https://res.mail.qq.com/zh_CN/htmledition/style/ptlogin_input24e6b9.css";
             Regex reg = new Regex(reg_str);
             MatchCollection mc = reg.Matches(WebBrowser_Login.DocumentTitle);
             if (mc.Count == 0)
@@ -142,6 +152,9 @@ namespace QzoneAlbumDownloader
                 UserInformation.Cookie = WebBrowser_Login.Document.Cookie;
                 WebBrowser_Login.Stop();
                 WebBrowser_Login.Navigate("");
+                MessageBox.Show(this, RequestHelper.GetResponse(
+                    string.Format("http://photo.qq.com/fcgi-bin/fcg_list_album?uin={0}", UserInformation.TargetQQNumber),
+                    UserInformation.Cookie,"","GBK"));
             }
         }
 

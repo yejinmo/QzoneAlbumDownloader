@@ -1216,22 +1216,22 @@ namespace MaterialSkin.Controls
             {
                 switch (toolStripItemClickedEventArgs.ClickedItem.Text)
                 {
-                    case "Undo":
+                    case "撤销":
                         Undo();
                         break;
-                    case "Cut":
+                    case "剪切":
                         Cut();
                         break;
-                    case "Copy":
+                    case "复制":
                         Copy();
                         break;
-                    case "Paste":
+                    case "粘贴":
                         Paste();
                         break;
-                    case "Delete":
+                    case "删除":
                         SelectedText = string.Empty;
                         break;
-                    case "Select All":
+                    case "全选":
                         SelectAll();
                         break;
                 }
@@ -1254,14 +1254,14 @@ namespace MaterialSkin.Controls
 
         private class TextBoxContextMenuStrip : MaterialContextMenuStrip
         {
-            public readonly ToolStripItem undo = new MaterialToolStripMenuItem { Text = "Undo" };
+            public readonly ToolStripItem undo = new MaterialToolStripMenuItem { Text = "撤销" };
             public readonly ToolStripItem seperator1 = new ToolStripSeparator();
-            public readonly ToolStripItem cut = new MaterialToolStripMenuItem { Text = "Cut" };
-            public readonly ToolStripItem copy = new MaterialToolStripMenuItem { Text = "Copy" };
-            public readonly ToolStripItem paste = new MaterialToolStripMenuItem { Text = "Paste" };
-            public readonly ToolStripItem delete = new MaterialToolStripMenuItem { Text = "Delete" };
+            public readonly ToolStripItem cut = new MaterialToolStripMenuItem { Text = "剪切" };
+            public readonly ToolStripItem copy = new MaterialToolStripMenuItem { Text = "复制" };
+            public readonly ToolStripItem paste = new MaterialToolStripMenuItem { Text = "粘贴" };
+            public readonly ToolStripItem delete = new MaterialToolStripMenuItem { Text = "删除" };
             public readonly ToolStripItem seperator2 = new ToolStripSeparator();
-            public readonly ToolStripItem selectAll = new MaterialToolStripMenuItem { Text = "Select All" };
+            public readonly ToolStripItem selectAll = new MaterialToolStripMenuItem { Text = "全选" };
 
             public TextBoxContextMenuStrip()
             {
