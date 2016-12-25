@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Xml;
 
 namespace QzoneAlbumDownloader
@@ -21,8 +22,13 @@ namespace QzoneAlbumDownloader
                 string res = RequestHelper.GetResponse(
                     string.Format("http://photo.qq.com/fcgi-bin/fcg_list_album?uin={0}", QQNumber),
                     "", "", "GBK");
-                var res_T = XmlHelper.DeserializeXML(res);
-                return true;
+                string check_str = @"<err>\n<errCode>(.\d+?)</errCode>\n<errMsg>(.+?)</errMsg>\n<msg>(.+?)</msg>\n<ret>(.\d+?)</ret>\n</err>";
+                Regex reg = new Regex(check_str);
+                MatchCollection mc = reg.Matches(res);
+                if (mc.Count == 0)
+                    return true;
+                else
+                    return false;
             }
             catch
             {
@@ -50,6 +56,8 @@ namespace QzoneAlbumDownloader
                 throw;
             }
         }
+
+        
 
     }
 }

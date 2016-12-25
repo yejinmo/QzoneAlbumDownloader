@@ -98,16 +98,23 @@ namespace QzoneAlbumDownloader
                     ProcessBar_Detect.Visible = true;
                     Text_Detect_Number.ReadOlay = true;
                     UserInformation.TargetQQNumber = Text_Detect_Number.Text;
+                    Label_Detect_Tip_SetText("正在获取信息");
+                    Label_Detect_Tip.Visible = true;
                 });
                 Thread.Sleep(1000);
+                var res = AlbumHelper.CheckIsPublic(UserInformation.TargetQQNumber);
                 Invoke((EventHandler)delegate
                 {
-                    TabControl_Main.SelectedTab = TabPage_Login;
+                    if (res)
+                        ;
+                    else
+                        Label_Detect_Tip_SetText("目标空间非公开 请先登录", Color.Red);
+                    //TabControl_Main.SelectedTab = TabPage_Login;
                 });
             }
             catch (ThreadAbortException)
             {
-
+                Label_Detect_Tip_SetText("");
             }
             catch (Exception e)
             {
@@ -126,6 +133,20 @@ namespace QzoneAlbumDownloader
                 });
                 ThreadDetect = null;
             }
+        }
+
+        private void Label_Detect_Tip_SetText(string str, Color col)
+        {
+            Invoke((EventHandler)delegate
+            {
+                Label_Detect_Tip.Text = str;
+                Label_Detect_Tip.ForeColor = col;
+            });
+        }
+
+        private void Label_Detect_Tip_SetText(string str)
+        {
+            Label_Detect_Tip_SetText(str, Color.Black);
         }
 
         private void Text_Detect_Number_KeyDown(object sender, KeyEventArgs e)

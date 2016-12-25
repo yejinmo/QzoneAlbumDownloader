@@ -36,6 +36,7 @@
             this.ProcessBar_Detect = new MaterialSkin.Controls.MaterialProcessBar();
             this.TabPage_Login = new System.Windows.Forms.TabPage();
             this.WebBrowser_Login = new System.Windows.Forms.WebBrowser();
+            this.Label_Detect_Tip = new MaterialSkin.Controls.MaterialLabel();
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Detect.SuspendLayout();
             this.Panel_Detect.SuspendLayout();
@@ -72,6 +73,7 @@
             // Panel_Detect
             // 
             this.Panel_Detect.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Panel_Detect.Controls.Add(this.Label_Detect_Tip);
             this.Panel_Detect.Controls.Add(this.Text_Detect_Number);
             this.Panel_Detect.Controls.Add(this.Button_Detect_Enter);
             this.Panel_Detect.Controls.Add(this.ProcessBar_Detect);
@@ -91,7 +93,7 @@
             this.Text_Detect_Number.ForeColor = System.Drawing.Color.Black;
             this.Text_Detect_Number.Hint = "目标QQ号";
             this.Text_Detect_Number.IsErrorMode = false;
-            this.Text_Detect_Number.Location = new System.Drawing.Point(3, 33);
+            this.Text_Detect_Number.Location = new System.Drawing.Point(3, 10);
             this.Text_Detect_Number.MaxLength = 32767;
             this.Text_Detect_Number.MouseState = MaterialSkin.MouseState.HOVER;
             this.Text_Detect_Number.Name = "Text_Detect_Number";
@@ -109,7 +111,7 @@
             // Button_Detect_Enter
             // 
             this.Button_Detect_Enter.Depth = 0;
-            this.Button_Detect_Enter.Location = new System.Drawing.Point(718, 27);
+            this.Button_Detect_Enter.Location = new System.Drawing.Point(718, 4);
             this.Button_Detect_Enter.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.Button_Detect_Enter.MouseState = MaterialSkin.MouseState.HOVER;
             this.Button_Detect_Enter.Name = "Button_Detect_Enter";
@@ -125,7 +127,7 @@
             this.ProcessBar_Detect.Depth = 0;
             this.ProcessBar_Detect.Interval = 5;
             this.ProcessBar_Detect.LengthValue = 300;
-            this.ProcessBar_Detect.Location = new System.Drawing.Point(3, 76);
+            this.ProcessBar_Detect.Location = new System.Drawing.Point(3, 51);
             this.ProcessBar_Detect.MouseState = MaterialSkin.MouseState.HOVER;
             this.ProcessBar_Detect.Name = "ProcessBar_Detect";
             this.ProcessBar_Detect.Processing = true;
@@ -154,6 +156,22 @@
             this.WebBrowser_Login.Name = "WebBrowser_Login";
             this.WebBrowser_Login.Size = new System.Drawing.Size(959, 630);
             this.WebBrowser_Login.TabIndex = 0;
+            // 
+            // Label_Detect_Tip
+            // 
+            this.Label_Detect_Tip.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_Detect_Tip.Depth = 0;
+            this.Label_Detect_Tip.Font = new System.Drawing.Font("微软雅黑", 26F);
+            this.Label_Detect_Tip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Label_Detect_Tip.Location = new System.Drawing.Point(3, 61);
+            this.Label_Detect_Tip.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Label_Detect_Tip.Name = "Label_Detect_Tip";
+            this.Label_Detect_Tip.Size = new System.Drawing.Size(850, 46);
+            this.Label_Detect_Tip.TabIndex = 4;
+            this.Label_Detect_Tip.Text = "materialLabel1";
+            this.Label_Detect_Tip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Label_Detect_Tip.Visible = false;
             // 
             // Form_Main
             // 
@@ -185,6 +203,7 @@
         private MaterialSkin.Controls.MaterialProcessBar ProcessBar_Detect;
         private System.Windows.Forms.WebBrowser WebBrowser_Login;
         private MaterialSkin.Controls.MaterialSingleLineTextField Text_Detect_Number;
+        private MaterialSkin.Controls.MaterialLabel Label_Detect_Tip;
     }
 }
 
