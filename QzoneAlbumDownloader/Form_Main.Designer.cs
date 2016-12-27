@@ -37,6 +37,8 @@
             this.TabPage_Login = new System.Windows.Forms.TabPage();
             this.WebBrowser_Login = new System.Windows.Forms.WebBrowser();
             this.Label_Detect_Tip = new MaterialSkin.Controls.MaterialLabel();
+            this.materialFlatButton1 = new MaterialSkin.Controls.MaterialFlatButton();
+            this.materialFlatButton2 = new MaterialSkin.Controls.MaterialFlatButton();
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Detect.SuspendLayout();
             this.Panel_Detect.SuspendLayout();
@@ -73,13 +75,15 @@
             // Panel_Detect
             // 
             this.Panel_Detect.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Panel_Detect.Controls.Add(this.materialFlatButton2);
+            this.Panel_Detect.Controls.Add(this.materialFlatButton1);
             this.Panel_Detect.Controls.Add(this.Label_Detect_Tip);
             this.Panel_Detect.Controls.Add(this.Text_Detect_Number);
             this.Panel_Detect.Controls.Add(this.Button_Detect_Enter);
             this.Panel_Detect.Controls.Add(this.ProcessBar_Detect);
             this.Panel_Detect.Location = new System.Drawing.Point(52, 258);
             this.Panel_Detect.Name = "Panel_Detect";
-            this.Panel_Detect.Size = new System.Drawing.Size(857, 142);
+            this.Panel_Detect.Size = new System.Drawing.Size(857, 166);
             this.Panel_Detect.TabIndex = 2;
             // 
             // Text_Detect_Number
@@ -173,6 +177,32 @@
             this.Label_Detect_Tip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Label_Detect_Tip.Visible = false;
             // 
+            // materialFlatButton1
+            // 
+            this.materialFlatButton1.Depth = 0;
+            this.materialFlatButton1.Location = new System.Drawing.Point(8, 113);
+            this.materialFlatButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialFlatButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialFlatButton1.Name = "materialFlatButton1";
+            this.materialFlatButton1.Primary = false;
+            this.materialFlatButton1.Size = new System.Drawing.Size(417, 45);
+            this.materialFlatButton1.TabIndex = 5;
+            this.materialFlatButton1.Text = "取消";
+            this.materialFlatButton1.UseVisualStyleBackColor = true;
+            // 
+            // materialFlatButton2
+            // 
+            this.materialFlatButton2.Depth = 0;
+            this.materialFlatButton2.Location = new System.Drawing.Point(433, 113);
+            this.materialFlatButton2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialFlatButton2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialFlatButton2.Name = "materialFlatButton2";
+            this.materialFlatButton2.Primary = false;
+            this.materialFlatButton2.Size = new System.Drawing.Size(417, 45);
+            this.materialFlatButton2.TabIndex = 6;
+            this.materialFlatButton2.Text = "登录";
+            this.materialFlatButton2.UseVisualStyleBackColor = true;
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -204,6 +234,8 @@
         private System.Windows.Forms.WebBrowser WebBrowser_Login;
         private MaterialSkin.Controls.MaterialSingleLineTextField Text_Detect_Number;
         private MaterialSkin.Controls.MaterialLabel Label_Detect_Tip;
+        private MaterialSkin.Controls.MaterialFlatButton materialFlatButton2;
+        private MaterialSkin.Controls.MaterialFlatButton materialFlatButton1;
     }
 }
 
