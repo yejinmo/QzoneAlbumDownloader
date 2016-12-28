@@ -36,6 +36,7 @@ namespace QzoneAlbumDownloader
         {
 
             WebBrowser_Login.ScriptErrorsSuppressed = false;
+
             WebBrowser_Login.DocumentCompleted += WebBrowser_Login_DocumentCompleted;
         }
 
