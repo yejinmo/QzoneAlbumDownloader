@@ -9,10 +9,10 @@
 1. 检测是否拥有目标QQ空间访问权限，若无则使用内嵌浏览器登录并获取cookie（以下操作均为携带cookie操作）  
 
 2. 使用QQ空间开放API获取相册ID  
-> http://photo.qq.com/fcgi-bin/fcg_list_album?uin=QQ%E5%8F%B7%E7%A0%81  
+> http://photo.qq.com/fcgi-bin/fcg_list_album?uin=号码  
 
 3. 根据相册ID获取相册内容详细信息
-> http://photo.qq.com/fcgi-bin/fcg_list_photo?uin=QQ%E5%8F%B7%E7%A0%81&albumid=%E7%9B%B8%E5%86%8CID  
+> http://photo.qq.com/fcgi-bin/fcg_list_photo?uin=QQ号码&albumid=相册ID   
 
 4. 根据返回的XML信息解析并选取照片
 
