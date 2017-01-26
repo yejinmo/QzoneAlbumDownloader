@@ -63,7 +63,7 @@ namespace QzoneAlbumDownloader
         {
             if (TabControl_Main.SelectedTab == TabPage_Login)
                 //WebBrowser_Login.Navigate("http://www.qzone.com");
-                WebBrowser_Login.Navigate(@"https://xui.ptlogin2.qq.com/cgi-bin/xlogin?appid=522005705&daid=4&s_url=https://mail.qq.com/cgi-bin/login?vt=passport%26vm=wpt%26ft=loginpage%26target=&style=25&low_login=1&proxy_url=https://mail.qq.com/proxy.html&need_qr=0&hide_border=1&border_radius=0&self_regurl=http://zc.qq.com/chs/index.html?type=1&app_id=11005?t=regist&pt_feedback_link=http://support.qq.com/discuss/350_1.shtml&css=https://res.mail.qq.com/zh_CN/htmledition/style/ptlogin_input24e6b9.css");
+                WebBrowser_Login.Navigate(@"http://xui.ptlogin2.qq.com/cgi-bin/xlogin?proxy_url=http%3A//qzs.qq.com/qzone/v6/portal/proxy.html&daid=5&&hide_title_bar=1&low_login=0&qlogin_auto_login=1&no_verifyimg=1&link_target=blank&appid=549000912&style=22&target=self&s_url=http%3A%2F%2Fqzs.qq.com%2Fqzone%2Fv5%2Floginsucc.html%3Fpara%3Dizone&pt_qr_app=手机QQ空间&pt_qr_link=http%3A//z.qzone.com/download.html&self_regurl=http%3A//qzs.qq.com/qzone/v6/reg/index.html&pt_qr_help_link=http%3A//z.qzone.com/download.html");
         }
 
         #endregion
@@ -108,7 +108,14 @@ namespace QzoneAlbumDownloader
                     if (res)
                         ;
                     else
+                    {
                         Label_Detect_Tip_SetText("目标空间非公开 请先登录", Color.Red);
+                        Invoke((EventHandler)delegate
+                        {
+                            Button_Cancel.Visible = true;
+                            Button_Login.Visible = true;
+                        });
+                    }
                     //TabControl_Main.SelectedTab = TabPage_Login;
                 });
             }
@@ -155,6 +162,18 @@ namespace QzoneAlbumDownloader
                 Button_Detect_Enter.PerformClick();
         }
 
+        private void Button_Cancel_Click(object sender, EventArgs e)
+        {
+            Label_Detect_Tip.Text = "";
+            Button_Cancel.Visible = false;
+            Button_Login.Visible = false;
+        }
+
+        private void Button_Login_Click(object sender, EventArgs e)
+        {
+            TabControl_Main.SelectedTab = TabPage_Login;
+        }
+
         #endregion
 
         #region Login
@@ -162,7 +181,6 @@ namespace QzoneAlbumDownloader
         private void WebBrowser_Login_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
             string reg_str = @"\[http://(\d+).qzone.qq.com\]";
-            //string reg_str = @"https://xui.ptlogin2.qq.com/cgi-bin/xlogin?appid=522005705&daid=4&s_url=https://mail.qq.com/cgi-bin/login?vt=passport%26vm=wpt%26ft=loginpage%26target=&style=25&low_login=1&proxy_url=https://mail.qq.com/proxy.html&need_qr=0&hide_border=1&border_radius=0&self_regurl=http://zc.qq.com/chs/index.html?type=1&app_id=11005?t=regist&pt_feedback_link=http://support.qq.com/discuss/350_1.shtml&css=https://res.mail.qq.com/zh_CN/htmledition/style/ptlogin_input24e6b9.css";
             Regex reg = new Regex(reg_str);
             MatchCollection mc = reg.Matches(WebBrowser_Login.DocumentTitle);
             if (mc.Count == 0)
@@ -173,9 +191,15 @@ namespace QzoneAlbumDownloader
                 UserInformation.Cookie = WebBrowser_Login.Document.Cookie;
                 WebBrowser_Login.Stop();
                 WebBrowser_Login.Navigate("");
-                MessageBox.Show(this, RequestHelper.GetResponse(
-                    string.Format("http://photo.qq.com/fcgi-bin/fcg_list_album?uin={0}", UserInformation.TargetQQNumber),
-                    UserInformation.Cookie,"","GBK"));
+                new Thread(new ThreadStart(delegate
+                {
+                    Invoke((EventHandler)delegate
+                    {
+                        MessageBox.Show(this, RequestHelper.GetResponse(
+                            string.Format("http://photo.qq.com/fcgi-bin/fcg_list_album?uin={0}", UserInformation.TargetQQNumber),
+                            UserInformation.Cookie, "", "GBK"));
+                    });
+                })).Start();
             }
         }
 

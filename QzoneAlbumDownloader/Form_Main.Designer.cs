@@ -31,14 +31,14 @@
             this.TabControl_Main = new MaterialSkin.Controls.MaterialTabControl();
             this.TabPage_Detect = new System.Windows.Forms.TabPage();
             this.Panel_Detect = new System.Windows.Forms.Panel();
+            this.Button_Login = new MaterialSkin.Controls.MaterialFlatButton();
+            this.Button_Cancel = new MaterialSkin.Controls.MaterialFlatButton();
+            this.Label_Detect_Tip = new MaterialSkin.Controls.MaterialLabel();
             this.Text_Detect_Number = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.Button_Detect_Enter = new MaterialSkin.Controls.MaterialFlatButton();
             this.ProcessBar_Detect = new MaterialSkin.Controls.MaterialProcessBar();
             this.TabPage_Login = new System.Windows.Forms.TabPage();
             this.WebBrowser_Login = new System.Windows.Forms.WebBrowser();
-            this.Label_Detect_Tip = new MaterialSkin.Controls.MaterialLabel();
-            this.materialFlatButton1 = new MaterialSkin.Controls.MaterialFlatButton();
-            this.materialFlatButton2 = new MaterialSkin.Controls.MaterialFlatButton();
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Detect.SuspendLayout();
             this.Panel_Detect.SuspendLayout();
@@ -75,8 +75,8 @@
             // Panel_Detect
             // 
             this.Panel_Detect.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.Panel_Detect.Controls.Add(this.materialFlatButton2);
-            this.Panel_Detect.Controls.Add(this.materialFlatButton1);
+            this.Panel_Detect.Controls.Add(this.Button_Login);
+            this.Panel_Detect.Controls.Add(this.Button_Cancel);
             this.Panel_Detect.Controls.Add(this.Label_Detect_Tip);
             this.Panel_Detect.Controls.Add(this.Text_Detect_Number);
             this.Panel_Detect.Controls.Add(this.Button_Detect_Enter);
@@ -85,6 +85,52 @@
             this.Panel_Detect.Name = "Panel_Detect";
             this.Panel_Detect.Size = new System.Drawing.Size(857, 166);
             this.Panel_Detect.TabIndex = 2;
+            // 
+            // Button_Login
+            // 
+            this.Button_Login.Depth = 0;
+            this.Button_Login.Location = new System.Drawing.Point(433, 113);
+            this.Button_Login.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.Button_Login.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Button_Login.Name = "Button_Login";
+            this.Button_Login.Primary = false;
+            this.Button_Login.Size = new System.Drawing.Size(417, 45);
+            this.Button_Login.TabIndex = 6;
+            this.Button_Login.Text = "登录";
+            this.Button_Login.UseVisualStyleBackColor = true;
+            this.Button_Login.Visible = false;
+            this.Button_Login.Click += new System.EventHandler(this.Button_Login_Click);
+            // 
+            // Button_Cancel
+            // 
+            this.Button_Cancel.Depth = 0;
+            this.Button_Cancel.Location = new System.Drawing.Point(8, 113);
+            this.Button_Cancel.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.Button_Cancel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Button_Cancel.Name = "Button_Cancel";
+            this.Button_Cancel.Primary = false;
+            this.Button_Cancel.Size = new System.Drawing.Size(417, 45);
+            this.Button_Cancel.TabIndex = 5;
+            this.Button_Cancel.Text = "取消";
+            this.Button_Cancel.UseVisualStyleBackColor = true;
+            this.Button_Cancel.Visible = false;
+            this.Button_Cancel.Click += new System.EventHandler(this.Button_Cancel_Click);
+            // 
+            // Label_Detect_Tip
+            // 
+            this.Label_Detect_Tip.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_Detect_Tip.Depth = 0;
+            this.Label_Detect_Tip.Font = new System.Drawing.Font("微软雅黑", 26F);
+            this.Label_Detect_Tip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Label_Detect_Tip.Location = new System.Drawing.Point(3, 61);
+            this.Label_Detect_Tip.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Label_Detect_Tip.Name = "Label_Detect_Tip";
+            this.Label_Detect_Tip.Size = new System.Drawing.Size(850, 46);
+            this.Label_Detect_Tip.TabIndex = 4;
+            this.Label_Detect_Tip.Text = "Label_Detect_Tip";
+            this.Label_Detect_Tip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Label_Detect_Tip.Visible = false;
             // 
             // Text_Detect_Number
             // 
@@ -161,48 +207,6 @@
             this.WebBrowser_Login.Size = new System.Drawing.Size(959, 630);
             this.WebBrowser_Login.TabIndex = 0;
             // 
-            // Label_Detect_Tip
-            // 
-            this.Label_Detect_Tip.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Label_Detect_Tip.Depth = 0;
-            this.Label_Detect_Tip.Font = new System.Drawing.Font("微软雅黑", 26F);
-            this.Label_Detect_Tip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Label_Detect_Tip.Location = new System.Drawing.Point(3, 61);
-            this.Label_Detect_Tip.MouseState = MaterialSkin.MouseState.HOVER;
-            this.Label_Detect_Tip.Name = "Label_Detect_Tip";
-            this.Label_Detect_Tip.Size = new System.Drawing.Size(850, 46);
-            this.Label_Detect_Tip.TabIndex = 4;
-            this.Label_Detect_Tip.Text = "materialLabel1";
-            this.Label_Detect_Tip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Label_Detect_Tip.Visible = false;
-            // 
-            // materialFlatButton1
-            // 
-            this.materialFlatButton1.Depth = 0;
-            this.materialFlatButton1.Location = new System.Drawing.Point(8, 113);
-            this.materialFlatButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialFlatButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialFlatButton1.Name = "materialFlatButton1";
-            this.materialFlatButton1.Primary = false;
-            this.materialFlatButton1.Size = new System.Drawing.Size(417, 45);
-            this.materialFlatButton1.TabIndex = 5;
-            this.materialFlatButton1.Text = "取消";
-            this.materialFlatButton1.UseVisualStyleBackColor = true;
-            // 
-            // materialFlatButton2
-            // 
-            this.materialFlatButton2.Depth = 0;
-            this.materialFlatButton2.Location = new System.Drawing.Point(433, 113);
-            this.materialFlatButton2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialFlatButton2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialFlatButton2.Name = "materialFlatButton2";
-            this.materialFlatButton2.Primary = false;
-            this.materialFlatButton2.Size = new System.Drawing.Size(417, 45);
-            this.materialFlatButton2.TabIndex = 6;
-            this.materialFlatButton2.Text = "登录";
-            this.materialFlatButton2.UseVisualStyleBackColor = true;
-            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -234,8 +238,8 @@
         private System.Windows.Forms.WebBrowser WebBrowser_Login;
         private MaterialSkin.Controls.MaterialSingleLineTextField Text_Detect_Number;
         private MaterialSkin.Controls.MaterialLabel Label_Detect_Tip;
-        private MaterialSkin.Controls.MaterialFlatButton materialFlatButton2;
-        private MaterialSkin.Controls.MaterialFlatButton materialFlatButton1;
+        private MaterialSkin.Controls.MaterialFlatButton Button_Login;
+        private MaterialSkin.Controls.MaterialFlatButton Button_Cancel;
     }
 }
 
