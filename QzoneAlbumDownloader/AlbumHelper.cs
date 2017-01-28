@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace QzoneAlbumDownloader
 {
@@ -42,11 +43,11 @@ namespace QzoneAlbumDownloader
         /// <param name="QQNumber"></param>
         /// <param name="Cookie"></param>
         /// <returns></returns>
-        public static AccessState CheckHasAccess(string QQNumber, string Cookie)
+        public static AccessState CheckHasAccess(string QQNumber, string Cookie, out string res)
         {
             try
             {
-                string res = RequestHelper.GetResponse(
+                res = RequestHelper.GetResponse(
                                 string.Format("http://photo.qq.com/fcgi-bin/fcg_list_album?uin={0}", QQNumber),
                                 Cookie, "", "GBK");
                 if (res.IndexOf("<errCode>-900</errCode>") > 0)
@@ -63,6 +64,9 @@ namespace QzoneAlbumDownloader
             }
         }
 
+        /// <summary>
+        /// 权限枚举
+        /// </summary>
         public enum AccessState
         {
             OK,
@@ -70,6 +74,32 @@ namespace QzoneAlbumDownloader
             NoAccess,
             NumberError,
             Error
+        }
+
+        /// <summary>
+        /// 解析Data
+        /// </summary>
+        /// <returns></returns>
+        public static List<AlbumInfo> ResolveAlbum(string data)
+        {
+            List<AlbumInfo> res = new List<AlbumInfo>();
+            try
+            {
+                XElement xe = XElement.Parse(data);
+                IEnumerable<XElement> elements = from ele in xe.Elements("album")
+                                                 select ele;
+                foreach (var ele in elements)
+                {
+                    AlbumInfo alb = new AlbumInfo();
+
+                    res.Add(alb);
+                }
+            }
+            catch
+            {
+
+            }
+            return res;
         }
 
     }

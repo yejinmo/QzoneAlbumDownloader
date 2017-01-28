@@ -100,37 +100,43 @@ namespace QzoneAlbumDownloader
                     Label_Detect_Tip.Visible = true;
                 });
                 Thread.Sleep(1000);
-                var CheckHasAccess = AlbumHelper.CheckHasAccess(UserInformation.TargetQQNumber, UserInformation.Cookie);
-                Invoke((EventHandler)delegate
+                var DataRes = string.Empty;
+                var CheckHasAccess = AlbumHelper.CheckHasAccess(UserInformation.TargetQQNumber, UserInformation.Cookie, out DataRes);
+                switch (CheckHasAccess)
                 {
-                    switch (CheckHasAccess)
-                    {
-                        case AlbumHelper.AccessState.OK:
-                            {
-                                Label_Detect_Tip_SetText("正在获取相册列表", Color.Black);
-                                break;
-                            }
-                        case AlbumHelper.AccessState.NeedLogin:
-                            {
-                                Label_Detect_Tip_SetText("目标空间非公开 请先登录", Color.Red);
-                                Button_Cancel.Visible = true;
-                                Button_Login.Visible = true;
-                                break;
-                            }
-                        case AlbumHelper.AccessState.NoAccess:
-                            {
-                                Label_Detect_Tip_SetText("没有访问权限 请切换账号", Color.Red);
-                                Button_Cancel.Visible = true;
-                                Button_Login.Visible = true;
-                                break;
-                            }
-                        case AlbumHelper.AccessState.NumberError:
+                    case AlbumHelper.AccessState.OK:
+                        {
+                            Label_Detect_Tip_SetText("正在获取相册列表", Color.Black);
+                            break;
+                        }
+                    case AlbumHelper.AccessState.NeedLogin:
+                        {
+                            Label_Detect_Tip_SetText("目标空间非公开 请先登录", Color.Red);
+                            Invoke((EventHandler)delegate
                             {
 
-                                break;
-                            }
-                    }
-                });
+                                Button_Cancel.Visible = true;
+                                Button_Login.Visible = true;
+                            });
+                            break;
+                        }
+                    case AlbumHelper.AccessState.NoAccess:
+                        {
+                            Label_Detect_Tip_SetText("没有访问权限 请切换账号", Color.Red);
+                            Invoke((EventHandler)delegate
+                            {
+
+                                Button_Cancel.Visible = true;
+                                Button_Login.Visible = true;
+                            });
+                            break;
+                        }
+                    case AlbumHelper.AccessState.NumberError:
+                        {
+
+                            break;
+                        }
+                }
             }
             catch (ThreadAbortException)
             {

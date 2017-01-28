@@ -37,6 +37,7 @@
             this.Text_Detect_Number = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.Button_Detect_Enter = new MaterialSkin.Controls.MaterialFlatButton();
             this.ProcessBar_Detect = new MaterialSkin.Controls.MaterialProcessBar();
+            this.TabPage_Album = new System.Windows.Forms.TabPage();
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Detect.SuspendLayout();
             this.Panel_Detect.SuspendLayout();
@@ -45,6 +46,7 @@
             // TabControl_Main
             // 
             this.TabControl_Main.Controls.Add(this.TabPage_Detect);
+            this.TabControl_Main.Controls.Add(this.TabPage_Album);
             this.TabControl_Main.Depth = 0;
             this.TabControl_Main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TabControl_Main.Location = new System.Drawing.Point(0, 0);
@@ -58,6 +60,7 @@
             // 
             // TabPage_Detect
             // 
+            this.TabPage_Detect.AutoScroll = true;
             this.TabPage_Detect.BackColor = System.Drawing.Color.White;
             this.TabPage_Detect.Controls.Add(this.Panel_Detect);
             this.TabPage_Detect.Location = new System.Drawing.Point(4, 26);
@@ -183,6 +186,15 @@
             this.ProcessBar_Detect.TabIndex = 1;
             this.ProcessBar_Detect.Visible = false;
             // 
+            // TabPage_Album
+            // 
+            this.TabPage_Album.BackColor = System.Drawing.Color.White;
+            this.TabPage_Album.Location = new System.Drawing.Point(4, 26);
+            this.TabPage_Album.Name = "TabPage_Album";
+            this.TabPage_Album.Size = new System.Drawing.Size(963, 634);
+            this.TabPage_Album.TabIndex = 1;
+            this.TabPage_Album.Text = "TabPage_Album";
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -214,6 +226,7 @@
         private MaterialSkin.Controls.MaterialLabel Label_Detect_Tip;
         private MaterialSkin.Controls.MaterialFlatButton Button_Login;
         private MaterialSkin.Controls.MaterialFlatButton Button_Cancel;
+        private System.Windows.Forms.TabPage TabPage_Album;
     }
 }
 
