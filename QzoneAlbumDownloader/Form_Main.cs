@@ -108,7 +108,18 @@ namespace QzoneAlbumDownloader
                     case AlbumHelper.AccessState.OK:
                         {
                             Label_Detect_Tip_SetText("正在获取相册列表", Color.Black);
-                            UserInformation.AlbumList = AlbumHelper.ResolveAlbum(DataRes);
+                            UserInformation.AlbumList = AlbumHelper.ResolveAlbum(DataRes, UserInformation.TargetQQNumber, UserInformation.Cookie);
+                            Label_Detect_Tip_SetText(string.Format("共获取到 {0} 个相册", UserInformation.AlbumList.Count), Color.Black);
+                            int album_index = 1;
+                            foreach (var alb in UserInformation.AlbumList)
+                            {
+                                var xml = AlbumHelper.GetImageListXml(UserInformation.TargetQQNumber, UserInformation.Cookie, alb.ID);
+                                Label_Detect_Tip_SetText(string.Format
+                                    ("正在获取 {0}/{1} 相册照片列表", album_index, UserInformation.AlbumList.Count), Color.Black);
+                                alb.Images = AlbumHelper.ResolveImage(xml);
+                                album_index++;
+                            }
+                            Label_Detect_Tip_SetText("相册解析完成", Color.Black);
                             break;
                         }
                     case AlbumHelper.AccessState.NeedLogin:

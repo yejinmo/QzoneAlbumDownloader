@@ -77,15 +77,18 @@ namespace QzoneAlbumDownloader
         }
 
         /// <summary>
-        /// 解析Data
+        /// 解析相册列表
         /// </summary>
+        /// <param name="xmldata">相册列表XML数据</param>
+        /// <param name="qqnumber">目标QQ号</param>
+        /// <param name="cookie">Cookie</param>
         /// <returns></returns>
-        public static List<AlbumInfo> ResolveAlbum(string data)
+        public static List<AlbumInfo> ResolveAlbum(string xmldata, string qqnumber, string cookie)
         {
             List<AlbumInfo> res = new List<AlbumInfo>();
             try
             {
-                XElement xe = XElement.Parse(data);
+                XElement xe = XElement.Parse(xmldata);
                 IEnumerable<XElement> elements = from ele in xe.Elements("album")
                                                  select ele;
                 foreach (var ele in elements)
@@ -95,12 +98,12 @@ namespace QzoneAlbumDownloader
                     alb.Comment = Convert.ToInt32(ele.Element("comment").Value);
                     alb.CreateTime = ele.Element("createtime").Value;
                     alb.ID = ele.Element("id").Value;
-                    alb.Images = new List<ImageInfo>();
                     alb.LastUploadTime = ele.Element("id").Value;
                     alb.ModifyTime = ele.Element("modifytime").Value;
                     alb.Name = ele.Element("name").Value;
                     alb.PreviewImagePath = ele.Element("pre").Value;
                     alb.Total = Convert.ToInt32(ele.Element("total").Value);
+                    //alb.Images = ResolveImage(GetImageListXml(qqnumber, cookie, alb.ID));
                     res.Add(alb);
                 }
             }
@@ -109,6 +112,63 @@ namespace QzoneAlbumDownloader
 
             }
             return res;
+        }
+
+        /// <summary>
+        /// 解析照片列表
+        /// </summary>
+        /// <param name="xmldata">照片列表XML数据</param>
+        /// <returns></returns>
+        public static List<ImageInfo> ResolveImage(string xmldata)
+        {
+            List<ImageInfo> res = new List<ImageInfo>();
+            try
+            {
+                XElement xe = XElement.Parse(xmldata);
+                IEnumerable<XElement> elements = from ele in xe.Elements("pic")
+                                                 select ele;
+                foreach (var ele in elements)
+                {
+                    ImageInfo img = new ImageInfo();
+                    img.Height = Convert.ToInt32(ele.Element("height").Value);
+                    img.ModifyTime = ele.Element("modifytime").Value;
+                    img.Name = ele.Element("name").Value;
+                    img.OriginURL = ele.Element("origin_url").Value;
+                    img.Owner = ele.Element("owner").Value;
+                    img.OwnerName = ele.Element("ownername").Value;
+                    img.PhotoType = ele.Element("phototype").Value;
+                    img.PreviewImagePath = ele.Element("pre").Value;
+                    img.RawShootTime = ele.Element("rawshoottime").Value;
+                    img.UploadTime = ele.Element("uploadtime").Value;
+                    img.Width = Convert.ToInt32(ele.Element("width").Value);
+                    res.Add(img);
+                }
+            }
+            catch
+            {
+
+            }
+            return res;
+        }
+
+        /// <summary>
+        /// 获取照片列表XML数据
+        /// </summary>
+        /// <param name="QQNumber">QQ号</param>
+        /// <param name="Cookie">Cookie</param>
+        /// <param name="AlbumID">相册ID</param>
+        /// <returns></returns>
+        public static string GetImageListXml(string QQNumber, string Cookie, string AlbumID)
+        {
+            try
+            {
+                return RequestHelper.GetResponse(string.Format("http://photo.qq.com/fcgi-bin/fcg_list_photo?uin={0}&albumid={1}",
+                    QQNumber, AlbumID), Cookie, "", "GBK");
+            }
+            catch
+            {
+                return "";
+            }
         }
 
     }
