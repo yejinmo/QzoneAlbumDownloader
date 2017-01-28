@@ -91,7 +91,16 @@ namespace QzoneAlbumDownloader
                 foreach (var ele in elements)
                 {
                     AlbumInfo alb = new AlbumInfo();
-
+                    alb.ClassID = ele.Element("classid").Value;
+                    alb.Comment = Convert.ToInt32(ele.Element("comment").Value);
+                    alb.CreateTime = ele.Element("createtime").Value;
+                    alb.ID = ele.Element("id").Value;
+                    alb.Images = new List<ImageInfo>();
+                    alb.LastUploadTime = ele.Element("id").Value;
+                    alb.ModifyTime = ele.Element("modifytime").Value;
+                    alb.Name = ele.Element("name").Value;
+                    alb.PreviewImagePath = ele.Element("pre").Value;
+                    alb.Total = Convert.ToInt32(ele.Element("total").Value);
                     res.Add(alb);
                 }
             }

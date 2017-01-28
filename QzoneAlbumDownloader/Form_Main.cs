@@ -20,6 +20,7 @@ namespace QzoneAlbumDownloader
             public static string QQNumber = string.Empty;
             public static string Cookie = string.Empty;
             public static string TargetQQNumber = string.Empty;
+            public static List<AlbumInfo> AlbumList = new List<AlbumInfo>();
         }
 
         #endregion
@@ -107,6 +108,7 @@ namespace QzoneAlbumDownloader
                     case AlbumHelper.AccessState.OK:
                         {
                             Label_Detect_Tip_SetText("正在获取相册列表", Color.Black);
+                            UserInformation.AlbumList = AlbumHelper.ResolveAlbum(DataRes);
                             break;
                         }
                     case AlbumHelper.AccessState.NeedLogin:
