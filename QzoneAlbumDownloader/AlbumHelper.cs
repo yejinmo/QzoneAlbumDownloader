@@ -42,14 +42,20 @@ namespace QzoneAlbumDownloader
         /// <param name="QQNumber"></param>
         /// <param name="Cookie"></param>
         /// <returns></returns>
-        public static bool CheckHasAccess(string QQNumber, string Cookie)
+        public static AccessState CheckHasAccess(string QQNumber, string Cookie)
         {
             try
             {
                 string res = RequestHelper.GetResponse(
-                    string.Format("http://photo.qq.com/fcgi-bin/fcg_list_album?uin={0}", QQNumber),
-                    "", "", "GBK");
-                return true;
+                                string.Format("http://photo.qq.com/fcgi-bin/fcg_list_album?uin={0}", QQNumber),
+                                Cookie, "", "GBK");
+                if (res.IndexOf("<errCode>-900</errCode>") > 0)
+                    return AccessState.NeedLogin;
+                if (res.IndexOf("<errCode>-961</errCode>") > 0)
+                    return AccessState.NoAccess;
+                if (res.IndexOf("<errCode>-902</errCode>") > 0)
+                    return AccessState.NumberError;
+                return AccessState.OK;
             }
             catch
             {
@@ -57,7 +63,14 @@ namespace QzoneAlbumDownloader
             }
         }
 
-        
+        public enum AccessState
+        {
+            OK,
+            NeedLogin,
+            NoAccess,
+            NumberError,
+            Error
+        }
 
     }
 }

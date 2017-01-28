@@ -37,18 +37,14 @@
             this.Text_Detect_Number = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.Button_Detect_Enter = new MaterialSkin.Controls.MaterialFlatButton();
             this.ProcessBar_Detect = new MaterialSkin.Controls.MaterialProcessBar();
-            this.TabPage_Login = new System.Windows.Forms.TabPage();
-            this.WebBrowser_Login = new System.Windows.Forms.WebBrowser();
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Detect.SuspendLayout();
             this.Panel_Detect.SuspendLayout();
-            this.TabPage_Login.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControl_Main
             // 
             this.TabControl_Main.Controls.Add(this.TabPage_Detect);
-            this.TabControl_Main.Controls.Add(this.TabPage_Login);
             this.TabControl_Main.Depth = 0;
             this.TabControl_Main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TabControl_Main.Location = new System.Drawing.Point(0, 0);
@@ -155,6 +151,7 @@
             this.Text_Detect_Number.Size = new System.Drawing.Size(708, 37);
             this.Text_Detect_Number.TabIndex = 3;
             this.Text_Detect_Number.TabStop = false;
+            this.Text_Detect_Number.Text = "861732201";
             this.Text_Detect_Number.UseSystemPasswordChar = false;
             this.Text_Detect_Number.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Text_Detect_Number_KeyDown);
             // 
@@ -186,27 +183,6 @@
             this.ProcessBar_Detect.TabIndex = 1;
             this.ProcessBar_Detect.Visible = false;
             // 
-            // TabPage_Login
-            // 
-            this.TabPage_Login.BackColor = System.Drawing.Color.White;
-            this.TabPage_Login.Controls.Add(this.WebBrowser_Login);
-            this.TabPage_Login.Location = new System.Drawing.Point(4, 26);
-            this.TabPage_Login.Margin = new System.Windows.Forms.Padding(2);
-            this.TabPage_Login.Name = "TabPage_Login";
-            this.TabPage_Login.Padding = new System.Windows.Forms.Padding(2);
-            this.TabPage_Login.Size = new System.Drawing.Size(963, 634);
-            this.TabPage_Login.TabIndex = 1;
-            this.TabPage_Login.Text = "TabPage_Login";
-            // 
-            // WebBrowser_Login
-            // 
-            this.WebBrowser_Login.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.WebBrowser_Login.Location = new System.Drawing.Point(2, 2);
-            this.WebBrowser_Login.MinimumSize = new System.Drawing.Size(20, 20);
-            this.WebBrowser_Login.Name = "WebBrowser_Login";
-            this.WebBrowser_Login.Size = new System.Drawing.Size(959, 630);
-            this.WebBrowser_Login.TabIndex = 0;
-            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -217,12 +193,12 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form_Main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form_Main";
             this.Load += new System.EventHandler(this.Form_Main_Load);
             this.TabControl_Main.ResumeLayout(false);
             this.TabPage_Detect.ResumeLayout(false);
             this.Panel_Detect.ResumeLayout(false);
-            this.TabPage_Login.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -231,11 +207,9 @@
 
         private MaterialSkin.Controls.MaterialTabControl TabControl_Main;
         private System.Windows.Forms.TabPage TabPage_Detect;
-        private System.Windows.Forms.TabPage TabPage_Login;
         private System.Windows.Forms.Panel Panel_Detect;
         private MaterialSkin.Controls.MaterialFlatButton Button_Detect_Enter;
         private MaterialSkin.Controls.MaterialProcessBar ProcessBar_Detect;
-        private System.Windows.Forms.WebBrowser WebBrowser_Login;
         private MaterialSkin.Controls.MaterialSingleLineTextField Text_Detect_Number;
         private MaterialSkin.Controls.MaterialLabel Label_Detect_Tip;
         private MaterialSkin.Controls.MaterialFlatButton Button_Login;

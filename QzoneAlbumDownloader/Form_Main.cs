@@ -35,8 +35,6 @@ namespace QzoneAlbumDownloader
         private void Form_Main_Load(object sender, EventArgs e)
         {
 
-            WebBrowser_Login.ScriptErrorsSuppressed = false;
-            WebBrowser_Login.DocumentCompleted += WebBrowser_Login_DocumentCompleted;
         }
 
         /// <summary>
@@ -61,9 +59,7 @@ namespace QzoneAlbumDownloader
 
         private void TabControl_Main_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (TabControl_Main.SelectedTab == TabPage_Login)
-                //WebBrowser_Login.Navigate("http://www.qzone.com");
-                WebBrowser_Login.Navigate(@"http://xui.ptlogin2.qq.com/cgi-bin/xlogin?proxy_url=http%3A//qzs.qq.com/qzone/v6/portal/proxy.html&daid=5&&hide_title_bar=1&low_login=0&qlogin_auto_login=1&no_verifyimg=1&link_target=blank&appid=549000912&style=22&target=self&s_url=http%3A%2F%2Fqzs.qq.com%2Fqzone%2Fv5%2Floginsucc.html%3Fpara%3Dizone&pt_qr_app=手机QQ空间&pt_qr_link=http%3A//z.qzone.com/download.html&self_regurl=http%3A//qzs.qq.com/qzone/v6/reg/index.html&pt_qr_help_link=http%3A//z.qzone.com/download.html");
+
         }
 
         #endregion
@@ -74,6 +70,8 @@ namespace QzoneAlbumDownloader
 
         private void Button_Detect_Enter_Click(object sender, EventArgs e)
         {
+            Button_Cancel.Visible = false;
+            Button_Login.Visible = false;
             if (ThreadDetect == null)
             {
                 ThreadDetect = new Thread(new ThreadStart(Detect));
@@ -102,21 +100,36 @@ namespace QzoneAlbumDownloader
                     Label_Detect_Tip.Visible = true;
                 });
                 Thread.Sleep(1000);
-                var res = AlbumHelper.CheckIsPublic(UserInformation.TargetQQNumber);
+                var CheckHasAccess = AlbumHelper.CheckHasAccess(UserInformation.TargetQQNumber, UserInformation.Cookie);
                 Invoke((EventHandler)delegate
                 {
-                    if (res)
-                        ;
-                    else
+                    switch (CheckHasAccess)
                     {
-                        Label_Detect_Tip_SetText("目标空间非公开 请先登录", Color.Red);
-                        Invoke((EventHandler)delegate
-                        {
-                            Button_Cancel.Visible = true;
-                            Button_Login.Visible = true;
-                        });
+                        case AlbumHelper.AccessState.OK:
+                            {
+                                Label_Detect_Tip_SetText("正在获取相册列表", Color.Black);
+                                break;
+                            }
+                        case AlbumHelper.AccessState.NeedLogin:
+                            {
+                                Label_Detect_Tip_SetText("目标空间非公开 请先登录", Color.Red);
+                                Button_Cancel.Visible = true;
+                                Button_Login.Visible = true;
+                                break;
+                            }
+                        case AlbumHelper.AccessState.NoAccess:
+                            {
+                                Label_Detect_Tip_SetText("没有访问权限 请切换账号", Color.Red);
+                                Button_Cancel.Visible = true;
+                                Button_Login.Visible = true;
+                                break;
+                            }
+                        case AlbumHelper.AccessState.NumberError:
+                            {
+
+                                break;
+                            }
                     }
-                    //TabControl_Main.SelectedTab = TabPage_Login;
                 });
             }
             catch (ThreadAbortException)
@@ -171,37 +184,27 @@ namespace QzoneAlbumDownloader
 
         private void Button_Login_Click(object sender, EventArgs e)
         {
-            TabControl_Main.SelectedTab = TabPage_Login;
+            bool LoginSucceed = false;
+            var frm = new Form_QzoneLogin();
+            frm.ShowDialog();
+            UserInformation.Cookie = (LoginSucceed = !string.IsNullOrEmpty(frm.Cookie)) ? frm.Cookie : UserInformation.Cookie;
+            UserInformation.QQNumber = (LoginSucceed = LoginSucceed && !string.IsNullOrEmpty(frm.QQNumber)) ? frm.QQNumber : UserInformation.QQNumber;
+            frm.Dispose();
+            if (LoginSucceed)
+            {
+                Label_Detect_Tip_SetText("登录成功");
+                Button_Detect_Enter.PerformClick();
+            }
+            else
+                Label_Detect_Tip_SetText("登录失败", Color.Red);
+
         }
 
         #endregion
 
         #region Login
 
-        private void WebBrowser_Login_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-            string reg_str = @"\[http://(\d+).qzone.qq.com\]";
-            Regex reg = new Regex(reg_str);
-            MatchCollection mc = reg.Matches(WebBrowser_Login.DocumentTitle);
-            if (mc.Count == 0)
-                return;
-            else
-            {
-                UserInformation.QQNumber = mc[0].Groups[1].ToString();
-                UserInformation.Cookie = WebBrowser_Login.Document.Cookie;
-                WebBrowser_Login.Stop();
-                WebBrowser_Login.Navigate("");
-                new Thread(new ThreadStart(delegate
-                {
-                    Invoke((EventHandler)delegate
-                    {
-                        MessageBox.Show(this, RequestHelper.GetResponse(
-                            string.Format("http://photo.qq.com/fcgi-bin/fcg_list_album?uin={0}", UserInformation.TargetQQNumber),
-                            UserInformation.Cookie, "", "GBK"));
-                    });
-                })).Start();
-            }
-        }
+
 
         #endregion
 
