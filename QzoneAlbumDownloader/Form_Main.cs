@@ -113,6 +113,7 @@ namespace QzoneAlbumDownloader
                             int album_index = 1;
                             foreach (var alb in UserInformation.AlbumList)
                             {
+                                albumControl1.Image = AlbumHelper.GetImageByURL(alb.PreviewImagePath, "");
                                 var xml = AlbumHelper.GetImageListXml(UserInformation.TargetQQNumber, UserInformation.Cookie, alb.ID);
                                 Label_Detect_Tip_SetText(string.Format
                                     ("正在获取 {0}/{1} 相册照片列表", album_index, UserInformation.AlbumList.Count), Color.Black);

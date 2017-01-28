@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -101,7 +103,7 @@ namespace QzoneAlbumDownloader
                     alb.LastUploadTime = ele.Element("id").Value;
                     alb.ModifyTime = ele.Element("modifytime").Value;
                     alb.Name = ele.Element("name").Value;
-                    alb.PreviewImagePath = ele.Element("pre").Value;
+                    alb.PreviewImagePath = ele.Element("pre").Value.Replace("/a/","/b/");
                     alb.Total = Convert.ToInt32(ele.Element("total").Value);
                     //alb.Images = ResolveImage(GetImageListXml(qqnumber, cookie, alb.ID));
                     res.Add(alb);
@@ -168,6 +170,51 @@ namespace QzoneAlbumDownloader
             catch
             {
                 return "";
+            }
+        }
+
+        /// <summary>
+        /// 获取图片
+        /// </summary>
+        /// <param name="URL">图片URL</param>
+        /// <param name="Cookie">Cookie</param>
+        /// <returns></returns>
+        public static Bitmap GetImageByURL(string URL, string Cookie)
+        {
+            return StreamToBitmap(RequestHelper.GetResponse(URL, Cookie, ""));
+        }
+
+        /// <summary>
+        /// Stream流转换为Bitmap
+        /// </summary>
+        /// <param name="inStream">Stream流</param>
+        /// <returns></returns>
+        public static Bitmap StreamToBitmap(Stream inStream)
+        {
+            MemoryStream stream = new MemoryStream();
+            try
+            {
+                byte[] buffer = new byte[1024];
+                while (true)
+                {
+                    int sz = inStream.Read(buffer, 0, 1024);
+                    if (sz == 0) break;
+                    stream.Write(buffer, 0, sz);
+                }
+                stream.Position = 0;
+                return new Bitmap((Image)new Bitmap(stream));
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw ex;
+            }
+            catch (ArgumentException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                stream.Close();
             }
         }
 
