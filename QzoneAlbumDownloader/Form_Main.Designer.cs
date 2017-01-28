@@ -40,7 +40,7 @@
             this.Button_Detect_Enter = new MaterialSkin.Controls.MaterialFlatButton();
             this.ProcessBar_Detect = new MaterialSkin.Controls.MaterialProcessBar();
             this.TabPage_Album = new System.Windows.Forms.TabPage();
-            this.Tip = new System.Windows.Forms.ToolTip(this.components);
+            this.AlbumTip = new System.Windows.Forms.ToolTip(this.components);
             this.albumControl1 = new QzoneAlbumDownloader.Controls.AlbumControl();
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Detect.SuspendLayout();
@@ -58,7 +58,7 @@
             this.TabControl_Main.MouseState = MaterialSkin.MouseState.HOVER;
             this.TabControl_Main.Name = "TabControl_Main";
             this.TabControl_Main.SelectedIndex = 0;
-            this.TabControl_Main.Size = new System.Drawing.Size(971, 664);
+            this.TabControl_Main.Size = new System.Drawing.Size(911, 615);
             this.TabControl_Main.TabIndex = 0;
             this.TabControl_Main.SelectedIndexChanged += new System.EventHandler(this.TabControl_Main_SelectedIndexChanged);
             // 
@@ -72,7 +72,7 @@
             this.TabPage_Detect.Margin = new System.Windows.Forms.Padding(2);
             this.TabPage_Detect.Name = "TabPage_Detect";
             this.TabPage_Detect.Padding = new System.Windows.Forms.Padding(2);
-            this.TabPage_Detect.Size = new System.Drawing.Size(963, 634);
+            this.TabPage_Detect.Size = new System.Drawing.Size(903, 585);
             this.TabPage_Detect.TabIndex = 0;
             this.TabPage_Detect.Text = "TabPage_Detect";
             // 
@@ -85,7 +85,7 @@
             this.Panel_Detect.Controls.Add(this.Text_Detect_Number);
             this.Panel_Detect.Controls.Add(this.Button_Detect_Enter);
             this.Panel_Detect.Controls.Add(this.ProcessBar_Detect);
-            this.Panel_Detect.Location = new System.Drawing.Point(52, 244);
+            this.Panel_Detect.Location = new System.Drawing.Point(22, 207);
             this.Panel_Detect.Name = "Panel_Detect";
             this.Panel_Detect.Size = new System.Drawing.Size(857, 166);
             this.Panel_Detect.TabIndex = 2;
@@ -193,40 +193,45 @@
             // 
             // TabPage_Album
             // 
+            this.TabPage_Album.AutoScroll = true;
             this.TabPage_Album.BackColor = System.Drawing.Color.White;
             this.TabPage_Album.Location = new System.Drawing.Point(4, 26);
             this.TabPage_Album.Name = "TabPage_Album";
             this.TabPage_Album.Padding = new System.Windows.Forms.Padding(20);
-            this.TabPage_Album.Size = new System.Drawing.Size(963, 634);
+            this.TabPage_Album.Size = new System.Drawing.Size(903, 585);
             this.TabPage_Album.TabIndex = 1;
             this.TabPage_Album.Text = "TabPage_Album";
+            this.TabPage_Album.Resize += new System.EventHandler(this.TabPage_Album_Resize);
             // 
             // albumControl1
             // 
+            this.albumControl1.BackColor = System.Drawing.Color.White;
             this.albumControl1.Font = new System.Drawing.Font("微软雅黑", 20F);
             this.albumControl1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.albumControl1.Image = ((System.Drawing.Bitmap)(resources.GetObject("albumControl1.Image")));
-            this.albumControl1.Location = new System.Drawing.Point(749, 5);
+            this.albumControl1.ImageURL = "";
+            this.albumControl1.Location = new System.Drawing.Point(409, 5);
             this.albumControl1.Name = "albumControl1";
             this.albumControl1.Padding = new System.Windows.Forms.Padding(10);
-            this.albumControl1.Size = new System.Drawing.Size(206, 246);
+            this.albumControl1.Size = new System.Drawing.Size(200, 240);
             this.albumControl1.TabIndex = 5;
             this.albumControl1.Text = "albumControl1";
             this.albumControl1.Title = "12345678910";
-            this.Tip.SetToolTip(this.albumControl1, "相册名称：123\r\n照片数量：123456");
+            this.AlbumTip.SetToolTip(this.albumControl1, "相册名称：123\r\n照片数量：123456");
+            this.albumControl1.Visible = false;
             // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(971, 664);
+            this.ClientSize = new System.Drawing.Size(911, 615);
             this.Controls.Add(this.TabControl_Main);
             this.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form_Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form_Main";
+            this.Text = "QzoneAlbumDownloader";
             this.Load += new System.EventHandler(this.Form_Main_Load);
             this.TabControl_Main.ResumeLayout(false);
             this.TabPage_Detect.ResumeLayout(false);
@@ -247,7 +252,7 @@
         private MaterialSkin.Controls.MaterialFlatButton Button_Login;
         private MaterialSkin.Controls.MaterialFlatButton Button_Cancel;
         private System.Windows.Forms.TabPage TabPage_Album;
-        private System.Windows.Forms.ToolTip Tip;
+        private System.Windows.Forms.ToolTip AlbumTip;
         private Controls.AlbumControl albumControl1;
     }
 }

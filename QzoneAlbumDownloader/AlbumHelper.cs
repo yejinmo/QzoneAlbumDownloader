@@ -103,7 +103,7 @@ namespace QzoneAlbumDownloader
                     alb.LastUploadTime = ele.Element("id").Value;
                     alb.ModifyTime = ele.Element("modifytime").Value;
                     alb.Name = ele.Element("name").Value;
-                    alb.PreviewImagePath = ele.Element("pre").Value.Replace("/a/","/b/");
+                    alb.PreviewImagePath = ele.Element("pre").Value.Replace("/a/","/m/");
                     alb.Total = Convert.ToInt32(ele.Element("total").Value);
                     //alb.Images = ResolveImage(GetImageListXml(qqnumber, cookie, alb.ID));
                     res.Add(alb);

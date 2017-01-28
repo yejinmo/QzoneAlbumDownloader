@@ -28,6 +28,20 @@ namespace QzoneAlbumDownloader.Controls
             }
         }
 
+        private string imageURL = string.Empty;
+        public string ImageURL
+        {
+            get
+            {
+                return imageURL;
+            }
+
+            set
+            {
+                imageURL = value;
+            }
+        }
+
         private string title = string.Empty;
         public string Title
         {
@@ -49,6 +63,7 @@ namespace QzoneAlbumDownloader.Controls
 
         public AlbumControl()
         {
+            Padding = new Padding(10);
             BackColor = Color.White;
             SetStyle(ControlStyles.ResizeRedraw, true);
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
@@ -122,6 +137,11 @@ namespace QzoneAlbumDownloader.Controls
             gr.DrawImage(sourceBitmap, 0, 0, new RectangleF(rc.Left, rc.Top, rc.Right - rc.Left, rc.Bottom - rc.Top), GraphicsUnit.Pixel);
             gr.Dispose();
             return TempsourceBitmap;
+        }
+
+        public void ReloadSize()
+        {
+            Height = Width + Padding.Top + Padding.Bottom + (int)Font.Size;
         }
 
         #endregion

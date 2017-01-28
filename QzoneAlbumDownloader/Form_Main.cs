@@ -69,24 +69,9 @@ namespace QzoneAlbumDownloader
 
         Thread ThreadDetect;
 
-        private void Button_Detect_Enter_Click(object sender, EventArgs e)
-        {
-            Button_Cancel.Visible = false;
-            Button_Login.Visible = false;
-            if (ThreadDetect == null)
-            {
-                ThreadDetect = new Thread(new ThreadStart(Detect));
-                ThreadDetect.Start();
-                Button_Detect_Enter.Text = "取消";
-            }
-            else
-            {
-                ThreadDetect.Abort();
-                ThreadDetect = null;
-                Button_Detect_Enter.Text = "访问";
-            }
-        }
-
+        /// <summary>
+        /// 解析相册
+        /// </summary>
         private void Detect()
         {
             try
@@ -113,14 +98,18 @@ namespace QzoneAlbumDownloader
                             int album_index = 1;
                             foreach (var alb in UserInformation.AlbumList)
                             {
-                                albumControl1.Image = AlbumHelper.GetImageByURL(alb.PreviewImagePath, "");
                                 var xml = AlbumHelper.GetImageListXml(UserInformation.TargetQQNumber, UserInformation.Cookie, alb.ID);
                                 Label_Detect_Tip_SetText(string.Format
                                     ("正在获取 {0}/{1} 相册照片列表", album_index, UserInformation.AlbumList.Count), Color.Black);
                                 alb.Images = AlbumHelper.ResolveImage(xml);
                                 album_index++;
                             }
-                            Label_Detect_Tip_SetText("相册解析完成", Color.Black);
+                            Label_Detect_Tip_SetText("正在加载相册缩略图", Color.Black);
+                            LoadAlbumPage();
+                            Invoke((EventHandler)delegate
+                            {
+                                TabControl_Main.SelectedTab = TabPage_Album;
+                            });
                             break;
                         }
                     case AlbumHelper.AccessState.NeedLogin:
@@ -175,6 +164,24 @@ namespace QzoneAlbumDownloader
             }
         }
 
+        private void Button_Detect_Enter_Click(object sender, EventArgs e)
+        {
+            Button_Cancel.Visible = false;
+            Button_Login.Visible = false;
+            if (ThreadDetect == null)
+            {
+                ThreadDetect = new Thread(new ThreadStart(Detect));
+                ThreadDetect.Start();
+                Button_Detect_Enter.Text = "取消";
+            }
+            else
+            {
+                ThreadDetect.Abort();
+                ThreadDetect = null;
+                Button_Detect_Enter.Text = "访问";
+            }
+        }
+
         private void Label_Detect_Tip_SetText(string str, Color col)
         {
             Invoke((EventHandler)delegate
@@ -222,9 +229,77 @@ namespace QzoneAlbumDownloader
 
         #endregion
 
-        #region Login
+        #region AlbumPage
 
+        List<Controls.AlbumControl> AlbumControlList = new List<Controls.AlbumControl>();
 
+        /// <summary>
+        /// 加载相册页面
+        /// </summary>
+        private void LoadAlbumPage()
+        {
+            Invoke((EventHandler)delegate
+            {
+                AlbumTip.RemoveAll();
+                foreach (var ctl in AlbumControlList)
+                {
+                    TabPage_Album.Controls.Remove(ctl);
+                    AlbumControlList.Remove(ctl);
+                }
+            });
+            foreach (var album in UserInformation.AlbumList)
+            {
+                var img = AlbumHelper.GetImageByURL(album.PreviewImagePath, UserInformation.Cookie);
+                Invoke((EventHandler)delegate
+                {
+                    var ctl = new Controls.AlbumControl();
+                    ctl.Width = 200;
+                    ctl.ReloadSize();
+                    ctl.Title = album.Name;
+                    ctl.ImageURL = album.PreviewImagePath;
+                    ctl.Image = img;
+                    AlbumTip.SetToolTip(ctl, string.Format("相册名称：{0}\n创建时间：{1}\n照片总数：{2}", album.Name, album.CreateTime, album.Total));
+                    TabPage_Album.Controls.Add(ctl);
+                    AlbumControlList.Add(ctl);
+                });
+            }
+            Invoke((EventHandler)delegate
+            {
+                ReloadAlbumPage();
+            });
+        }
+
+        /// <summary>
+        /// 重载相册页面
+        /// </summary>
+        private void ReloadAlbumPage()
+        {
+            int padding = 20;
+            int left = 0;
+            int top = 20;
+            foreach (var ctl in AlbumControlList)
+            {
+                int temp = (left == 0 ? padding : left + ctl.Width + padding);
+                if (temp + ctl.Width + padding < TabPage_Album.Width)
+                {
+                    ctl.Left = temp;
+                    ctl.Top = top;
+                    left = temp;
+                }
+                else
+                {
+                    top += ctl.Height + padding;
+                    left = 0;
+                    ctl.Left = padding;
+                    ctl.Top = top;
+                }
+            }
+        }
+
+        private void TabPage_Album_Resize(object sender, EventArgs e)
+        {
+            ReloadAlbumPage();
+        }
 
         #endregion
 

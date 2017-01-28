@@ -37,7 +37,7 @@
             this.WebBrowser_Login.Location = new System.Drawing.Point(0, 0);
             this.WebBrowser_Login.MinimumSize = new System.Drawing.Size(20, 20);
             this.WebBrowser_Login.Name = "WebBrowser_Login";
-            this.WebBrowser_Login.Size = new System.Drawing.Size(953, 669);
+            this.WebBrowser_Login.Size = new System.Drawing.Size(911, 615);
             this.WebBrowser_Login.TabIndex = 1;
             this.WebBrowser_Login.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.WebBrowser_Login_DocumentCompleted);
             // 
@@ -45,7 +45,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(953, 669);
+            this.ClientSize = new System.Drawing.Size(911, 615);
             this.Controls.Add(this.WebBrowser_Login);
             this.Name = "Form_QzoneLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
