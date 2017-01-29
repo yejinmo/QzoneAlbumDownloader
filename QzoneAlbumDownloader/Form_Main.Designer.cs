@@ -85,7 +85,7 @@
             this.Panel_Detect.Controls.Add(this.Text_Detect_Number);
             this.Panel_Detect.Controls.Add(this.Button_Detect_Enter);
             this.Panel_Detect.Controls.Add(this.ProcessBar_Detect);
-            this.Panel_Detect.Location = new System.Drawing.Point(22, 207);
+            this.Panel_Detect.Location = new System.Drawing.Point(22, 197);
             this.Panel_Detect.Name = "Panel_Detect";
             this.Panel_Detect.Size = new System.Drawing.Size(857, 166);
             this.Panel_Detect.TabIndex = 2;
@@ -159,7 +159,7 @@
             this.Text_Detect_Number.Size = new System.Drawing.Size(708, 37);
             this.Text_Detect_Number.TabIndex = 3;
             this.Text_Detect_Number.TabStop = false;
-            this.Text_Detect_Number.Text = "861732201";
+            this.Text_Detect_Number.Text = "985189148";
             this.Text_Detect_Number.UseSystemPasswordChar = false;
             this.Text_Detect_Number.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Text_Detect_Number_KeyDown);
             // 
@@ -210,7 +210,7 @@
             this.albumControl1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.albumControl1.Image = ((System.Drawing.Bitmap)(resources.GetObject("albumControl1.Image")));
             this.albumControl1.ImageURL = "";
-            this.albumControl1.Location = new System.Drawing.Point(409, 5);
+            this.albumControl1.Location = new System.Drawing.Point(455, 35);
             this.albumControl1.Name = "albumControl1";
             this.albumControl1.Padding = new System.Windows.Forms.Padding(10);
             this.albumControl1.Size = new System.Drawing.Size(200, 240);

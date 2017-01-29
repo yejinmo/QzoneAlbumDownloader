@@ -85,10 +85,10 @@ namespace QzoneAlbumDownloader.Controls
                 g.DrawImage(Image, new Rectangle(Padding.Left, Padding.Top, a, a));
             //Draw Border
             Pen p = new Pen(ForeColor);
-            g.DrawLine(p, new Point(2, 1), new Point(Width - 2, 1));
-            g.DrawLine(p, new Point(Width - 2, 2), new Point(Width - 2, Height - 2));
-            g.DrawLine(p, new Point(Width - 3, Height - 2), new Point(1, Height - 2));
-            g.DrawLine(p, new Point(1, Height - 3), new Point(1, 1));
+            g.DrawLine(p, new Point(Padding.Left - 1, Padding.Top - 1), new Point(Padding.Left + a, Padding.Top - 1));
+            g.DrawLine(p, new Point(Padding.Left + a, Padding.Top - 1), new Point(Padding.Left + a, Padding.Top + a));
+            g.DrawLine(p, new Point(Padding.Left - 1, Padding.Top + a), new Point(Padding.Left + a, Padding.Top + a));
+            g.DrawLine(p, new Point(Padding.Left - 1, Padding.Top + a), new Point(Padding.Left - 1, Padding.Top - 1));
             //Draw Title
             g.DrawString(Title, Font, new SolidBrush(ForeColor),
                 new Rectangle(Padding.Left, a + Padding.Top + Padding.Bottom, a, Height - Padding.Bottom * 2 - a - Padding.Top));
