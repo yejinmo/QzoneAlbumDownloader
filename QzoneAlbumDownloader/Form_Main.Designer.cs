@@ -210,7 +210,7 @@
             this.albumControl1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.albumControl1.Image = ((System.Drawing.Bitmap)(resources.GetObject("albumControl1.Image")));
             this.albumControl1.ImageURL = "";
-            this.albumControl1.Location = new System.Drawing.Point(329, 37);
+            this.albumControl1.Location = new System.Drawing.Point(379, 32);
             this.albumControl1.Name = "albumControl1";
             this.albumControl1.Padding = new System.Windows.Forms.Padding(10);
             this.albumControl1.Size = new System.Drawing.Size(200, 240);
