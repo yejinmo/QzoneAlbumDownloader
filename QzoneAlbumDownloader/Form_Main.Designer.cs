@@ -32,16 +32,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Main));
             this.TabControl_Main = new MaterialSkin.Controls.MaterialTabControl();
             this.TabPage_Detect = new System.Windows.Forms.TabPage();
+            this.albumControl1 = new QzoneAlbumDownloader.Controls.AlbumControl();
             this.Panel_Detect = new System.Windows.Forms.Panel();
             this.Button_Login = new MaterialSkin.Controls.MaterialFlatButton();
             this.Button_Cancel = new MaterialSkin.Controls.MaterialFlatButton();
-            this.Label_Detect_Tip = new MaterialSkin.Controls.MaterialLabel();
             this.Text_Detect_Number = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.Button_Detect_Enter = new MaterialSkin.Controls.MaterialFlatButton();
             this.ProcessBar_Detect = new MaterialSkin.Controls.MaterialProcessBar();
             this.TabPage_Album = new System.Windows.Forms.TabPage();
             this.AlbumTip = new System.Windows.Forms.ToolTip(this.components);
-            this.albumControl1 = new QzoneAlbumDownloader.Controls.AlbumControl();
+            this.Label_Detect_Tip = new System.Windows.Forms.Label();
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Detect.SuspendLayout();
             this.Panel_Detect.SuspendLayout();
@@ -65,7 +65,7 @@
             // TabPage_Detect
             // 
             this.TabPage_Detect.AutoScroll = true;
-            this.TabPage_Detect.BackColor = System.Drawing.Color.White;
+            this.TabPage_Detect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
             this.TabPage_Detect.Controls.Add(this.albumControl1);
             this.TabPage_Detect.Controls.Add(this.Panel_Detect);
             this.TabPage_Detect.Location = new System.Drawing.Point(4, 26);
@@ -76,16 +76,33 @@
             this.TabPage_Detect.TabIndex = 0;
             this.TabPage_Detect.Text = "TabPage_Detect";
             // 
+            // albumControl1
+            // 
+            this.albumControl1.BackColor = System.Drawing.Color.White;
+            this.albumControl1.Font = new System.Drawing.Font("微软雅黑", 20F);
+            this.albumControl1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.albumControl1.Image = ((System.Drawing.Bitmap)(resources.GetObject("albumControl1.Image")));
+            this.albumControl1.ImageURL = "";
+            this.albumControl1.Location = new System.Drawing.Point(336, 367);
+            this.albumControl1.Name = "albumControl1";
+            this.albumControl1.Padding = new System.Windows.Forms.Padding(10);
+            this.albumControl1.Size = new System.Drawing.Size(200, 240);
+            this.albumControl1.TabIndex = 5;
+            this.albumControl1.Text = "albumControl1";
+            this.albumControl1.Title = "12345678910";
+            this.AlbumTip.SetToolTip(this.albumControl1, "相册名称：123\r\n照片数量：123456");
+            this.albumControl1.Visible = false;
+            // 
             // Panel_Detect
             // 
             this.Panel_Detect.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Panel_Detect.Controls.Add(this.Label_Detect_Tip);
             this.Panel_Detect.Controls.Add(this.Button_Login);
             this.Panel_Detect.Controls.Add(this.Button_Cancel);
-            this.Panel_Detect.Controls.Add(this.Label_Detect_Tip);
             this.Panel_Detect.Controls.Add(this.Text_Detect_Number);
             this.Panel_Detect.Controls.Add(this.Button_Detect_Enter);
             this.Panel_Detect.Controls.Add(this.ProcessBar_Detect);
-            this.Panel_Detect.Location = new System.Drawing.Point(22, 195);
+            this.Panel_Detect.Location = new System.Drawing.Point(14, 206);
             this.Panel_Detect.Name = "Panel_Detect";
             this.Panel_Detect.Size = new System.Drawing.Size(857, 166);
             this.Panel_Detect.TabIndex = 2;
@@ -93,6 +110,7 @@
             // Button_Login
             // 
             this.Button_Login.Depth = 0;
+            this.Button_Login.ForeColor = System.Drawing.Color.White;
             this.Button_Login.Location = new System.Drawing.Point(433, 113);
             this.Button_Login.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.Button_Login.MouseState = MaterialSkin.MouseState.HOVER;
@@ -108,6 +126,7 @@
             // Button_Cancel
             // 
             this.Button_Cancel.Depth = 0;
+            this.Button_Cancel.ForeColor = System.Drawing.Color.White;
             this.Button_Cancel.Location = new System.Drawing.Point(8, 113);
             this.Button_Cancel.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.Button_Cancel.MouseState = MaterialSkin.MouseState.HOVER;
@@ -120,22 +139,6 @@
             this.Button_Cancel.Visible = false;
             this.Button_Cancel.Click += new System.EventHandler(this.Button_Cancel_Click);
             // 
-            // Label_Detect_Tip
-            // 
-            this.Label_Detect_Tip.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Label_Detect_Tip.Depth = 0;
-            this.Label_Detect_Tip.Font = new System.Drawing.Font("微软雅黑", 26F);
-            this.Label_Detect_Tip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Label_Detect_Tip.Location = new System.Drawing.Point(3, 61);
-            this.Label_Detect_Tip.MouseState = MaterialSkin.MouseState.HOVER;
-            this.Label_Detect_Tip.Name = "Label_Detect_Tip";
-            this.Label_Detect_Tip.Size = new System.Drawing.Size(850, 46);
-            this.Label_Detect_Tip.TabIndex = 4;
-            this.Label_Detect_Tip.Text = "Label_Detect_Tip";
-            this.Label_Detect_Tip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Label_Detect_Tip.Visible = false;
-            // 
             // Text_Detect_Number
             // 
             this.Text_Detect_Number.Depth = 0;
@@ -144,7 +147,7 @@
             this.Text_Detect_Number.FollowLabel = null;
             this.Text_Detect_Number.FollowLabelColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.Text_Detect_Number.FollowLabeloldColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.Text_Detect_Number.ForeColor = System.Drawing.Color.Black;
+            this.Text_Detect_Number.ForeColor = System.Drawing.Color.White;
             this.Text_Detect_Number.Hint = "目标QQ号";
             this.Text_Detect_Number.IsErrorMode = false;
             this.Text_Detect_Number.Location = new System.Drawing.Point(3, 10);
@@ -166,6 +169,7 @@
             // Button_Detect_Enter
             // 
             this.Button_Detect_Enter.Depth = 0;
+            this.Button_Detect_Enter.ForeColor = System.Drawing.Color.White;
             this.Button_Detect_Enter.Location = new System.Drawing.Point(718, 4);
             this.Button_Detect_Enter.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.Button_Detect_Enter.MouseState = MaterialSkin.MouseState.HOVER;
@@ -194,7 +198,7 @@
             // TabPage_Album
             // 
             this.TabPage_Album.AutoScroll = true;
-            this.TabPage_Album.BackColor = System.Drawing.Color.White;
+            this.TabPage_Album.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
             this.TabPage_Album.Location = new System.Drawing.Point(4, 26);
             this.TabPage_Album.Name = "TabPage_Album";
             this.TabPage_Album.Padding = new System.Windows.Forms.Padding(20);
@@ -203,28 +207,25 @@
             this.TabPage_Album.Text = "TabPage_Album";
             this.TabPage_Album.Resize += new System.EventHandler(this.TabPage_Album_Resize);
             // 
-            // albumControl1
+            // Label_Detect_Tip
             // 
-            this.albumControl1.BackColor = System.Drawing.Color.White;
-            this.albumControl1.Font = new System.Drawing.Font("微软雅黑", 20F);
-            this.albumControl1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.albumControl1.Image = ((System.Drawing.Bitmap)(resources.GetObject("albumControl1.Image")));
-            this.albumControl1.ImageURL = "";
-            this.albumControl1.Location = new System.Drawing.Point(379, 32);
-            this.albumControl1.Name = "albumControl1";
-            this.albumControl1.Padding = new System.Windows.Forms.Padding(10);
-            this.albumControl1.Size = new System.Drawing.Size(200, 240);
-            this.albumControl1.TabIndex = 5;
-            this.albumControl1.Text = "albumControl1";
-            this.albumControl1.Title = "12345678910";
-            this.AlbumTip.SetToolTip(this.albumControl1, "相册名称：123\r\n照片数量：123456");
-            this.albumControl1.Visible = false;
+            this.Label_Detect_Tip.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_Detect_Tip.Font = new System.Drawing.Font("微软雅黑", 26F);
+            this.Label_Detect_Tip.ForeColor = System.Drawing.Color.White;
+            this.Label_Detect_Tip.Location = new System.Drawing.Point(3, 61);
+            this.Label_Detect_Tip.Name = "Label_Detect_Tip";
+            this.Label_Detect_Tip.Size = new System.Drawing.Size(850, 46);
+            this.Label_Detect_Tip.TabIndex = 6;
+            this.Label_Detect_Tip.Text = "Label_Detect_Tip";
+            this.Label_Detect_Tip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Label_Detect_Tip.Visible = false;
             // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
             this.ClientSize = new System.Drawing.Size(911, 615);
             this.Controls.Add(this.TabControl_Main);
             this.Font = new System.Drawing.Font("微软雅黑", 9F);
@@ -248,12 +249,12 @@
         private MaterialSkin.Controls.MaterialFlatButton Button_Detect_Enter;
         private MaterialSkin.Controls.MaterialProcessBar ProcessBar_Detect;
         private MaterialSkin.Controls.MaterialSingleLineTextField Text_Detect_Number;
-        private MaterialSkin.Controls.MaterialLabel Label_Detect_Tip;
         private MaterialSkin.Controls.MaterialFlatButton Button_Login;
         private MaterialSkin.Controls.MaterialFlatButton Button_Cancel;
         private System.Windows.Forms.TabPage TabPage_Album;
         private System.Windows.Forms.ToolTip AlbumTip;
         private Controls.AlbumControl albumControl1;
+        private System.Windows.Forms.Label Label_Detect_Tip;
     }
 }
 

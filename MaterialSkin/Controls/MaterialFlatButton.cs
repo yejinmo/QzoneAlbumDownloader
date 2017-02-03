@@ -82,7 +82,7 @@ namespace MaterialSkin.Controls
                 }
                 g.SmoothingMode = SmoothingMode.None;
             }
-			g.DrawString(Text.ToUpper(), SkinManager.FONT_SIZE_18, Enabled ? (Primary ? SkinManager.ColorScheme.PrimaryBrush : SkinManager.GetPrimaryTextBrush()) : SkinManager.GetFlatButtonDisabledTextBrush(), ClientRectangle, new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+			g.DrawString(Text.ToUpper(), SkinManager.FONT_SIZE_18, Enabled ? new SolidBrush(ForeColor) : SkinManager.GetFlatButtonDisabledTextBrush(), ClientRectangle, new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
         }
 
         protected override void OnCreateControl()

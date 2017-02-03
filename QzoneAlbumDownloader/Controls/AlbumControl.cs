@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+/// <summary>
+/// QQ空间相册控件
+/// </summary>
 namespace QzoneAlbumDownloader.Controls
 {
     public class AlbumControl : Control
