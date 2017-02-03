@@ -68,6 +68,7 @@
             this.TabPage_Detect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
             this.TabPage_Detect.Controls.Add(this.albumControl1);
             this.TabPage_Detect.Controls.Add(this.Panel_Detect);
+            this.TabPage_Detect.ForeColor = System.Drawing.Color.White;
             this.TabPage_Detect.Location = new System.Drawing.Point(4, 26);
             this.TabPage_Detect.Margin = new System.Windows.Forms.Padding(2);
             this.TabPage_Detect.Name = "TabPage_Detect";
@@ -199,6 +200,7 @@
             // 
             this.TabPage_Album.AutoScroll = true;
             this.TabPage_Album.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.TabPage_Album.ForeColor = System.Drawing.Color.White;
             this.TabPage_Album.Location = new System.Drawing.Point(4, 26);
             this.TabPage_Album.Name = "TabPage_Album";
             this.TabPage_Album.Padding = new System.Windows.Forms.Padding(20);

@@ -252,15 +252,20 @@ namespace QzoneAlbumDownloader
                 var img = AlbumHelper.GetImageByURL(album.PreviewImagePath, UserInformation.Cookie);
                 Invoke((EventHandler)delegate
                 {
-                    var ctl = new Controls.AlbumControl();
-                    ctl.Width = 200;
-                    ctl.ReloadSize();
-                    ctl.Title = album.Name;
-                    ctl.ImageURL = album.PreviewImagePath;
-                    ctl.Image = img;
-                    AlbumTip.SetToolTip(ctl, string.Format("相册名称：{0}\n创建时间：{1}\n照片总数：{2}", album.Name, album.CreateTime, album.Total));
+                    var ctl = new Controls.AlbumControl()
+                    {
+                        Width = 200,
+                        Title = album.Name,
+                        ImageURL = album.PreviewImagePath,
+                        Image = img,
+                        Font = new Font("微软雅黑", 12)
+                    };
                     TabPage_Album.Controls.Add(ctl);
                     AlbumControlList.Add(ctl);
+                    ctl.ForeColor = ctl.Parent.ForeColor;
+                    ctl.BackColor = ctl.Parent.BackColor;
+                    ctl.ReloadSize();
+                    AlbumTip.SetToolTip(ctl, string.Format("相册名称：{0}\n创建时间：{1}\n照片总数：{2}", album.Name, album.CreateTime, album.Total));
                 });
             }
             Invoke((EventHandler)delegate

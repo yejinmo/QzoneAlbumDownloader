@@ -67,7 +67,6 @@ namespace QzoneAlbumDownloader.Controls
         public AlbumControl()
         {
             Padding = new Padding(10);
-            BackColor = Color.White;
             SetStyle(ControlStyles.ResizeRedraw, true);
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
@@ -83,18 +82,24 @@ namespace QzoneAlbumDownloader.Controls
             int a = Width - Padding.Left - Padding.Right;
             var g = e.Graphics;
             g.Clear(BackColor);
+            g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             //Draw Image
             if (Image != null)
                 g.DrawImage(Image, new Rectangle(Padding.Left, Padding.Top, a, a));
             //Draw Border
-            Pen p = new Pen(ForeColor);
+            Pen p = new Pen(Color.FromArgb(68, 69, 70));
             g.DrawLine(p, new Point(Padding.Left - 1, Padding.Top - 1), new Point(Padding.Left + a, Padding.Top - 1));
             g.DrawLine(p, new Point(Padding.Left + a, Padding.Top - 1), new Point(Padding.Left + a, Padding.Top + a));
             g.DrawLine(p, new Point(Padding.Left - 1, Padding.Top + a), new Point(Padding.Left + a, Padding.Top + a));
             g.DrawLine(p, new Point(Padding.Left - 1, Padding.Top + a), new Point(Padding.Left - 1, Padding.Top - 1));
             //Draw Title
+            StringFormat sf = new StringFormat()
+            {
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            };
             g.DrawString(Title, Font, new SolidBrush(ForeColor),
-                new Rectangle(Padding.Left, a + Padding.Top + Padding.Bottom, a, Height - Padding.Bottom * 2 - a - Padding.Top));
+                new Rectangle(Padding.Left, a + Padding.Top + Padding.Bottom, a, Height - Padding.Bottom * 2 - a - Padding.Top), sf);
             base.OnPaint(e);
         }
 
