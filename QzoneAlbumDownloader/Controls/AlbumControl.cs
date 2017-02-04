@@ -166,6 +166,7 @@ namespace QzoneAlbumDownloader.Controls
         public void ReloadSize()
         {
             Height = Width + Padding.Top + Padding.Bottom * 2 + (int)Font.Size + (int)HintFont.Size;
+            return;
         }
 
         #endregion
