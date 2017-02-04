@@ -34,6 +34,7 @@
             this.TabPage_Detect = new System.Windows.Forms.TabPage();
             this.albumControl1 = new QzoneAlbumDownloader.Controls.AlbumControl();
             this.Panel_Detect = new System.Windows.Forms.Panel();
+            this.Label_Detect_Tip = new System.Windows.Forms.Label();
             this.Button_Login = new MaterialSkin.Controls.MaterialFlatButton();
             this.Button_Cancel = new MaterialSkin.Controls.MaterialFlatButton();
             this.Text_Detect_Number = new MaterialSkin.Controls.MaterialSingleLineTextField();
@@ -41,10 +42,11 @@
             this.ProcessBar_Detect = new MaterialSkin.Controls.MaterialProcessBar();
             this.TabPage_Album = new System.Windows.Forms.TabPage();
             this.AlbumTip = new System.Windows.Forms.ToolTip(this.components);
-            this.Label_Detect_Tip = new System.Windows.Forms.Label();
+            this.FlowLayoutPanel_Album = new System.Windows.Forms.FlowLayoutPanel();
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Detect.SuspendLayout();
             this.Panel_Detect.SuspendLayout();
+            this.TabPage_Album.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControl_Main
@@ -82,12 +84,15 @@
             this.albumControl1.BackColor = System.Drawing.Color.White;
             this.albumControl1.Font = new System.Drawing.Font("微软雅黑", 20F);
             this.albumControl1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.albumControl1.HintFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.albumControl1.HintForeColor = System.Drawing.SystemColors.ControlText;
+            this.albumControl1.HintString = "123";
             this.albumControl1.Image = ((System.Drawing.Bitmap)(resources.GetObject("albumControl1.Image")));
             this.albumControl1.ImageURL = "";
-            this.albumControl1.Location = new System.Drawing.Point(336, 367);
+            this.albumControl1.Location = new System.Drawing.Point(433, 18);
             this.albumControl1.Name = "albumControl1";
             this.albumControl1.Padding = new System.Windows.Forms.Padding(10);
-            this.albumControl1.Size = new System.Drawing.Size(200, 240);
+            this.albumControl1.Size = new System.Drawing.Size(200, 259);
             this.albumControl1.TabIndex = 5;
             this.albumControl1.Text = "albumControl1";
             this.albumControl1.Title = "12345678910";
@@ -107,6 +112,20 @@
             this.Panel_Detect.Name = "Panel_Detect";
             this.Panel_Detect.Size = new System.Drawing.Size(857, 166);
             this.Panel_Detect.TabIndex = 2;
+            // 
+            // Label_Detect_Tip
+            // 
+            this.Label_Detect_Tip.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_Detect_Tip.Font = new System.Drawing.Font("微软雅黑", 26F);
+            this.Label_Detect_Tip.ForeColor = System.Drawing.Color.White;
+            this.Label_Detect_Tip.Location = new System.Drawing.Point(3, 61);
+            this.Label_Detect_Tip.Name = "Label_Detect_Tip";
+            this.Label_Detect_Tip.Size = new System.Drawing.Size(850, 46);
+            this.Label_Detect_Tip.TabIndex = 6;
+            this.Label_Detect_Tip.Text = "Label_Detect_Tip";
+            this.Label_Detect_Tip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Label_Detect_Tip.Visible = false;
             // 
             // Button_Login
             // 
@@ -200,6 +219,7 @@
             // 
             this.TabPage_Album.AutoScroll = true;
             this.TabPage_Album.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.TabPage_Album.Controls.Add(this.FlowLayoutPanel_Album);
             this.TabPage_Album.ForeColor = System.Drawing.Color.White;
             this.TabPage_Album.Location = new System.Drawing.Point(4, 26);
             this.TabPage_Album.Name = "TabPage_Album";
@@ -209,19 +229,14 @@
             this.TabPage_Album.Text = "TabPage_Album";
             this.TabPage_Album.Resize += new System.EventHandler(this.TabPage_Album_Resize);
             // 
-            // Label_Detect_Tip
+            // FlowLayoutPanel_Album
             // 
-            this.Label_Detect_Tip.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Label_Detect_Tip.Font = new System.Drawing.Font("微软雅黑", 26F);
-            this.Label_Detect_Tip.ForeColor = System.Drawing.Color.White;
-            this.Label_Detect_Tip.Location = new System.Drawing.Point(3, 61);
-            this.Label_Detect_Tip.Name = "Label_Detect_Tip";
-            this.Label_Detect_Tip.Size = new System.Drawing.Size(850, 46);
-            this.Label_Detect_Tip.TabIndex = 6;
-            this.Label_Detect_Tip.Text = "Label_Detect_Tip";
-            this.Label_Detect_Tip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Label_Detect_Tip.Visible = false;
+            this.FlowLayoutPanel_Album.AutoScroll = true;
+            this.FlowLayoutPanel_Album.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FlowLayoutPanel_Album.Location = new System.Drawing.Point(20, 20);
+            this.FlowLayoutPanel_Album.Name = "FlowLayoutPanel_Album";
+            this.FlowLayoutPanel_Album.Size = new System.Drawing.Size(863, 545);
+            this.FlowLayoutPanel_Album.TabIndex = 0;
             // 
             // Form_Main
             // 
@@ -239,6 +254,7 @@
             this.TabControl_Main.ResumeLayout(false);
             this.TabPage_Detect.ResumeLayout(false);
             this.Panel_Detect.ResumeLayout(false);
+            this.TabPage_Album.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -257,6 +273,7 @@
         private System.Windows.Forms.ToolTip AlbumTip;
         private Controls.AlbumControl albumControl1;
         private System.Windows.Forms.Label Label_Detect_Tip;
+        private System.Windows.Forms.FlowLayoutPanel FlowLayoutPanel_Album;
     }
 }
 

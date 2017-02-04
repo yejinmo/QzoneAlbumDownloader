@@ -164,95 +164,12 @@ namespace MaterialSkin.Controls
             try
             {
                 //draw background
-                //e.Graphics.FillRectangle(SkinManager.GetDisabledOrHintBrush(), 0, top_pos, e.ClipRectangle.Width, e.ClipRectangle.Height);
                 e.Graphics.FillRectangle(SkinManager.GetDisabledOrHintBrush(), 0, 0, e.ClipRectangle.Width, e.ClipRectangle.Height);
                 //draw process block
-                //e.Graphics.FillRectangle(SkinManager.ColorScheme.PrimaryBrush, Value, top_pos, LengthValue, e.ClipRectangle.Height);
                 e.Graphics.FillRectangle(SkinManager.ColorScheme.PrimaryBrush, Value, 0, LengthValue, e.ClipRectangle.Height);
-                /*
-                var doneProgress = (int)(e.ClipRectangle.Width * ((double)Value / Maximum));
-                e.Graphics.FillRectangle(SkinManager.ColorScheme.PrimaryBrush, 0, 0, doneProgress, e.ClipRectangle.Height);
-                e.Graphics.FillRectangle(SkinManager.GetDisabledOrHintBrush(), doneProgress, 0, e.ClipRectangle.Width, e.ClipRectangle.Height);
-                */
             }
             catch { }
         }
-
-        //private bool visible = true;
-        //int top_pos = 0;
-        //public new bool Visible
-        //{
-        //    get
-        //    {
-        //        return visible;
-        //    }
-        //    set
-        //    {
-        //        visible = value;
-        //        if (visible)
-        //        {
-        //            top_pos = -Height;
-        //            Invalidate();
-        //            if (HideThread != null)
-        //                HideThread.Abort();
-        //            if (ShowThread != null)
-        //                ShowThread.Abort();
-        //            ShowThread = new Thread(new ThreadStart(ShowSub));
-        //            ShowThread.Start();
-        //        }
-        //        else
-        //        {
-        //            top_pos = 0;
-        //            Invalidate();
-        //            if (ShowThread != null)
-        //                ShowThread.Abort();
-        //            if (HideThread != null)
-        //                HideThread.Abort();
-        //            HideThread = new Thread(new ThreadStart(HideSub));
-        //            HideThread.Start();
-        //        }
-        //    }
-        //}
-
-        //Thread ShowThread;
-
-        //Thread HideThread;
-
-        //private void ShowSub()
-        //{
-        //    while (true && IsCreated)
-        //    {
-        //        Thread.Sleep(40);
-        //        top_pos++;
-        //        Invoke((EventHandler)delegate {
-        //            Invalidate();
-        //        });
-        //        if (top_pos >= 0)
-        //            break;
-        //    }
-        //    Invoke((EventHandler)delegate {
-        //        base.Visible = true;
-        //    });
-        //}
-
-        //private void HideSub()
-        //{
-        //    while (true && IsCreated)
-        //    {
-        //        Thread.Sleep(40);
-        //        top_pos--;
-        //        Invoke((EventHandler)delegate {
-        //            Invalidate();
-        //        });
-        //        if (top_pos <= -Height)
-        //            break;
-        //    }
-        //    Invoke((EventHandler)delegate {
-        //        base.Visible = false;
-        //    });
-        //}
-
-        //private bool IsCreated = false;
 
     }
 }

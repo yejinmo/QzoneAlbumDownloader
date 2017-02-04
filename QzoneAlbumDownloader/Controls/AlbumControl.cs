@@ -60,6 +60,15 @@ namespace QzoneAlbumDownloader.Controls
             }
         }
 
+        private Font hintFont = DefaultFont;
+        public Font HintFont { get => hintFont; set => hintFont = value; }
+
+        private string hintString = string.Empty;
+        public string HintString { get => hintString; set => hintString = value; }
+
+        private Color hintForeColor = DefaultForeColor;
+        public Color HintForeColor { get => hintForeColor; set => hintForeColor = value; }
+
         #endregion
 
         #region 初始化
@@ -78,7 +87,7 @@ namespace QzoneAlbumDownloader.Controls
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            Height = Width + Padding.Top + Padding.Bottom + (int)Font.Size;
+            ReloadSize();
             int a = Width - Padding.Left - Padding.Right;
             var g = e.Graphics;
             g.Clear(BackColor);
@@ -99,13 +108,17 @@ namespace QzoneAlbumDownloader.Controls
                 LineAlignment = StringAlignment.Center
             };
             g.DrawString(Title, Font, new SolidBrush(ForeColor),
-                new Rectangle(Padding.Left, a + Padding.Top + Padding.Bottom, a, Height - Padding.Bottom * 2 - a - Padding.Top), sf);
+                new Rectangle(Padding.Left, a + Padding.Top + Padding.Bottom,
+                a, (int)Font.Size + Padding.Bottom), sf);
+            g.DrawString(HintString, HintFont, new SolidBrush(HintForeColor),
+                new Rectangle(Padding.Left, a + Padding.Top + Padding.Bottom * 2 + (int)Font.Size + 2,
+                a, (int)HintFont.Size + Padding.Bottom), sf);
             base.OnPaint(e);
         }
 
         protected override void OnSizeChanged(EventArgs e)
         {
-            Height = Width + Padding.Top + Padding.Bottom + (int)Font.Size;
+            ReloadSize();
             base.OnSizeChanged(e);
         }
 
@@ -147,9 +160,12 @@ namespace QzoneAlbumDownloader.Controls
             return TempsourceBitmap;
         }
 
+        /// <summary>
+        /// 重新计算 Size
+        /// </summary>
         public void ReloadSize()
         {
-            Height = Width + Padding.Top + Padding.Bottom + (int)Font.Size;
+            Height = Width + Padding.Top + Padding.Bottom * 2 + (int)Font.Size + (int)HintFont.Size;
         }
 
         #endregion

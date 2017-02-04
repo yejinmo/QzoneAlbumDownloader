@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -243,7 +244,8 @@ namespace QzoneAlbumDownloader
                 AlbumTip.RemoveAll();
                 foreach (var ctl in AlbumControlList)
                 {
-                    TabPage_Album.Controls.Remove(ctl);
+                    FlowLayoutPanel_Album.Controls.Remove(ctl);
+                    //TabPage_Album.Controls.Remove(ctl);
                     AlbumControlList.Remove(ctl);
                 }
             });
@@ -258,11 +260,15 @@ namespace QzoneAlbumDownloader
                         Title = album.Name,
                         ImageURL = album.PreviewImagePath,
                         Image = img,
-                        Font = new Font("微软雅黑", 12)
+                        Font = new Font("微软雅黑", 12),
+                        ForeColor = Color.FromArgb(208, 214, 220),
+                        HintFont = new Font("微软雅黑", 10),
+                        HintForeColor = Color.FromArgb(152, 153, 155),
+                        HintString = album.Total + "张"
                     };
-                    TabPage_Album.Controls.Add(ctl);
+                    FlowLayoutPanel_Album.Controls.Add(ctl);
+                    //TabPage_Album.Controls.Add(ctl);
                     AlbumControlList.Add(ctl);
-                    ctl.ForeColor = ctl.Parent.ForeColor;
                     ctl.BackColor = ctl.Parent.BackColor;
                     ctl.ReloadSize();
                     AlbumTip.SetToolTip(ctl, string.Format("相册名称：{0}\n创建时间：{1}\n照片总数：{2}", album.Name, album.CreateTime, album.Total));
