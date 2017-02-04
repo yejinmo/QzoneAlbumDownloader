@@ -129,6 +129,7 @@
             // 
             // Button_Login
             // 
+            this.Button_Login.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Button_Login.Depth = 0;
             this.Button_Login.ForeColor = System.Drawing.Color.White;
             this.Button_Login.Location = new System.Drawing.Point(433, 113);
@@ -139,12 +140,13 @@
             this.Button_Login.Size = new System.Drawing.Size(417, 45);
             this.Button_Login.TabIndex = 6;
             this.Button_Login.Text = "登录";
-            this.Button_Login.UseVisualStyleBackColor = true;
+            this.Button_Login.UseVisualStyleBackColor = false;
             this.Button_Login.Visible = false;
             this.Button_Login.Click += new System.EventHandler(this.Button_Login_Click);
             // 
             // Button_Cancel
             // 
+            this.Button_Cancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Button_Cancel.Depth = 0;
             this.Button_Cancel.ForeColor = System.Drawing.Color.White;
             this.Button_Cancel.Location = new System.Drawing.Point(8, 113);
@@ -155,7 +157,7 @@
             this.Button_Cancel.Size = new System.Drawing.Size(417, 45);
             this.Button_Cancel.TabIndex = 5;
             this.Button_Cancel.Text = "取消";
-            this.Button_Cancel.UseVisualStyleBackColor = true;
+            this.Button_Cancel.UseVisualStyleBackColor = false;
             this.Button_Cancel.Visible = false;
             this.Button_Cancel.Click += new System.EventHandler(this.Button_Cancel_Click);
             // 
@@ -188,6 +190,7 @@
             // 
             // Button_Detect_Enter
             // 
+            this.Button_Detect_Enter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Button_Detect_Enter.Depth = 0;
             this.Button_Detect_Enter.ForeColor = System.Drawing.Color.White;
             this.Button_Detect_Enter.Location = new System.Drawing.Point(718, 4);
@@ -198,7 +201,7 @@
             this.Button_Detect_Enter.Size = new System.Drawing.Size(135, 45);
             this.Button_Detect_Enter.TabIndex = 2;
             this.Button_Detect_Enter.Text = "访问";
-            this.Button_Detect_Enter.UseVisualStyleBackColor = true;
+            this.Button_Detect_Enter.UseVisualStyleBackColor = false;
             this.Button_Detect_Enter.Click += new System.EventHandler(this.Button_Detect_Enter_Click);
             // 
             // ProcessBar_Detect

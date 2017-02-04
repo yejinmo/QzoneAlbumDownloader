@@ -86,7 +86,7 @@ namespace QzoneAlbumDownloader
                     Label_Detect_Tip_SetText("正在获取信息");
                     Label_Detect_Tip.Visible = true;
                 });
-                Thread.Sleep(1000);
+                //Thread.Sleep(1000);
                 var DataRes = string.Empty;
                 var CheckHasAccess = AlbumHelper.CheckHasAccess(UserInformation.TargetQQNumber, UserInformation.Cookie, out DataRes);
                 switch (CheckHasAccess)
