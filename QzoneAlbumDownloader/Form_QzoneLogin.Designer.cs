@@ -50,6 +50,7 @@
             this.Name = "Form_QzoneLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "请在本页面登录QQ空间";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form_QzoneLogin_FormClosed);
             this.Shown += new System.EventHandler(this.Form_QzoneLogin_Shown);
             this.ResumeLayout(false);
 
