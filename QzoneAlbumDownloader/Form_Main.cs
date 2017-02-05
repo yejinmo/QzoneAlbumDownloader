@@ -96,6 +96,11 @@ namespace QzoneAlbumDownloader
                             Label_Detect_Tip_SetText("正在获取相册列表", Color.White);
                             UserInformation.AlbumList = AlbumHelper.ResolveAlbum(DataRes, UserInformation.TargetQQNumber, UserInformation.Cookie);
                             Label_Detect_Tip_SetText(string.Format("共获取到 {0} 个相册", UserInformation.AlbumList.Count), Color.White);
+                            if (UserInformation.AlbumList.Count == 0)
+                            {
+                                Label_Detect_Tip_SetText(string.Format("未获取到任何开放相册"), Color.Red);
+                                break;
+                            }
                             int album_index = 1;
                             foreach (var alb in UserInformation.AlbumList)
                             {
