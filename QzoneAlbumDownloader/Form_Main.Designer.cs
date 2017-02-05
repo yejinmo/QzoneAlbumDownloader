@@ -41,8 +41,8 @@
             this.Button_Detect_Enter = new MaterialSkin.Controls.MaterialFlatButton();
             this.ProcessBar_Detect = new MaterialSkin.Controls.MaterialProcessBar();
             this.TabPage_Album = new System.Windows.Forms.TabPage();
-            this.AlbumTip = new System.Windows.Forms.ToolTip(this.components);
             this.FlowLayoutPanel_Album = new System.Windows.Forms.FlowLayoutPanel();
+            this.AlbumTip = new System.Windows.Forms.ToolTip(this.components);
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Detect.SuspendLayout();
             this.Panel_Detect.SuspendLayout();
@@ -184,7 +184,7 @@
             this.Text_Detect_Number.Size = new System.Drawing.Size(708, 37);
             this.Text_Detect_Number.TabIndex = 3;
             this.Text_Detect_Number.TabStop = false;
-            this.Text_Detect_Number.Text = "985189148";
+            this.Text_Detect_Number.Text = "861732201";
             this.Text_Detect_Number.UseSystemPasswordChar = false;
             this.Text_Detect_Number.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Text_Detect_Number_KeyDown);
             // 

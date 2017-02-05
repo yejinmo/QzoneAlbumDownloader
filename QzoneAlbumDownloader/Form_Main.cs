@@ -86,7 +86,6 @@ namespace QzoneAlbumDownloader
                     Label_Detect_Tip_SetText("正在获取信息");
                     Label_Detect_Tip.Visible = true;
                 });
-                //Thread.Sleep(1000);
                 var DataRes = string.Empty;
                 var CheckHasAccess = AlbumHelper.CheckHasAccess(UserInformation.TargetQQNumber, UserInformation.Cookie, out DataRes);
                 switch (CheckHasAccess)
@@ -101,7 +100,7 @@ namespace QzoneAlbumDownloader
                                 Label_Detect_Tip_SetText(string.Format("未获取到任何开放相册"), Color.Red);
                                 break;
                             }
-                            int album_index = 1;
+                            int album_index = 1;    
                             foreach (var alb in UserInformation.AlbumList)
                             {
                                 var xml = AlbumHelper.GetImageListXml(UserInformation.TargetQQNumber, UserInformation.Cookie, alb.ID);
@@ -250,13 +249,11 @@ namespace QzoneAlbumDownloader
                 foreach (var ctl in AlbumControlList)
                 {
                     FlowLayoutPanel_Album.Controls.Remove(ctl);
-                    //TabPage_Album.Controls.Remove(ctl);
                     AlbumControlList.Remove(ctl);
                 }
             });
             foreach (var album in UserInformation.AlbumList)
             {
-                var img = AlbumHelper.GetImageByURL(album.PreviewImagePath, UserInformation.Cookie);
                 Invoke((EventHandler)delegate
                 {
                     var ctl = new Controls.AlbumControl()
@@ -264,7 +261,6 @@ namespace QzoneAlbumDownloader
                         Width = 200,
                         Title = album.Name,
                         ImageURL = album.PreviewImagePath,
-                        Image = img,
                         Font = new Font("微软雅黑", 12),
                         ForeColor = Color.FromArgb(208, 214, 220),
                         HintFont = new Font("微软雅黑", 10),
@@ -272,11 +268,17 @@ namespace QzoneAlbumDownloader
                         HintString = album.Total + "张"
                     };
                     FlowLayoutPanel_Album.Controls.Add(ctl);
-                    //TabPage_Album.Controls.Add(ctl);
                     AlbumControlList.Add(ctl);
                     ctl.BackColor = ctl.Parent.BackColor;
                     ctl.ReloadSize();
-                    AlbumTip.SetToolTip(ctl, string.Format("相册名称：{0}\n创建时间：{1}\n照片总数：{2}", album.Name, album.CreateTime, album.Total));
+                    AlbumTip.SetToolTip(ctl, string.Format
+                        ("相册名称：{0}\n创建时间：{1}\n照片总数：{2}\n修改时间：{3}\n最后一次上传时间：{4}\n评论数：{5}",
+                        album.Name, album.CreateTime, album.Total, album.ModifyTime, album.LastUploadTime, album.Comment));
+                    new Thread(new ThreadStart(delegate
+                    {
+                        var img = AlbumHelper.GetImageByURL(album.PreviewImagePath, UserInformation.Cookie);
+                        ctl.Image = img;
+                    })).Start();
                 });
             }
             Invoke((EventHandler)delegate

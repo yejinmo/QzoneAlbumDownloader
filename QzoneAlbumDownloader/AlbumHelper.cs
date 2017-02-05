@@ -95,17 +95,18 @@ namespace QzoneAlbumDownloader
                                                  select ele;
                 foreach (var ele in elements)
                 {
-                    AlbumInfo alb = new AlbumInfo();
-                    alb.ClassID = ele.Element("classid").Value;
-                    alb.Comment = Convert.ToInt32(ele.Element("comment").Value);
-                    alb.CreateTime = ele.Element("createtime").Value;
-                    alb.ID = ele.Element("id").Value;
-                    alb.LastUploadTime = ele.Element("id").Value;
-                    alb.ModifyTime = ele.Element("modifytime").Value;
-                    alb.Name = ele.Element("name").Value;
-                    alb.PreviewImagePath = ele.Element("pre").Value.Replace("/a/","/m/");
-                    alb.Total = Convert.ToInt32(ele.Element("total").Value);
-                    //alb.Images = ResolveImage(GetImageListXml(qqnumber, cookie, alb.ID));
+                    AlbumInfo alb = new AlbumInfo()
+                    {
+                        ClassID = ele.Element("classid").Value,
+                        Comment = Convert.ToInt32(ele.Element("comment").Value),
+                        CreateTime = AlbumInfo.ConvertIntDateTime(ele.Element("createtime").Value).ToLongDateString(),
+                        ID = ele.Element("id").Value,
+                        LastUploadTime = AlbumInfo.ConvertIntDateTime(ele.Element("lastuploadtime").Value).ToLongDateString(),
+                        ModifyTime = AlbumInfo.ConvertIntDateTime(ele.Element("modifytime").Value).ToLongDateString(),
+                        Name = ele.Element("name").Value,
+                        PreviewImagePath = ele.Element("pre").Value.Replace("/a/", "/b/"),
+                        Total = Convert.ToInt32(ele.Element("total").Value)
+                    };
                     res.Add(alb);
                 }
             }

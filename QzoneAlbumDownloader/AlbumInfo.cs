@@ -68,7 +68,7 @@ namespace QzoneAlbumDownloader
         {
             DateTime time = DateTime.MinValue;
             DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
-            time = startTime.AddMilliseconds(UnixTime);
+            time = startTime.AddSeconds(UnixTime);
             return time;
         }
 
@@ -79,8 +79,7 @@ namespace QzoneAlbumDownloader
         /// <returns>DateTime</returns>
         public static DateTime ConvertIntDateTime(string UnixTime)
         {
-            double res = 0;
-            if (double.TryParse(UnixTime, out res))
+            if (double.TryParse(UnixTime, out double res))
                 return ConvertIntDateTime(res);
             else
                 return ConvertIntDateTime(0);
