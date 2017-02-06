@@ -36,7 +36,7 @@ namespace QzoneAlbumDownloader
 
         private void Form_Main_Load(object sender, EventArgs e)
         {
-
+            PictureBox_DetectHeadIMG.Image = Properties.Resources.ic_account_box_white_100px;
         }
 
         /// <summary>
@@ -208,7 +208,7 @@ namespace QzoneAlbumDownloader
                         Invoke((EventHandler)delegate
                         {
                             Label_DetectName.Text = string.Empty;
-                            PictureBox_DetectHeadIMG.Image = null;
+                            PictureBox_DetectHeadIMG.Image = Properties.Resources.ic_account_box_white_100px;
                         });
                     }
                 }));

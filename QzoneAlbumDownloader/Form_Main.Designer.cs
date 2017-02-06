@@ -42,8 +42,8 @@
             this.FlowLayoutPanel_Album = new System.Windows.Forms.FlowLayoutPanel();
             this.AlbumTip = new System.Windows.Forms.ToolTip(this.components);
             this.Timer_GetUserHeadIMG = new System.Windows.Forms.Timer(this.components);
-            this.PictureBox_DetectHeadIMG = new System.Windows.Forms.PictureBox();
             this.Label_DetectName = new System.Windows.Forms.Label();
+            this.PictureBox_DetectHeadIMG = new System.Windows.Forms.PictureBox();
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Detect.SuspendLayout();
             this.Panel_Detect.SuspendLayout();
@@ -91,7 +91,7 @@
             this.Panel_Detect.Controls.Add(this.Text_Detect_Number);
             this.Panel_Detect.Controls.Add(this.Button_Detect_Enter);
             this.Panel_Detect.Controls.Add(this.ProcessBar_Detect);
-            this.Panel_Detect.Location = new System.Drawing.Point(125, 193);
+            this.Panel_Detect.Location = new System.Drawing.Point(125, 173);
             this.Panel_Detect.Name = "Panel_Detect";
             this.Panel_Detect.Size = new System.Drawing.Size(857, 300);
             this.Panel_Detect.TabIndex = 2;
@@ -222,7 +222,7 @@
             this.FlowLayoutPanel_Album.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FlowLayoutPanel_Album.Location = new System.Drawing.Point(20, 20);
             this.FlowLayoutPanel_Album.Name = "FlowLayoutPanel_Album";
-            this.FlowLayoutPanel_Album.Size = new System.Drawing.Size(1084, 673);
+            this.FlowLayoutPanel_Album.Size = new System.Drawing.Size(1084, 677);
             this.FlowLayoutPanel_Album.TabIndex = 0;
             // 
             // Timer_GetUserHeadIMG
@@ -230,14 +230,6 @@
             this.Timer_GetUserHeadIMG.Enabled = true;
             this.Timer_GetUserHeadIMG.Interval = 200;
             this.Timer_GetUserHeadIMG.Tick += new System.EventHandler(this.Timer_GetUserHeadIMG_Tick);
-            // 
-            // PictureBox_DetectHeadIMG
-            // 
-            this.PictureBox_DetectHeadIMG.Location = new System.Drawing.Point(377, 8);
-            this.PictureBox_DetectHeadIMG.Name = "PictureBox_DetectHeadIMG";
-            this.PictureBox_DetectHeadIMG.Size = new System.Drawing.Size(100, 100);
-            this.PictureBox_DetectHeadIMG.TabIndex = 7;
-            this.PictureBox_DetectHeadIMG.TabStop = false;
             // 
             // Label_DetectName
             // 
@@ -247,6 +239,16 @@
             this.Label_DetectName.Size = new System.Drawing.Size(839, 21);
             this.Label_DetectName.TabIndex = 8;
             this.Label_DetectName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PictureBox_DetectHeadIMG
+            // 
+            this.PictureBox_DetectHeadIMG.BackColor = System.Drawing.Color.Transparent;
+            this.PictureBox_DetectHeadIMG.Location = new System.Drawing.Point(377, 8);
+            this.PictureBox_DetectHeadIMG.Name = "PictureBox_DetectHeadIMG";
+            this.PictureBox_DetectHeadIMG.Size = new System.Drawing.Size(100, 100);
+            this.PictureBox_DetectHeadIMG.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PictureBox_DetectHeadIMG.TabIndex = 7;
+            this.PictureBox_DetectHeadIMG.TabStop = false;
             // 
             // Form_Main
             // 
