@@ -29,10 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Main));
             this.TabControl_Main = new MaterialSkin.Controls.MaterialTabControl();
             this.TabPage_Detect = new System.Windows.Forms.TabPage();
-            this.albumControl1 = new QzoneAlbumDownloader.Controls.AlbumControl();
             this.Panel_Detect = new System.Windows.Forms.Panel();
             this.Label_Detect_Tip = new System.Windows.Forms.Label();
             this.Button_Login = new MaterialSkin.Controls.MaterialFlatButton();
@@ -43,10 +41,14 @@
             this.TabPage_Album = new System.Windows.Forms.TabPage();
             this.FlowLayoutPanel_Album = new System.Windows.Forms.FlowLayoutPanel();
             this.AlbumTip = new System.Windows.Forms.ToolTip(this.components);
+            this.Timer_GetUserHeadIMG = new System.Windows.Forms.Timer(this.components);
+            this.PictureBox_DetectHeadIMG = new System.Windows.Forms.PictureBox();
+            this.Label_DetectName = new System.Windows.Forms.Label();
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Detect.SuspendLayout();
             this.Panel_Detect.SuspendLayout();
             this.TabPage_Album.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_DetectHeadIMG)).BeginInit();
             this.SuspendLayout();
             // 
             // TabControl_Main
@@ -60,7 +62,7 @@
             this.TabControl_Main.MouseState = MaterialSkin.MouseState.HOVER;
             this.TabControl_Main.Name = "TabControl_Main";
             this.TabControl_Main.SelectedIndex = 0;
-            this.TabControl_Main.Size = new System.Drawing.Size(911, 615);
+            this.TabControl_Main.Size = new System.Drawing.Size(1132, 743);
             this.TabControl_Main.TabIndex = 0;
             this.TabControl_Main.SelectedIndexChanged += new System.EventHandler(this.TabControl_Main_SelectedIndexChanged);
             // 
@@ -68,49 +70,30 @@
             // 
             this.TabPage_Detect.AutoScroll = true;
             this.TabPage_Detect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.TabPage_Detect.Controls.Add(this.albumControl1);
             this.TabPage_Detect.Controls.Add(this.Panel_Detect);
             this.TabPage_Detect.ForeColor = System.Drawing.Color.White;
             this.TabPage_Detect.Location = new System.Drawing.Point(4, 26);
             this.TabPage_Detect.Margin = new System.Windows.Forms.Padding(2);
             this.TabPage_Detect.Name = "TabPage_Detect";
             this.TabPage_Detect.Padding = new System.Windows.Forms.Padding(2);
-            this.TabPage_Detect.Size = new System.Drawing.Size(903, 585);
+            this.TabPage_Detect.Size = new System.Drawing.Size(1124, 713);
             this.TabPage_Detect.TabIndex = 0;
             this.TabPage_Detect.Text = "TabPage_Detect";
-            // 
-            // albumControl1
-            // 
-            this.albumControl1.BackColor = System.Drawing.Color.White;
-            this.albumControl1.Font = new System.Drawing.Font("微软雅黑", 20F);
-            this.albumControl1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.albumControl1.HintFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.albumControl1.HintForeColor = System.Drawing.SystemColors.ControlText;
-            this.albumControl1.HintString = "123";
-            this.albumControl1.Image = ((System.Drawing.Bitmap)(resources.GetObject("albumControl1.Image")));
-            this.albumControl1.ImageURL = "";
-            this.albumControl1.Location = new System.Drawing.Point(433, 18);
-            this.albumControl1.Name = "albumControl1";
-            this.albumControl1.Padding = new System.Windows.Forms.Padding(10);
-            this.albumControl1.Size = new System.Drawing.Size(200, 259);
-            this.albumControl1.TabIndex = 5;
-            this.albumControl1.Text = "albumControl1";
-            this.albumControl1.Title = "12345678910";
-            this.AlbumTip.SetToolTip(this.albumControl1, "相册名称：123\r\n照片数量：123456");
-            this.albumControl1.Visible = false;
             // 
             // Panel_Detect
             // 
             this.Panel_Detect.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Panel_Detect.Controls.Add(this.Label_DetectName);
+            this.Panel_Detect.Controls.Add(this.PictureBox_DetectHeadIMG);
             this.Panel_Detect.Controls.Add(this.Label_Detect_Tip);
             this.Panel_Detect.Controls.Add(this.Button_Login);
             this.Panel_Detect.Controls.Add(this.Button_Cancel);
             this.Panel_Detect.Controls.Add(this.Text_Detect_Number);
             this.Panel_Detect.Controls.Add(this.Button_Detect_Enter);
             this.Panel_Detect.Controls.Add(this.ProcessBar_Detect);
-            this.Panel_Detect.Location = new System.Drawing.Point(14, 206);
+            this.Panel_Detect.Location = new System.Drawing.Point(125, 193);
             this.Panel_Detect.Name = "Panel_Detect";
-            this.Panel_Detect.Size = new System.Drawing.Size(857, 166);
+            this.Panel_Detect.Size = new System.Drawing.Size(857, 300);
             this.Panel_Detect.TabIndex = 2;
             // 
             // Label_Detect_Tip
@@ -119,7 +102,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Label_Detect_Tip.Font = new System.Drawing.Font("微软雅黑", 26F);
             this.Label_Detect_Tip.ForeColor = System.Drawing.Color.White;
-            this.Label_Detect_Tip.Location = new System.Drawing.Point(3, 61);
+            this.Label_Detect_Tip.Location = new System.Drawing.Point(3, 197);
             this.Label_Detect_Tip.Name = "Label_Detect_Tip";
             this.Label_Detect_Tip.Size = new System.Drawing.Size(850, 46);
             this.Label_Detect_Tip.TabIndex = 6;
@@ -132,7 +115,7 @@
             this.Button_Login.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Button_Login.Depth = 0;
             this.Button_Login.ForeColor = System.Drawing.Color.White;
-            this.Button_Login.Location = new System.Drawing.Point(433, 113);
+            this.Button_Login.Location = new System.Drawing.Point(433, 249);
             this.Button_Login.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.Button_Login.MouseState = MaterialSkin.MouseState.HOVER;
             this.Button_Login.Name = "Button_Login";
@@ -149,7 +132,7 @@
             this.Button_Cancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Button_Cancel.Depth = 0;
             this.Button_Cancel.ForeColor = System.Drawing.Color.White;
-            this.Button_Cancel.Location = new System.Drawing.Point(8, 113);
+            this.Button_Cancel.Location = new System.Drawing.Point(8, 249);
             this.Button_Cancel.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.Button_Cancel.MouseState = MaterialSkin.MouseState.HOVER;
             this.Button_Cancel.Name = "Button_Cancel";
@@ -172,7 +155,7 @@
             this.Text_Detect_Number.ForeColor = System.Drawing.Color.White;
             this.Text_Detect_Number.Hint = "目标QQ号";
             this.Text_Detect_Number.IsErrorMode = false;
-            this.Text_Detect_Number.Location = new System.Drawing.Point(3, 10);
+            this.Text_Detect_Number.Location = new System.Drawing.Point(8, 146);
             this.Text_Detect_Number.MaxLength = 32767;
             this.Text_Detect_Number.MouseState = MaterialSkin.MouseState.HOVER;
             this.Text_Detect_Number.Name = "Text_Detect_Number";
@@ -181,24 +164,25 @@
             this.Text_Detect_Number.SelectedText = "";
             this.Text_Detect_Number.SelectionLength = 0;
             this.Text_Detect_Number.SelectionStart = 0;
-            this.Text_Detect_Number.Size = new System.Drawing.Size(708, 37);
+            this.Text_Detect_Number.Size = new System.Drawing.Size(703, 37);
             this.Text_Detect_Number.TabIndex = 3;
             this.Text_Detect_Number.TabStop = false;
             this.Text_Detect_Number.Text = "861732201";
             this.Text_Detect_Number.UseSystemPasswordChar = false;
             this.Text_Detect_Number.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Text_Detect_Number_KeyDown);
+            this.Text_Detect_Number.TextChanged += new System.EventHandler(this.Text_Detect_Number_TextChanged);
             // 
             // Button_Detect_Enter
             // 
             this.Button_Detect_Enter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Button_Detect_Enter.Depth = 0;
             this.Button_Detect_Enter.ForeColor = System.Drawing.Color.White;
-            this.Button_Detect_Enter.Location = new System.Drawing.Point(718, 4);
+            this.Button_Detect_Enter.Location = new System.Drawing.Point(718, 140);
             this.Button_Detect_Enter.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.Button_Detect_Enter.MouseState = MaterialSkin.MouseState.HOVER;
             this.Button_Detect_Enter.Name = "Button_Detect_Enter";
             this.Button_Detect_Enter.Primary = false;
-            this.Button_Detect_Enter.Size = new System.Drawing.Size(135, 45);
+            this.Button_Detect_Enter.Size = new System.Drawing.Size(132, 45);
             this.Button_Detect_Enter.TabIndex = 2;
             this.Button_Detect_Enter.Text = "访问";
             this.Button_Detect_Enter.UseVisualStyleBackColor = false;
@@ -209,11 +193,11 @@
             this.ProcessBar_Detect.Depth = 0;
             this.ProcessBar_Detect.Interval = 5;
             this.ProcessBar_Detect.LengthValue = 300;
-            this.ProcessBar_Detect.Location = new System.Drawing.Point(3, 51);
+            this.ProcessBar_Detect.Location = new System.Drawing.Point(8, 187);
             this.ProcessBar_Detect.MouseState = MaterialSkin.MouseState.HOVER;
             this.ProcessBar_Detect.Name = "ProcessBar_Detect";
             this.ProcessBar_Detect.Processing = true;
-            this.ProcessBar_Detect.Size = new System.Drawing.Size(850, 5);
+            this.ProcessBar_Detect.Size = new System.Drawing.Size(842, 5);
             this.ProcessBar_Detect.StepValue = 7;
             this.ProcessBar_Detect.TabIndex = 1;
             this.ProcessBar_Detect.Visible = false;
@@ -227,7 +211,7 @@
             this.TabPage_Album.Location = new System.Drawing.Point(4, 26);
             this.TabPage_Album.Name = "TabPage_Album";
             this.TabPage_Album.Padding = new System.Windows.Forms.Padding(20);
-            this.TabPage_Album.Size = new System.Drawing.Size(903, 585);
+            this.TabPage_Album.Size = new System.Drawing.Size(1124, 713);
             this.TabPage_Album.TabIndex = 1;
             this.TabPage_Album.Text = "TabPage_Album";
             this.TabPage_Album.Resize += new System.EventHandler(this.TabPage_Album_Resize);
@@ -238,15 +222,38 @@
             this.FlowLayoutPanel_Album.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FlowLayoutPanel_Album.Location = new System.Drawing.Point(20, 20);
             this.FlowLayoutPanel_Album.Name = "FlowLayoutPanel_Album";
-            this.FlowLayoutPanel_Album.Size = new System.Drawing.Size(863, 545);
+            this.FlowLayoutPanel_Album.Size = new System.Drawing.Size(1084, 673);
             this.FlowLayoutPanel_Album.TabIndex = 0;
+            // 
+            // Timer_GetUserHeadIMG
+            // 
+            this.Timer_GetUserHeadIMG.Enabled = true;
+            this.Timer_GetUserHeadIMG.Interval = 200;
+            this.Timer_GetUserHeadIMG.Tick += new System.EventHandler(this.Timer_GetUserHeadIMG_Tick);
+            // 
+            // PictureBox_DetectHeadIMG
+            // 
+            this.PictureBox_DetectHeadIMG.Location = new System.Drawing.Point(377, 8);
+            this.PictureBox_DetectHeadIMG.Name = "PictureBox_DetectHeadIMG";
+            this.PictureBox_DetectHeadIMG.Size = new System.Drawing.Size(100, 100);
+            this.PictureBox_DetectHeadIMG.TabIndex = 7;
+            this.PictureBox_DetectHeadIMG.TabStop = false;
+            // 
+            // Label_DetectName
+            // 
+            this.Label_DetectName.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.Label_DetectName.Location = new System.Drawing.Point(11, 116);
+            this.Label_DetectName.Name = "Label_DetectName";
+            this.Label_DetectName.Size = new System.Drawing.Size(839, 21);
+            this.Label_DetectName.TabIndex = 8;
+            this.Label_DetectName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.ClientSize = new System.Drawing.Size(911, 615);
+            this.ClientSize = new System.Drawing.Size(1132, 743);
             this.Controls.Add(this.TabControl_Main);
             this.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -258,6 +265,7 @@
             this.TabPage_Detect.ResumeLayout(false);
             this.Panel_Detect.ResumeLayout(false);
             this.TabPage_Album.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_DetectHeadIMG)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -274,9 +282,11 @@
         private MaterialSkin.Controls.MaterialFlatButton Button_Cancel;
         private System.Windows.Forms.TabPage TabPage_Album;
         private System.Windows.Forms.ToolTip AlbumTip;
-        private Controls.AlbumControl albumControl1;
         private System.Windows.Forms.Label Label_Detect_Tip;
         private System.Windows.Forms.FlowLayoutPanel FlowLayoutPanel_Album;
+        private System.Windows.Forms.Timer Timer_GetUserHeadIMG;
+        private System.Windows.Forms.PictureBox PictureBox_DetectHeadIMG;
+        private System.Windows.Forms.Label Label_DetectName;
     }
 }
 

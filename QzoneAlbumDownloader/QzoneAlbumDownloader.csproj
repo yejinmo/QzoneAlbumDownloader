@@ -70,6 +70,7 @@
       <DependentUpon>Form_QzoneLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="ImageEx.cs" />
+    <Compile Include="PortraitHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestHelper.cs" />

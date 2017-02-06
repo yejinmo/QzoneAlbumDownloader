@@ -169,6 +169,61 @@ namespace QzoneAlbumDownloader
             }
         }
 
+        Thread ThreadGetUserHeadIMG;
+
+        private void Text_Detect_Number_TextChanged(object sender, EventArgs e)
+        {
+            Timer_GetUserHeadIMG.Enabled = false;
+            Timer_GetUserHeadIMG.Enabled = true;
+        }
+
+        private void Timer_GetUserHeadIMG_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ThreadGetUserHeadIMG != null)
+                {
+                    ThreadGetUserHeadIMG.Abort();
+                    ThreadGetUserHeadIMG = null;
+                }
+                ThreadGetUserHeadIMG = new Thread(new ThreadStart(delegate
+                {
+                    Bitmap head = new Bitmap(100, 100);
+                    string name = string.Empty;
+                    string qqnumber = string.Empty;
+                    Invoke((EventHandler)delegate
+                    {
+                        qqnumber = Text_Detect_Number.Text;
+                    });
+                    if (PortraitHelper.GetUserPortrait(qqnumber, out head, out name))
+                    {
+                        Invoke((EventHandler)delegate
+                        {
+                            Label_DetectName.Text = name;
+                            PictureBox_DetectHeadIMG.Image = head;
+                        });
+                    }
+                    else
+                    {
+                        Invoke((EventHandler)delegate
+                        {
+                            Label_DetectName.Text = string.Empty;
+                            PictureBox_DetectHeadIMG.Image = null;
+                        });
+                    }
+                }));
+                ThreadGetUserHeadIMG.Start();
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                Timer_GetUserHeadIMG.Enabled = false;
+            }
+        }
+
         private void Button_Detect_Enter_Click(object sender, EventArgs e)
         {
             Button_Cancel.Visible = false;
@@ -321,5 +376,5 @@ namespace QzoneAlbumDownloader
 
         #endregion
 
-    }
+     }
 }

@@ -180,7 +180,7 @@ namespace QzoneAlbumDownloader
         /// <param name="URL">图片URL</param>
         /// <param name="Cookie">Cookie</param>
         /// <returns></returns>
-        public static Bitmap GetImageByURL(string URL, string Cookie)
+        public static Bitmap GetImageByURL(string URL, string Cookie = "")
         {
             return StreamToBitmap(RequestHelper.GetResponse(URL, Cookie, ""));
         }
