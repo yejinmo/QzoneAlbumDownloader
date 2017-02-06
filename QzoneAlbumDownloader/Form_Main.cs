@@ -122,7 +122,6 @@ namespace QzoneAlbumDownloader
                             Label_Detect_Tip_SetText("目标空间非公开 请先登录", Color.Red);
                             Invoke((EventHandler)delegate
                             {
-
                                 Button_Cancel.Visible = true;
                                 Button_Login.Visible = true;
                             });
@@ -133,7 +132,6 @@ namespace QzoneAlbumDownloader
                             Label_Detect_Tip_SetText("没有访问权限 请切换账号", Color.Red);
                             Invoke((EventHandler)delegate
                             {
-
                                 Button_Cancel.Visible = true;
                                 Button_Login.Visible = true;
                             });
@@ -141,7 +139,7 @@ namespace QzoneAlbumDownloader
                         }
                     case AlbumHelper.AccessState.NumberError:
                         {
-
+                            Label_Detect_Tip_SetText("QQ号码错误", Color.Red);
                             break;
                         }
                 }
@@ -169,23 +167,22 @@ namespace QzoneAlbumDownloader
             }
         }
 
-        Thread ThreadGetUserHeadIMG;
-
         private void Text_Detect_Number_TextChanged(object sender, EventArgs e)
         {
             Timer_GetUserHeadIMG.Enabled = false;
             Timer_GetUserHeadIMG.Enabled = true;
+            if (ThreadGetUserHeadIMG.ThreadState == System.Threading.ThreadState.Running)
+                CancellationTokenSourceGetUserHeadIMG.Cancel();
         }
+
+        Thread ThreadGetUserHeadIMG;
+        CancellationTokenSource CancellationTokenSourceGetUserHeadIMG;
 
         private void Timer_GetUserHeadIMG_Tick(object sender, EventArgs e)
         {
             try
             {
-                if (ThreadGetUserHeadIMG != null)
-                {
-                    ThreadGetUserHeadIMG.Abort();
-                    ThreadGetUserHeadIMG = null;
-                }
+                CancellationTokenSourceGetUserHeadIMG = new CancellationTokenSource();
                 ThreadGetUserHeadIMG = new Thread(new ThreadStart(delegate
                 {
                     Bitmap head = new Bitmap(100, 100);
@@ -195,12 +192,17 @@ namespace QzoneAlbumDownloader
                     {
                         qqnumber = Text_Detect_Number.Text;
                     });
-                    if (PortraitHelper.GetUserPortrait(qqnumber, out head, out name))
+                    var MethodSuccessed = PortraitHelper.GetUserPortrait(qqnumber, out head, out name);
+                    if (CancellationTokenSourceGetUserHeadIMG.Token.IsCancellationRequested)
+                        return;
+                    if (MethodSuccessed)
                     {
                         Invoke((EventHandler)delegate
                         {
                             Label_DetectName.Text = name;
                             PictureBox_DetectHeadIMG.Image = head;
+                            TipTool.SetToolTip(Label_DetectName, string.Format("QQ号：{0}\n昵称：{1}", qqnumber, name));
+                            TipTool.SetToolTip(PictureBox_DetectHeadIMG, string.Format("QQ号：{0}\n昵称：{1}", qqnumber, name));
                         });
                     }
                     else
@@ -209,6 +211,8 @@ namespace QzoneAlbumDownloader
                         {
                             Label_DetectName.Text = string.Empty;
                             PictureBox_DetectHeadIMG.Image = Properties.Resources.ic_account_box_white_100px;
+                            TipTool.SetToolTip(Label_DetectName, "");
+                            TipTool.SetToolTip(PictureBox_DetectHeadIMG, "");
                         });
                     }
                 }));
@@ -300,7 +304,7 @@ namespace QzoneAlbumDownloader
         {
             Invoke((EventHandler)delegate
             {
-                AlbumTip.RemoveAll();
+                TipTool.RemoveAll();
                 foreach (var ctl in AlbumControlList)
                 {
                     FlowLayoutPanel_Album.Controls.Remove(ctl);
@@ -326,7 +330,7 @@ namespace QzoneAlbumDownloader
                     AlbumControlList.Add(ctl);
                     ctl.BackColor = ctl.Parent.BackColor;
                     ctl.ReloadSize();
-                    AlbumTip.SetToolTip(ctl, string.Format
+                    TipTool.SetToolTip(ctl, string.Format
                         ("相册名称：{0}\n创建时间：{1}\n照片总数：{2}\n修改时间：{3}\n最后一次上传时间：{4}\n评论数：{5}",
                         album.Name, album.CreateTime, album.Total, album.ModifyTime, album.LastUploadTime, album.Comment));
                     new Thread(new ThreadStart(delegate

@@ -40,7 +40,7 @@
             this.ProcessBar_Detect = new MaterialSkin.Controls.MaterialProcessBar();
             this.TabPage_Album = new System.Windows.Forms.TabPage();
             this.FlowLayoutPanel_Album = new System.Windows.Forms.FlowLayoutPanel();
-            this.AlbumTip = new System.Windows.Forms.ToolTip(this.components);
+            this.TipTool = new System.Windows.Forms.ToolTip(this.components);
             this.Timer_GetUserHeadIMG = new System.Windows.Forms.Timer(this.components);
             this.Label_DetectName = new System.Windows.Forms.Label();
             this.PictureBox_DetectHeadIMG = new System.Windows.Forms.PictureBox();
@@ -228,7 +228,7 @@
             // Timer_GetUserHeadIMG
             // 
             this.Timer_GetUserHeadIMG.Enabled = true;
-            this.Timer_GetUserHeadIMG.Interval = 200;
+            this.Timer_GetUserHeadIMG.Interval = 5;
             this.Timer_GetUserHeadIMG.Tick += new System.EventHandler(this.Timer_GetUserHeadIMG_Tick);
             // 
             // Label_DetectName
@@ -283,7 +283,7 @@
         private MaterialSkin.Controls.MaterialFlatButton Button_Login;
         private MaterialSkin.Controls.MaterialFlatButton Button_Cancel;
         private System.Windows.Forms.TabPage TabPage_Album;
-        private System.Windows.Forms.ToolTip AlbumTip;
+        private System.Windows.Forms.ToolTip TipTool;
         private System.Windows.Forms.Label Label_Detect_Tip;
         private System.Windows.Forms.FlowLayoutPanel FlowLayoutPanel_Album;
         private System.Windows.Forms.Timer Timer_GetUserHeadIMG;
