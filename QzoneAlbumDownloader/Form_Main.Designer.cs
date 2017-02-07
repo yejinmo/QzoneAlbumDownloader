@@ -42,9 +42,10 @@
             this.TabPage_Album = new System.Windows.Forms.TabPage();
             this.FlowLayoutPanel_Album = new System.Windows.Forms.FlowLayoutPanel();
             this.TipTool = new System.Windows.Forms.ToolTip(this.components);
+            this.Label_Header_UserName = new System.Windows.Forms.Label();
             this.Timer_GetUserHeadIMG = new System.Windows.Forms.Timer(this.components);
             this.Panel_Header = new System.Windows.Forms.Panel();
-            this.Label_Header_UserName = new System.Windows.Forms.Label();
+            this.Button_Header_Back = new MaterialSkin.Controls.MaterialFlatButton();
             this.Button_Header_UserIMG = new MaterialSkin.Controls.MaterialFlatButton();
             this.Button_Header_Config = new MaterialSkin.Controls.MaterialFlatButton();
             this.Button_Detect_HeadIMG = new MaterialSkin.Controls.MaterialFlatButton();
@@ -97,7 +98,7 @@
             this.Panel_Detect.Controls.Add(this.Text_Detect_Number);
             this.Panel_Detect.Controls.Add(this.Button_Detect_Enter);
             this.Panel_Detect.Controls.Add(this.ProcessBar_Detect);
-            this.Panel_Detect.Location = new System.Drawing.Point(125, 137);
+            this.Panel_Detect.Location = new System.Drawing.Point(125, 135);
             this.Panel_Detect.Name = "Panel_Detect";
             this.Panel_Detect.Size = new System.Drawing.Size(857, 311);
             this.Panel_Detect.TabIndex = 2;
@@ -249,27 +250,8 @@
             this.FlowLayoutPanel_Album.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FlowLayoutPanel_Album.Location = new System.Drawing.Point(20, 20);
             this.FlowLayoutPanel_Album.Name = "FlowLayoutPanel_Album";
-            this.FlowLayoutPanel_Album.Size = new System.Drawing.Size(1084, 612);
+            this.FlowLayoutPanel_Album.Size = new System.Drawing.Size(1084, 616);
             this.FlowLayoutPanel_Album.TabIndex = 0;
-            // 
-            // Timer_GetUserHeadIMG
-            // 
-            this.Timer_GetUserHeadIMG.Enabled = true;
-            this.Timer_GetUserHeadIMG.Interval = 5;
-            this.Timer_GetUserHeadIMG.Tick += new System.EventHandler(this.Timer_GetUserHeadIMG_Tick);
-            // 
-            // Panel_Header
-            // 
-            this.Panel_Header.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Panel_Header.Controls.Add(this.Label_Header_UserName);
-            this.Panel_Header.Controls.Add(this.Button_Header_UserIMG);
-            this.Panel_Header.Controls.Add(this.Button_Header_Config);
-            this.Panel_Header.Location = new System.Drawing.Point(4, 9);
-            this.Panel_Header.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Panel_Header.Name = "Panel_Header";
-            this.Panel_Header.Size = new System.Drawing.Size(1124, 50);
-            this.Panel_Header.TabIndex = 1;
             // 
             // Label_Header_UserName
             // 
@@ -283,6 +265,45 @@
             this.Label_Header_UserName.TabIndex = 10;
             this.Label_Header_UserName.Text = "请登录";
             this.TipTool.SetToolTip(this.Label_Header_UserName, "点击左侧头像登录");
+            // 
+            // Timer_GetUserHeadIMG
+            // 
+            this.Timer_GetUserHeadIMG.Enabled = true;
+            this.Timer_GetUserHeadIMG.Interval = 5;
+            this.Timer_GetUserHeadIMG.Tick += new System.EventHandler(this.Timer_GetUserHeadIMG_Tick);
+            // 
+            // Panel_Header
+            // 
+            this.Panel_Header.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Panel_Header.Controls.Add(this.Button_Header_Back);
+            this.Panel_Header.Controls.Add(this.Label_Header_UserName);
+            this.Panel_Header.Controls.Add(this.Button_Header_UserIMG);
+            this.Panel_Header.Controls.Add(this.Button_Header_Config);
+            this.Panel_Header.Location = new System.Drawing.Point(4, 9);
+            this.Panel_Header.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Panel_Header.Name = "Panel_Header";
+            this.Panel_Header.Size = new System.Drawing.Size(1124, 50);
+            this.Panel_Header.TabIndex = 1;
+            // 
+            // Button_Header_Back
+            // 
+            this.Button_Header_Back.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_Header_Back.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.Button_Header_Back.Depth = 0;
+            this.Button_Header_Back.DrawHoverMode = false;
+            this.Button_Header_Back.DrawImageMode = true;
+            this.Button_Header_Back.Image = global::QzoneAlbumDownloader.Properties.Resources.ic_back_white_50px;
+            this.Button_Header_Back.Location = new System.Drawing.Point(986, 0);
+            this.Button_Header_Back.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.Button_Header_Back.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Button_Header_Back.Name = "Button_Header_Back";
+            this.Button_Header_Back.Primary = false;
+            this.Button_Header_Back.Size = new System.Drawing.Size(50, 50);
+            this.Button_Header_Back.TabIndex = 11;
+            this.Button_Header_Back.Text = "后退";
+            this.TipTool.SetToolTip(this.Button_Header_Back, "设置");
+            this.Button_Header_Back.UseVisualStyleBackColor = false;
             // 
             // Button_Header_UserIMG
             // 
@@ -385,6 +406,7 @@
         private MaterialSkin.Controls.MaterialFlatButton Button_Header_UserIMG;
         private System.Windows.Forms.Label Label_Header_UserName;
         private MaterialSkin.Controls.MaterialFlatButton Button_Detect_HeadIMG;
+        private MaterialSkin.Controls.MaterialFlatButton Button_Header_Back;
     }
 }
 

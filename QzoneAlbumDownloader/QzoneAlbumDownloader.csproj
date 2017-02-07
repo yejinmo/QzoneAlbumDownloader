@@ -129,6 +129,9 @@
   <ItemGroup>
     <None Include="Resources\ic_settings_black_50px.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_back_white_50px.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
