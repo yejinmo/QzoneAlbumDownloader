@@ -18,19 +18,26 @@ namespace MaterialSkin.Controls
         public MouseState MouseState { get; set; }
         public bool Primary { get; set; }
 
-        private bool drawImageMoad = false;
+        private bool drawHoverMode = true;
+        /// <summary>
+        /// 悬浮提示
+        /// </summary>
+        [Browsable(true)]
+        public bool DrawHoverMode { get => drawHoverMode; set => drawHoverMode = value; }
+
+        private bool drawImageMode = false;
         /// <summary>
         /// 是否为图像模式
         /// </summary>
-        public bool DrawImageMoad
+        public bool DrawImageMode
         {
             get
             {
-                return drawImageMoad;
+                return drawImageMode;
             }
             set
             {
-                drawImageMoad = value;
+                drawImageMode = value;
                 ZoomImg = SmallPic((Bitmap)Image, Width, Height);
                 Invalidate();
             }
@@ -84,7 +91,6 @@ namespace MaterialSkin.Controls
             }
         }
 
-
         protected override void OnPaint(PaintEventArgs pevent)
         {
             var g = pevent.Graphics;
@@ -92,11 +98,14 @@ namespace MaterialSkin.Controls
 
             g.Clear(BackColor);
             //Hover
-            Color c = SkinManager.GetFlatButtonHoverBackgroundColor();
-            using (Brush b = new SolidBrush(Color.FromArgb((int)(hoverAnimationManager.GetProgress() * c.A), c.RemoveAlpha())))
-                g.FillRectangle(b, ClientRectangle);            
+            if (DrawHoverMode)
+            {
+                Color c = SkinManager.GetFlatButtonHoverBackgroundColor();
+                using (Brush b = new SolidBrush(Color.FromArgb((int)(hoverAnimationManager.GetProgress() * c.A), c.RemoveAlpha())))
+                    g.FillRectangle(b, ClientRectangle);
+            }        
             //DrawContent - Image Mode
-            if (DrawImageMoad)
+            if (DrawImageMode)
             {
                 if (ZoomImg != null)
                     g.DrawImage(ZoomImg, new Point(0, 0));
@@ -119,7 +128,7 @@ namespace MaterialSkin.Controls
                 g.SmoothingMode = SmoothingMode.None;
             }
             //DrawContent - String Mode
-            if (!DrawImageMoad)
+            if (!DrawImageMode)
             {
                 g.DrawString(Text.ToUpper(), SkinManager.FONT_SIZE_18, Enabled ? new SolidBrush(ForeColor) : SkinManager.GetFlatButtonDisabledTextBrush(), ClientRectangle, new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
             }

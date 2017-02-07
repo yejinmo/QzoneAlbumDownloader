@@ -45,15 +45,15 @@
             this.TipTool = new System.Windows.Forms.ToolTip(this.components);
             this.Timer_GetUserHeadIMG = new System.Windows.Forms.Timer(this.components);
             this.Panel_Header = new System.Windows.Forms.Panel();
-            this.PictureBox_UserHeadIMG = new System.Windows.Forms.PictureBox();
-            this.materialFlatButton1 = new MaterialSkin.Controls.MaterialFlatButton();
+            this.Label_Header_UserName = new System.Windows.Forms.Label();
+            this.Button_Header_UserIMG = new MaterialSkin.Controls.MaterialFlatButton();
+            this.Button_Header_Config = new MaterialSkin.Controls.MaterialFlatButton();
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Detect.SuspendLayout();
             this.Panel_Detect.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_DetectHeadIMG)).BeginInit();
             this.TabPage_Album.SuspendLayout();
             this.Panel_Header.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_UserHeadIMG)).BeginInit();
             this.SuspendLayout();
             // 
             // TabControl_Main
@@ -98,7 +98,7 @@
             this.Panel_Detect.Controls.Add(this.Text_Detect_Number);
             this.Panel_Detect.Controls.Add(this.Button_Detect_Enter);
             this.Panel_Detect.Controls.Add(this.ProcessBar_Detect);
-            this.Panel_Detect.Location = new System.Drawing.Point(125, 143);
+            this.Panel_Detect.Location = new System.Drawing.Point(125, 137);
             this.Panel_Detect.Name = "Panel_Detect";
             this.Panel_Detect.Size = new System.Drawing.Size(857, 311);
             this.Panel_Detect.TabIndex = 2;
@@ -141,7 +141,8 @@
             // 
             this.Button_Login.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Button_Login.Depth = 0;
-            this.Button_Login.DrawImageMoad = false;
+            this.Button_Login.DrawHoverMode = true;
+            this.Button_Login.DrawImageMode = false;
             this.Button_Login.ForeColor = System.Drawing.Color.White;
             this.Button_Login.Image = null;
             this.Button_Login.Location = new System.Drawing.Point(433, 257);
@@ -160,7 +161,8 @@
             // 
             this.Button_Cancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Button_Cancel.Depth = 0;
-            this.Button_Cancel.DrawImageMoad = false;
+            this.Button_Cancel.DrawHoverMode = true;
+            this.Button_Cancel.DrawImageMode = false;
             this.Button_Cancel.ForeColor = System.Drawing.Color.White;
             this.Button_Cancel.Image = null;
             this.Button_Cancel.Location = new System.Drawing.Point(8, 257);
@@ -207,7 +209,8 @@
             // 
             this.Button_Detect_Enter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Button_Detect_Enter.Depth = 0;
-            this.Button_Detect_Enter.DrawImageMoad = false;
+            this.Button_Detect_Enter.DrawHoverMode = true;
+            this.Button_Detect_Enter.DrawImageMode = false;
             this.Button_Detect_Enter.ForeColor = System.Drawing.Color.White;
             this.Button_Detect_Enter.Image = null;
             this.Button_Detect_Enter.Location = new System.Drawing.Point(718, 140);
@@ -268,41 +271,61 @@
             // 
             this.Panel_Header.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Panel_Header.Controls.Add(this.materialFlatButton1);
-            this.Panel_Header.Controls.Add(this.PictureBox_UserHeadIMG);
-            this.Panel_Header.Location = new System.Drawing.Point(0, 9);
-            this.Panel_Header.Margin = new System.Windows.Forms.Padding(0);
+            this.Panel_Header.Controls.Add(this.Label_Header_UserName);
+            this.Panel_Header.Controls.Add(this.Button_Header_UserIMG);
+            this.Panel_Header.Controls.Add(this.Button_Header_Config);
+            this.Panel_Header.Location = new System.Drawing.Point(4, 9);
+            this.Panel_Header.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.Panel_Header.Name = "Panel_Header";
-            this.Panel_Header.Size = new System.Drawing.Size(1128, 50);
+            this.Panel_Header.Size = new System.Drawing.Size(1124, 50);
             this.Panel_Header.TabIndex = 1;
             // 
-            // PictureBox_UserHeadIMG
+            // Label_Header_UserName
             // 
-            this.PictureBox_UserHeadIMG.BackColor = System.Drawing.Color.Transparent;
-            this.PictureBox_UserHeadIMG.Image = global::QzoneAlbumDownloader.Properties.Resources.ic_account_box_white_100px;
-            this.PictureBox_UserHeadIMG.Location = new System.Drawing.Point(44, 0);
-            this.PictureBox_UserHeadIMG.Name = "PictureBox_UserHeadIMG";
-            this.PictureBox_UserHeadIMG.Size = new System.Drawing.Size(50, 50);
-            this.PictureBox_UserHeadIMG.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.PictureBox_UserHeadIMG.TabIndex = 8;
-            this.PictureBox_UserHeadIMG.TabStop = false;
+            this.Label_Header_UserName.AutoSize = true;
+            this.Label_Header_UserName.BackColor = System.Drawing.Color.Transparent;
+            this.Label_Header_UserName.Font = new System.Drawing.Font("微软雅黑", 14F);
+            this.Label_Header_UserName.ForeColor = System.Drawing.Color.White;
+            this.Label_Header_UserName.Location = new System.Drawing.Point(82, 13);
+            this.Label_Header_UserName.Name = "Label_Header_UserName";
+            this.Label_Header_UserName.Size = new System.Drawing.Size(69, 25);
+            this.Label_Header_UserName.TabIndex = 10;
+            this.Label_Header_UserName.Text = "请登录";
             // 
-            // materialFlatButton1
+            // Button_Header_UserIMG
             // 
-            this.materialFlatButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialFlatButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.materialFlatButton1.Depth = 0;
-            this.materialFlatButton1.DrawImageMoad = true;
-            this.materialFlatButton1.Image = global::QzoneAlbumDownloader.Properties.Resources.ic_settings_black_50px;
-            this.materialFlatButton1.Location = new System.Drawing.Point(1069, 0);
-            this.materialFlatButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialFlatButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialFlatButton1.Name = "materialFlatButton1";
-            this.materialFlatButton1.Primary = false;
-            this.materialFlatButton1.Size = new System.Drawing.Size(50, 50);
-            this.materialFlatButton1.TabIndex = 3;
-            this.materialFlatButton1.Text = "materialFlatButton1";
-            this.materialFlatButton1.UseVisualStyleBackColor = false;
+            this.Button_Header_UserIMG.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.Button_Header_UserIMG.Depth = 0;
+            this.Button_Header_UserIMG.DrawHoverMode = false;
+            this.Button_Header_UserIMG.DrawImageMode = true;
+            this.Button_Header_UserIMG.Image = global::QzoneAlbumDownloader.Properties.Resources.ic_account_box_white_100px;
+            this.Button_Header_UserIMG.Location = new System.Drawing.Point(25, 0);
+            this.Button_Header_UserIMG.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.Button_Header_UserIMG.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Button_Header_UserIMG.Name = "Button_Header_UserIMG";
+            this.Button_Header_UserIMG.Primary = false;
+            this.Button_Header_UserIMG.Size = new System.Drawing.Size(50, 50);
+            this.Button_Header_UserIMG.TabIndex = 9;
+            this.Button_Header_UserIMG.Text = "设置";
+            this.Button_Header_UserIMG.UseVisualStyleBackColor = false;
+            // 
+            // Button_Header_Config
+            // 
+            this.Button_Header_Config.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Button_Header_Config.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.Button_Header_Config.Depth = 0;
+            this.Button_Header_Config.DrawHoverMode = false;
+            this.Button_Header_Config.DrawImageMode = true;
+            this.Button_Header_Config.Image = global::QzoneAlbumDownloader.Properties.Resources.ic_settings_black_50px;
+            this.Button_Header_Config.Location = new System.Drawing.Point(1047, 0);
+            this.Button_Header_Config.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.Button_Header_Config.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Button_Header_Config.Name = "Button_Header_Config";
+            this.Button_Header_Config.Primary = false;
+            this.Button_Header_Config.Size = new System.Drawing.Size(50, 50);
+            this.Button_Header_Config.TabIndex = 3;
+            this.Button_Header_Config.Text = "设置";
+            this.Button_Header_Config.UseVisualStyleBackColor = false;
             // 
             // Form_Main
             // 
@@ -324,7 +347,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_DetectHeadIMG)).EndInit();
             this.TabPage_Album.ResumeLayout(false);
             this.Panel_Header.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_UserHeadIMG)).EndInit();
+            this.Panel_Header.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -347,8 +370,9 @@
         private System.Windows.Forms.PictureBox PictureBox_DetectHeadIMG;
         private System.Windows.Forms.Label Label_DetectName;
         private System.Windows.Forms.Panel Panel_Header;
-        private System.Windows.Forms.PictureBox PictureBox_UserHeadIMG;
-        private MaterialSkin.Controls.MaterialFlatButton materialFlatButton1;
+        private MaterialSkin.Controls.MaterialFlatButton Button_Header_Config;
+        private MaterialSkin.Controls.MaterialFlatButton Button_Header_UserIMG;
+        private System.Windows.Forms.Label Label_Header_UserName;
     }
 }
 

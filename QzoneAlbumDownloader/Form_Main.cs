@@ -283,6 +283,30 @@ namespace QzoneAlbumDownloader
             frm.Dispose();
             if (LoginSucceed)
             {
+                new Thread(new ThreadStart(delegate
+                {
+                    Bitmap head = new Bitmap(100, 100);
+                    string name = string.Empty;
+                    var MethodSuccessed = PortraitHelper.GetUserPortrait(UserInformation.QQNumber, out head, out name);
+                    if (CancellationTokenSourceGetUserHeadIMG.Token.IsCancellationRequested)
+                        return;
+                    if (MethodSuccessed)
+                    {
+                        Invoke((EventHandler)delegate
+                        {
+                            Label_Header_UserName.Text = name;
+                            Button_Header_UserIMG.Image = head;
+                        });
+                    }
+                    else
+                    {
+                        Invoke((EventHandler)delegate
+                        {
+                            Label_Header_UserName.Text = string.Empty;
+                            Button_Header_UserIMG.Image = Properties.Resources.ic_account_box_white_100px;
+                        });
+                    }
+                })).Start();
                 Label_Detect_Tip_SetText("登录成功");
                 Button_Detect_Enter.PerformClick();
             }
