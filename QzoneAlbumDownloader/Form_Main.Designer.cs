@@ -71,7 +71,7 @@
             this.TabControl_Main.SelectedIndex = 0;
             this.TabControl_Main.Size = new System.Drawing.Size(1132, 682);
             this.TabControl_Main.TabIndex = 0;
-            this.TabControl_Main.SelectedIndexChanged += new System.EventHandler(this.TabControl_Main_SelectedIndexChanged);
+            this.TabControl_Main.Deselecting += new System.Windows.Forms.TabControlCancelEventHandler(this.TabControl_Main_Deselecting);
             // 
             // TabPage_Detect
             // 
@@ -304,6 +304,7 @@
             this.Button_Header_Back.Text = "后退";
             this.TipTool.SetToolTip(this.Button_Header_Back, "设置");
             this.Button_Header_Back.UseVisualStyleBackColor = false;
+            this.Button_Header_Back.Click += new System.EventHandler(this.Button_Header_Back_Click);
             // 
             // Button_Header_UserIMG
             // 

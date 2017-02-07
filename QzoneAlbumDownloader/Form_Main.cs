@@ -59,11 +59,6 @@ namespace QzoneAlbumDownloader
 
         #region Global
 
-        private void TabControl_Main_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         #endregion
 
         #region Detect
@@ -114,6 +109,7 @@ namespace QzoneAlbumDownloader
                             Invoke((EventHandler)delegate
                             {
                                 TabControl_Main.SelectedTab = TabPage_Album;
+                                Label_Detect_Tip.Visible = false;
                             });
                             break;
                         }
@@ -357,8 +353,9 @@ namespace QzoneAlbumDownloader
         {
             Invoke((EventHandler)delegate
             {
-                foreach (var ctl in AlbumControlList)
+                for (int i = AlbumControlList.Count - 1; i >= 0; i--)
                 {
+                    var ctl = AlbumControlList[i];
                     TipTool.SetToolTip(ctl, string.Empty);
                     FlowLayoutPanel_Album.Controls.Remove(ctl);
                     AlbumControlList.Remove(ctl);
@@ -435,9 +432,22 @@ namespace QzoneAlbumDownloader
 
         #region Header
 
+        TabPage LastTabPage;
+
         private void Button_Header_UserIMG_Click(object sender, EventArgs e)
         {
             Login();
+        }
+
+        private void Button_Header_Back_Click(object sender, EventArgs e)
+        {
+            if (LastTabPage != null)
+                TabControl_Main.SelectedTab = LastTabPage;
+        }
+
+        private void TabControl_Main_Deselecting(object sender, TabControlCancelEventArgs e)
+        {
+            LastTabPage = (sender as TabControl).SelectedTab;
         }
 
         #endregion
