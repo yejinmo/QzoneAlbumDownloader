@@ -18,6 +18,37 @@ namespace MaterialSkin.Controls
         public MouseState MouseState { get; set; }
         public bool Primary { get; set; }
 
+        private bool drawImageMoad = false;
+        /// <summary>
+        /// 是否为图像模式
+        /// </summary>
+        public bool DrawImageMoad
+        {
+            get
+            {
+                return drawImageMoad;
+            }
+            set
+            {
+                drawImageMoad = value;
+                ZoomImg = SmallPic((Bitmap)Image, Width, Height);
+                Invalidate();
+            }
+        }
+
+        private Image ZoomImg = null;
+        private Image image;
+        public new Image Image
+        {
+            get => image;
+            set
+            {
+                image = value;
+                ZoomImg = SmallPic((Bitmap)image, Width, Height);
+                Invalidate();
+            }
+        }
+
         private readonly AnimationManager animationManager;
         private readonly AnimationManager hoverAnimationManager;
 
@@ -53,18 +84,23 @@ namespace MaterialSkin.Controls
             }
         }
 
+
         protected override void OnPaint(PaintEventArgs pevent)
         {
             var g = pevent.Graphics;
             g.TextRenderingHint = TextRenderingHint.AntiAlias;
 
             g.Clear(BackColor);
-
             //Hover
             Color c = SkinManager.GetFlatButtonHoverBackgroundColor();
             using (Brush b = new SolidBrush(Color.FromArgb((int)(hoverAnimationManager.GetProgress() * c.A), c.RemoveAlpha())))
-                g.FillRectangle(b, ClientRectangle);
-
+                g.FillRectangle(b, ClientRectangle);            
+            //DrawContent - Image Mode
+            if (DrawImageMoad)
+            {
+                if (ZoomImg != null)
+                    g.DrawImage(ZoomImg, new Point(0, 0));
+            }
             //Ripple
             if (animationManager.IsAnimating())
             {
@@ -82,7 +118,11 @@ namespace MaterialSkin.Controls
                 }
                 g.SmoothingMode = SmoothingMode.None;
             }
-			g.DrawString(Text.ToUpper(), SkinManager.FONT_SIZE_18, Enabled ? new SolidBrush(ForeColor) : SkinManager.GetFlatButtonDisabledTextBrush(), ClientRectangle, new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+            //DrawContent - String Mode
+            if (!DrawImageMoad)
+            {
+                g.DrawString(Text.ToUpper(), SkinManager.FONT_SIZE_18, Enabled ? new SolidBrush(ForeColor) : SkinManager.GetFlatButtonDisabledTextBrush(), ClientRectangle, new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+            }
         }
 
         protected override void OnCreateControl()
@@ -120,5 +160,33 @@ namespace MaterialSkin.Controls
                 Invalidate();
             };
         }
+
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            Invalidate();
+            ZoomImg = SmallPic((Bitmap)Image, Width, Height);
+            base.OnSizeChanged(e);
+        }
+
+        /// <summary>
+        /// 缩小图片
+        /// </summary>
+        /// <param name="strOldPic">源图文件名(包括路径)</param>
+        /// <param name="strNewPic">缩小后保存为文件名(包括路径)</param>
+        /// <param name="intWidth">缩小至宽度</param>
+        /// <param name="intHeight">缩小至高度</param>
+        public static Bitmap SmallPic(Bitmap strOldPic, int intWidth, int intHeight)
+        {
+            if (strOldPic == null)
+                return null;
+            Bitmap objNewPic;
+            try
+            {
+                objNewPic = new Bitmap(strOldPic, intWidth, intHeight);
+                return objNewPic;
+            }
+            catch (Exception exp) { throw exp; }
+        }
+
     }
 }
