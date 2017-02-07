@@ -4,13 +4,17 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using MaterialSkin.Animations;
+using System.Drawing.Drawing2D;
+using MaterialSkin;
+using System.ComponentModel;
 
 /// <summary>
 /// QQ空间相册控件
 /// </summary>
 namespace QzoneAlbumDownloader.Controls
 {
-    public class AlbumControl : Control
+    public class AlbumControl : Control, IMaterialControl
     {
 
         #region 属性
@@ -73,17 +77,57 @@ namespace QzoneAlbumDownloader.Controls
 
         #region 初始化
 
+        [Browsable(false)]
+        public int Depth { get; set; }
+        [Browsable(false)]
+        public MaterialSkinManager SkinManager { get { return MaterialSkinManager.Instance; } }
+        [Browsable(false)]
+        public MouseState MouseState { get; set; }
+
+
         public AlbumControl()
         {
             Padding = new Padding(10);
             SetStyle(ControlStyles.ResizeRedraw, true);
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            animationManager = new AnimationManager(false)
+            {
+                Increment = 0.03,
+                AnimationType = AnimationType.EaseOut
+            };
+            animationManager.OnAnimationProgress += sender => Invalidate();
+
+        }
+
+        protected override void OnCreateControl()
+        {
+            base.OnCreateControl();
+
+            MouseDown += (sender, args) =>
+            {
+                if (args.Button == MouseButtons.Left)
+                {
+                    MouseState = MouseState.DOWN;
+
+                    animationManager.StartNewAnimation(AnimationDirection.In, args.Location);
+                    Invalidate();
+                }
+            };
+            MouseUp += (sender, args) =>
+            {
+                MouseState = MouseState.HOVER;
+
+                Invalidate();
+            };
+
         }
 
         #endregion
 
         #region 绘制
+
+        private readonly AnimationManager animationManager;
 
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -101,6 +145,23 @@ namespace QzoneAlbumDownloader.Controls
             g.DrawLine(p, new Point(Padding.Left + a, Padding.Top - 1), new Point(Padding.Left + a, Padding.Top + a));
             g.DrawLine(p, new Point(Padding.Left - 1, Padding.Top + a), new Point(Padding.Left + a, Padding.Top + a));
             g.DrawLine(p, new Point(Padding.Left - 1, Padding.Top + a), new Point(Padding.Left - 1, Padding.Top - 1));
+            //Draw Ripple
+            if (animationManager.IsAnimating())
+            {
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                for (int i = 0; i < animationManager.GetAnimationCount(); i++)
+                {
+                    var animationValue = animationManager.GetProgress(i);
+                    var animationSource = animationManager.GetSource(i);
+
+                    using (Brush rippleBrush = new SolidBrush(Color.FromArgb((int)(101 - (animationValue * 100)), Color.Black)))
+                    {
+                        var rippleSize = (int)(animationValue * Width * 2);
+                        g.FillEllipse(rippleBrush, new Rectangle(animationSource.X - rippleSize / 2, animationSource.Y - rippleSize / 2, rippleSize, rippleSize));
+                    }
+                }
+                g.SmoothingMode = SmoothingMode.None;
+            }
             //Draw Title
             StringFormat sf = new StringFormat()
             {

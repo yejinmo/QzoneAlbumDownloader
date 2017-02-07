@@ -36,7 +36,7 @@ namespace QzoneAlbumDownloader
 
         private void Form_Main_Load(object sender, EventArgs e)
         {
-            PictureBox_DetectHeadIMG.Image = Properties.Resources.ic_account_box_white_100px;
+            Button_Detect_HeadIMG.Image = Properties.Resources.ic_account_box_white_100px;
         }
 
         /// <summary>
@@ -200,9 +200,9 @@ namespace QzoneAlbumDownloader
                         Invoke((EventHandler)delegate
                         {
                             Label_DetectName.Text = name;
-                            PictureBox_DetectHeadIMG.Image = head;
-                            TipTool.SetToolTip(Label_DetectName, string.Format("QQ号：{0}\n昵称：{1}", qqnumber, name));
-                            TipTool.SetToolTip(PictureBox_DetectHeadIMG, string.Format("QQ号：{0}\n昵称：{1}", qqnumber, name));
+                            Button_Detect_HeadIMG.Image = head;
+                            TipTool.SetToolTip(Label_DetectName, string.Format("点击上方头像打开QQ空间\nQQ号：{0}\n昵称：{1}", qqnumber, name));
+                            TipTool.SetToolTip(Button_Detect_HeadIMG, string.Format("点击打开QQ空间\nQQ号：{0}\n昵称：{1}", qqnumber, name));
                         });
                     }
                     else
@@ -210,9 +210,9 @@ namespace QzoneAlbumDownloader
                         Invoke((EventHandler)delegate
                         {
                             Label_DetectName.Text = string.Empty;
-                            PictureBox_DetectHeadIMG.Image = Properties.Resources.ic_account_box_white_100px;
+                            Button_Detect_HeadIMG.Image = Properties.Resources.ic_account_box_white_100px;
                             TipTool.SetToolTip(Label_DetectName, "");
-                            TipTool.SetToolTip(PictureBox_DetectHeadIMG, "");
+                            TipTool.SetToolTip(Button_Detect_HeadIMG, "");
                         });
                     }
                 }));
@@ -275,6 +275,33 @@ namespace QzoneAlbumDownloader
 
         private void Button_Login_Click(object sender, EventArgs e)
         {
+            if (Login())
+            {
+                Label_Detect_Tip_SetText("登录成功");
+                Button_Detect_Enter.PerformClick();
+            }
+            else
+                Label_Detect_Tip_SetText("登录失败", Color.Red);
+        }
+
+        private void Button_Detect_HeadIMG_Click(object sender, EventArgs e)
+        {
+            new Thread(new ThreadStart(delegate
+            {
+                string target = string.Empty;
+                Invoke((EventHandler)delegate
+                {
+                    target = Text_Detect_Number.Text;
+                });
+                Process.Start(string.Format("http://user.qzone.qq.com/{0}", target));
+            })).Start();
+        }
+
+        /// <summary>
+        /// 登录函数
+        /// </summary>
+        private bool Login()
+        {
             bool LoginSucceed = false;
             var frm = new Form_QzoneLogin();
             frm.ShowDialog();
@@ -296,6 +323,8 @@ namespace QzoneAlbumDownloader
                         {
                             Label_Header_UserName.Text = name;
                             Button_Header_UserIMG.Image = head;
+                            TipTool.SetToolTip(Label_Header_UserName, string.Format("点击头像切换账号\nQQ号：{0}\n昵称：{1}", UserInformation.QQNumber, name));
+                            TipTool.SetToolTip(Button_Header_UserIMG, string.Format("点击头像切换账号\nQQ号：{0}\n昵称：{1}", UserInformation.QQNumber, name));
                         });
                     }
                     else
@@ -304,15 +333,15 @@ namespace QzoneAlbumDownloader
                         {
                             Label_Header_UserName.Text = string.Empty;
                             Button_Header_UserIMG.Image = Properties.Resources.ic_account_box_white_100px;
+                            TipTool.SetToolTip(Label_Header_UserName, string.Empty);
+                            TipTool.SetToolTip(Button_Header_UserIMG, string.Empty);
                         });
                     }
                 })).Start();
-                Label_Detect_Tip_SetText("登录成功");
-                Button_Detect_Enter.PerformClick();
+                return true;
             }
             else
-                Label_Detect_Tip_SetText("登录失败", Color.Red);
-
+                return false;
         }
 
         #endregion
@@ -328,9 +357,9 @@ namespace QzoneAlbumDownloader
         {
             Invoke((EventHandler)delegate
             {
-                TipTool.RemoveAll();
                 foreach (var ctl in AlbumControlList)
                 {
+                    TipTool.SetToolTip(ctl, string.Empty);
                     FlowLayoutPanel_Album.Controls.Remove(ctl);
                     AlbumControlList.Remove(ctl);
                 }
@@ -404,5 +433,14 @@ namespace QzoneAlbumDownloader
 
         #endregion
 
-     }
+        #region Header
+
+        private void Button_Header_UserIMG_Click(object sender, EventArgs e)
+        {
+            Login();
+        }
+
+        #endregion
+
+    }
 }

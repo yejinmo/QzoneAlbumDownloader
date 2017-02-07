@@ -130,7 +130,12 @@ namespace MaterialSkin.Controls
             //DrawContent - String Mode
             if (!DrawImageMode)
             {
-                g.DrawString(Text.ToUpper(), SkinManager.FONT_SIZE_18, Enabled ? new SolidBrush(ForeColor) : SkinManager.GetFlatButtonDisabledTextBrush(), ClientRectangle, new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
+                g.DrawString(
+                    Text, 
+                    Font, 
+                    Enabled ? new SolidBrush(ForeColor) : SkinManager.GetFlatButtonDisabledTextBrush(), 
+                    ClientRectangle,
+                    new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
             }
         }
 
