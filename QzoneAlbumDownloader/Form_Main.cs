@@ -31,6 +31,8 @@ namespace QzoneAlbumDownloader
         public Form_Main()
         {
             AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(CurrentDomain_AssemblyResolve);
+            //ThreadPool.SetMinThreads(5, 5);
+            //ThreadPool.SetMaxThreads(10, 10);
             InitializeComponent();
         }
 
@@ -95,17 +97,22 @@ namespace QzoneAlbumDownloader
                                 Label_Detect_Tip_SetText(string.Format("未获取到任何开放相册"), Color.Red);
                                 break;
                             }
-                            int album_index = 1;    
+                            int album_index = 1;
                             foreach (var alb in UserInformation.AlbumList)
                             {
-                                var xml = AlbumHelper.GetImageListXml(UserInformation.TargetQQNumber, UserInformation.Cookie, alb.ID);
-                                Label_Detect_Tip_SetText(string.Format
-                                    ("正在获取 {0}/{1} 相册照片列表", album_index, UserInformation.AlbumList.Count), Color.White);
-                                alb.Images = AlbumHelper.ResolveImage(xml);
-                                album_index++;
+                                ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
+                                {
+                                    var xml = AlbumHelper.GetImageListXml(UserInformation.TargetQQNumber, UserInformation.Cookie, alb.ID);
+                                    Label_Detect_Tip_SetText(string.Format
+                                        ("正在获取 {0}/{1} 相册照片列表", album_index, UserInformation.AlbumList.Count), Color.White);
+                                    alb.Images = AlbumHelper.ResolveImage(xml);
+                                    album_index++;
+                                }));
                             }
+                            while (album_index <= UserInformation.AlbumList.Count) ;
                             Label_Detect_Tip_SetText("正在加载相册缩略图", Color.White);
                             LoadAlbumPage();
+                            Thread.Sleep(100);
                             Invoke((EventHandler)delegate
                             {
                                 TabControl_Main.SelectedTab = TabPage_Album;
@@ -212,6 +219,7 @@ namespace QzoneAlbumDownloader
                         });
                     }
                 }));
+                ThreadGetUserHeadIMG.IsBackground = true;
                 ThreadGetUserHeadIMG.Start();
             }
             catch
@@ -230,7 +238,10 @@ namespace QzoneAlbumDownloader
             Button_Login.Visible = false;
             if (ThreadDetect == null)
             {
-                ThreadDetect = new Thread(new ThreadStart(Detect));
+                ThreadDetect = new Thread(new ThreadStart(Detect))
+                {
+                    IsBackground = true
+                };
                 ThreadDetect.Start();
                 Button_Detect_Enter.Text = "取消";
             }
@@ -374,7 +385,8 @@ namespace QzoneAlbumDownloader
                         ForeColor = Color.FromArgb(208, 214, 220),
                         HintFont = new Font("微软雅黑", 10),
                         HintForeColor = Color.FromArgb(152, 153, 155),
-                        HintString = album.Total + "张"
+                        HintString = album.Total + "张",
+                        LoadingImage = Properties.Resources.ic_wallpaper_black_48dp
                     };
                     FlowLayoutPanel_Album.Controls.Add(ctl);
                     AlbumControlList.Add(ctl);
@@ -383,11 +395,17 @@ namespace QzoneAlbumDownloader
                     TipTool.SetToolTip(ctl, string.Format
                         ("相册名称：{0}\n创建时间：{1}\n照片总数：{2}\n修改时间：{3}\n最后一次上传时间：{4}\n评论数：{5}",
                         album.Name, album.CreateTime, album.Total, album.ModifyTime, album.LastUploadTime, album.Comment));
-                    new Thread(new ThreadStart(delegate
+                    ThreadPool.QueueUserWorkItem(new WaitCallback(delegate 
                     {
                         var img = AlbumHelper.GetImageByURL(album.PreviewImagePath, UserInformation.Cookie);
                         ctl.Image = img;
-                    })).Start();
+                        ctl.IsLoading = false;
+                    }));
+                    //new Thread(new ThreadStart(delegate
+                    //{
+                    //    var img = AlbumHelper.GetImageByURL(album.PreviewImagePath, UserInformation.Cookie);
+                    //    ctl.Image = img;
+                    //})).Start();
                 });
             }
             Invoke((EventHandler)delegate

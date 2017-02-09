@@ -104,7 +104,7 @@ namespace QzoneAlbumDownloader
                         LastUploadTime = AlbumInfo.ConvertIntDateTime(ele.Element("lastuploadtime").Value).ToLongDateString(),
                         ModifyTime = AlbumInfo.ConvertIntDateTime(ele.Element("modifytime").Value).ToLongDateString(),
                         Name = ele.Element("name").Value,
-                        PreviewImagePath = ele.Element("pre").Value.Replace("/a/", "/b/"),
+                        PreviewImagePath = ele.Element("pre").Value.Replace("/a/", "/m/"),
                         Total = Convert.ToInt32(ele.Element("total").Value)
                     };
                     res.Add(alb);

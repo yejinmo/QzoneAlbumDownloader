@@ -35,6 +35,29 @@ namespace QzoneAlbumDownloader.Controls
             }
         }
 
+        private Bitmap loadingImage = null;
+        public Bitmap LoadingImage
+        {
+            get => loadingImage;
+            set
+            {
+                value = GetSquareBitmap(value);
+                loadingImage = value;
+                Invalidate();
+            }
+        }
+
+        private bool isLoading = true;
+        public bool IsLoading
+        {
+            get => isLoading;
+            set
+            {
+                isLoading = value;
+                Invalidate();
+            }
+        }
+
         private string imageURL = string.Empty;
         public string ImageURL
         {
@@ -83,7 +106,6 @@ namespace QzoneAlbumDownloader.Controls
         public MaterialSkinManager SkinManager { get { return MaterialSkinManager.Instance; } }
         [Browsable(false)]
         public MouseState MouseState { get; set; }
-
 
         public AlbumControl()
         {
@@ -137,8 +159,10 @@ namespace QzoneAlbumDownloader.Controls
             g.Clear(BackColor);
             g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             //Draw Image
-            if (Image != null)
+            if (!IsLoading && Image != null)
                 g.DrawImage(Image, new Rectangle(Padding.Left, Padding.Top, a, a));
+            else if (IsLoading && LoadingImage != null)
+                g.DrawImage(LoadingImage, new Rectangle(Padding.Left, Padding.Top, a, a));
             //Draw Border
             Pen p = new Pen(Color.FromArgb(68, 69, 70));
             g.DrawLine(p, new Point(Padding.Left - 1, Padding.Top - 1), new Point(Padding.Left + a, Padding.Top - 1));
