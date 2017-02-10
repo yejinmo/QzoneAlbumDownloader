@@ -67,6 +67,8 @@ namespace QzoneAlbumDownloader
 
         Thread ThreadDetect;
 
+        bool DetectUserCancel = false;
+
         /// <summary>
         /// 解析相册
         /// </summary>
@@ -218,8 +220,10 @@ namespace QzoneAlbumDownloader
                             TipTool.SetToolTip(Button_Detect_HeadIMG, "");
                         });
                     }
-                }));
-                ThreadGetUserHeadIMG.IsBackground = true;
+                }))
+                {
+                    IsBackground = true
+                };
                 ThreadGetUserHeadIMG.Start();
             }
             catch
