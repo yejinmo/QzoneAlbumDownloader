@@ -401,11 +401,6 @@ namespace QzoneAlbumDownloader
                         ctl.Image = img;
                         ctl.IsLoading = false;
                     }));
-                    //new Thread(new ThreadStart(delegate
-                    //{
-                    //    var img = AlbumHelper.GetImageByURL(album.PreviewImagePath, UserInformation.Cookie);
-                    //    ctl.Image = img;
-                    //})).Start();
                 });
             }
             Invoke((EventHandler)delegate
