@@ -254,6 +254,7 @@ namespace QzoneAlbumDownloader
                 ThreadDetect.Abort();
                 ThreadDetect = null;
                 Button_Detect_Enter.Text = "访问";
+
             }
         }
 
