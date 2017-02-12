@@ -222,6 +222,7 @@ namespace QzoneAlbumDownloader
                     }
                 }))
                 {
+
                     IsBackground = true
                 };
                 ThreadGetUserHeadIMG.Start();
