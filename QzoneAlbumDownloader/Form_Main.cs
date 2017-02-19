@@ -394,6 +394,7 @@ namespace QzoneAlbumDownloader
                         HintString = album.Total + "张",
                         LoadingImage = Properties.Resources.ic_wallpaper_black_48dp
                     };
+                    ctl.Click += LoadPhotoList;
                     FlowLayoutPanel_Album.Controls.Add(ctl);
                     AlbumControlList.Add(ctl);
                     ctl.BackColor = ctl.Parent.BackColor;
@@ -445,6 +446,34 @@ namespace QzoneAlbumDownloader
         private void TabPage_Album_Resize(object sender, EventArgs e)
         {
             ReloadAlbumPage();
+        }
+
+        #endregion
+
+        #region PhotoList
+
+        /// <summary>
+        /// 加载照片列表页面
+        /// </summary>
+        private void LoadPhotoList(object sender, EventArgs e)
+        {
+            ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
+            {
+                Thread.Sleep(250);
+                Invoke((EventHandler)delegate
+                {
+                    var ctl = (Controls.AlbumControl)sender;
+                    AlbumControl_PhotoList_Album.HintFont = ctl.HintFont;
+                    AlbumControl_PhotoList_Album.IsLoading = false;
+                    AlbumControl_PhotoList_Album.HintForeColor = ctl.HintForeColor;
+                    AlbumControl_PhotoList_Album.ForeColor = ctl.ForeColor;
+                    AlbumControl_PhotoList_Album.Font = ctl.Font;
+                    AlbumControl_PhotoList_Album.Image = ctl.Image;
+                    AlbumControl_PhotoList_Album.Title = ctl.Title;
+                    AlbumControl_PhotoList_Album.HintString = ctl.HintString;
+                    TabControl_Main.SelectedTab = TabPage_PhotoList;
+                });
+            }));
         }
 
         #endregion

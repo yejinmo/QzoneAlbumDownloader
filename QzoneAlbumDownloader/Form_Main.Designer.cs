@@ -32,6 +32,7 @@
             this.TabControl_Main = new MaterialSkin.Controls.MaterialTabControl();
             this.TabPage_Detect = new System.Windows.Forms.TabPage();
             this.Panel_Detect = new System.Windows.Forms.Panel();
+            this.Button_Detect_HeadIMG = new MaterialSkin.Controls.MaterialFlatButton();
             this.Label_DetectName = new System.Windows.Forms.Label();
             this.Label_Detect_Tip = new System.Windows.Forms.Label();
             this.Button_Login = new MaterialSkin.Controls.MaterialFlatButton();
@@ -43,17 +44,19 @@
             this.FlowLayoutPanel_Album = new System.Windows.Forms.FlowLayoutPanel();
             this.TipTool = new System.Windows.Forms.ToolTip(this.components);
             this.Label_Header_UserName = new System.Windows.Forms.Label();
-            this.Timer_GetUserHeadIMG = new System.Windows.Forms.Timer(this.components);
-            this.Panel_Header = new System.Windows.Forms.Panel();
             this.Button_Header_Back = new MaterialSkin.Controls.MaterialFlatButton();
             this.Button_Header_UserIMG = new MaterialSkin.Controls.MaterialFlatButton();
             this.Button_Header_Config = new MaterialSkin.Controls.MaterialFlatButton();
-            this.Button_Detect_HeadIMG = new MaterialSkin.Controls.MaterialFlatButton();
+            this.Timer_GetUserHeadIMG = new System.Windows.Forms.Timer(this.components);
+            this.Panel_Header = new System.Windows.Forms.Panel();
+            this.TabPage_PhotoList = new System.Windows.Forms.TabPage();
+            this.AlbumControl_PhotoList_Album = new QzoneAlbumDownloader.Controls.AlbumControl();
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Detect.SuspendLayout();
             this.Panel_Detect.SuspendLayout();
             this.TabPage_Album.SuspendLayout();
             this.Panel_Header.SuspendLayout();
+            this.TabPage_PhotoList.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControl_Main
@@ -63,6 +66,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TabControl_Main.Controls.Add(this.TabPage_Detect);
             this.TabControl_Main.Controls.Add(this.TabPage_Album);
+            this.TabControl_Main.Controls.Add(this.TabPage_PhotoList);
             this.TabControl_Main.Depth = 0;
             this.TabControl_Main.Location = new System.Drawing.Point(0, 61);
             this.TabControl_Main.Margin = new System.Windows.Forms.Padding(2);
@@ -102,6 +106,24 @@
             this.Panel_Detect.Name = "Panel_Detect";
             this.Panel_Detect.Size = new System.Drawing.Size(857, 311);
             this.Panel_Detect.TabIndex = 2;
+            // 
+            // Button_Detect_HeadIMG
+            // 
+            this.Button_Detect_HeadIMG.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.Button_Detect_HeadIMG.Depth = 0;
+            this.Button_Detect_HeadIMG.DrawHoverMode = false;
+            this.Button_Detect_HeadIMG.DrawImageMode = true;
+            this.Button_Detect_HeadIMG.Image = global::QzoneAlbumDownloader.Properties.Resources.ic_account_box_white_100px;
+            this.Button_Detect_HeadIMG.Location = new System.Drawing.Point(377, 8);
+            this.Button_Detect_HeadIMG.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.Button_Detect_HeadIMG.MouseState = MaterialSkin.MouseState.HOVER;
+            this.Button_Detect_HeadIMG.Name = "Button_Detect_HeadIMG";
+            this.Button_Detect_HeadIMG.Primary = false;
+            this.Button_Detect_HeadIMG.Size = new System.Drawing.Size(100, 100);
+            this.Button_Detect_HeadIMG.TabIndex = 10;
+            this.Button_Detect_HeadIMG.Text = "设置";
+            this.Button_Detect_HeadIMG.UseVisualStyleBackColor = false;
+            this.Button_Detect_HeadIMG.Click += new System.EventHandler(this.Button_Detect_HeadIMG_Click);
             // 
             // Label_DetectName
             // 
@@ -191,7 +213,7 @@
             this.Text_Detect_Number.Size = new System.Drawing.Size(703, 37);
             this.Text_Detect_Number.TabIndex = 3;
             this.Text_Detect_Number.TabStop = false;
-            this.Text_Detect_Number.Text = "824467079";
+            this.Text_Detect_Number.Text = "861732201";
             this.Text_Detect_Number.UseSystemPasswordChar = false;
             this.Text_Detect_Number.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Text_Detect_Number_KeyDown);
             this.Text_Detect_Number.TextChanged += new System.EventHandler(this.Text_Detect_Number_TextChanged);
@@ -266,26 +288,6 @@
             this.Label_Header_UserName.Text = "请登录";
             this.TipTool.SetToolTip(this.Label_Header_UserName, "点击左侧头像登录");
             // 
-            // Timer_GetUserHeadIMG
-            // 
-            this.Timer_GetUserHeadIMG.Enabled = true;
-            this.Timer_GetUserHeadIMG.Interval = 5;
-            this.Timer_GetUserHeadIMG.Tick += new System.EventHandler(this.Timer_GetUserHeadIMG_Tick);
-            // 
-            // Panel_Header
-            // 
-            this.Panel_Header.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Panel_Header.Controls.Add(this.Button_Header_Back);
-            this.Panel_Header.Controls.Add(this.Label_Header_UserName);
-            this.Panel_Header.Controls.Add(this.Button_Header_UserIMG);
-            this.Panel_Header.Controls.Add(this.Button_Header_Config);
-            this.Panel_Header.Location = new System.Drawing.Point(4, 9);
-            this.Panel_Header.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Panel_Header.Name = "Panel_Header";
-            this.Panel_Header.Size = new System.Drawing.Size(1124, 50);
-            this.Panel_Header.TabIndex = 1;
-            // 
             // Button_Header_Back
             // 
             this.Button_Header_Back.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -344,23 +346,54 @@
             this.TipTool.SetToolTip(this.Button_Header_Config, "设置");
             this.Button_Header_Config.UseVisualStyleBackColor = false;
             // 
-            // Button_Detect_HeadIMG
+            // Timer_GetUserHeadIMG
             // 
-            this.Button_Detect_HeadIMG.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.Button_Detect_HeadIMG.Depth = 0;
-            this.Button_Detect_HeadIMG.DrawHoverMode = false;
-            this.Button_Detect_HeadIMG.DrawImageMode = true;
-            this.Button_Detect_HeadIMG.Image = global::QzoneAlbumDownloader.Properties.Resources.ic_account_box_white_100px;
-            this.Button_Detect_HeadIMG.Location = new System.Drawing.Point(377, 8);
-            this.Button_Detect_HeadIMG.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.Button_Detect_HeadIMG.MouseState = MaterialSkin.MouseState.HOVER;
-            this.Button_Detect_HeadIMG.Name = "Button_Detect_HeadIMG";
-            this.Button_Detect_HeadIMG.Primary = false;
-            this.Button_Detect_HeadIMG.Size = new System.Drawing.Size(100, 100);
-            this.Button_Detect_HeadIMG.TabIndex = 10;
-            this.Button_Detect_HeadIMG.Text = "设置";
-            this.Button_Detect_HeadIMG.UseVisualStyleBackColor = false;
-            this.Button_Detect_HeadIMG.Click += new System.EventHandler(this.Button_Detect_HeadIMG_Click);
+            this.Timer_GetUserHeadIMG.Enabled = true;
+            this.Timer_GetUserHeadIMG.Interval = 5;
+            this.Timer_GetUserHeadIMG.Tick += new System.EventHandler(this.Timer_GetUserHeadIMG_Tick);
+            // 
+            // Panel_Header
+            // 
+            this.Panel_Header.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Panel_Header.Controls.Add(this.Button_Header_Back);
+            this.Panel_Header.Controls.Add(this.Label_Header_UserName);
+            this.Panel_Header.Controls.Add(this.Button_Header_UserIMG);
+            this.Panel_Header.Controls.Add(this.Button_Header_Config);
+            this.Panel_Header.Location = new System.Drawing.Point(4, 9);
+            this.Panel_Header.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Panel_Header.Name = "Panel_Header";
+            this.Panel_Header.Size = new System.Drawing.Size(1124, 50);
+            this.Panel_Header.TabIndex = 1;
+            // 
+            // TabPage_PhotoList
+            // 
+            this.TabPage_PhotoList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.TabPage_PhotoList.Controls.Add(this.AlbumControl_PhotoList_Album);
+            this.TabPage_PhotoList.Location = new System.Drawing.Point(4, 26);
+            this.TabPage_PhotoList.Name = "TabPage_PhotoList";
+            this.TabPage_PhotoList.Size = new System.Drawing.Size(1124, 652);
+            this.TabPage_PhotoList.TabIndex = 2;
+            this.TabPage_PhotoList.Text = "TabPage_PhotoList";
+            // 
+            // AlbumControl_PhotoList_Album
+            // 
+            this.AlbumControl_PhotoList_Album.Depth = 0;
+            this.AlbumControl_PhotoList_Album.HintFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.AlbumControl_PhotoList_Album.HintForeColor = System.Drawing.SystemColors.ControlText;
+            this.AlbumControl_PhotoList_Album.HintString = "";
+            this.AlbumControl_PhotoList_Album.Image = null;
+            this.AlbumControl_PhotoList_Album.ImageURL = "";
+            this.AlbumControl_PhotoList_Album.IsLoading = true;
+            this.AlbumControl_PhotoList_Album.LoadingImage = null;
+            this.AlbumControl_PhotoList_Album.Location = new System.Drawing.Point(23, 23);
+            this.AlbumControl_PhotoList_Album.MouseState = MaterialSkin.MouseState.HOVER;
+            this.AlbumControl_PhotoList_Album.Name = "AlbumControl_PhotoList_Album";
+            this.AlbumControl_PhotoList_Album.Padding = new System.Windows.Forms.Padding(10);
+            this.AlbumControl_PhotoList_Album.Size = new System.Drawing.Size(200, 248);
+            this.AlbumControl_PhotoList_Album.TabIndex = 0;
+            this.AlbumControl_PhotoList_Album.Text = "albumControl1";
+            this.AlbumControl_PhotoList_Album.Title = "";
             // 
             // Form_Main
             // 
@@ -382,6 +415,7 @@
             this.TabPage_Album.ResumeLayout(false);
             this.Panel_Header.ResumeLayout(false);
             this.Panel_Header.PerformLayout();
+            this.TabPage_PhotoList.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -408,6 +442,8 @@
         private System.Windows.Forms.Label Label_Header_UserName;
         private MaterialSkin.Controls.MaterialFlatButton Button_Detect_HeadIMG;
         private MaterialSkin.Controls.MaterialFlatButton Button_Header_Back;
+        private System.Windows.Forms.TabPage TabPage_PhotoList;
+        private Controls.AlbumControl AlbumControl_PhotoList_Album;
     }
 }
 

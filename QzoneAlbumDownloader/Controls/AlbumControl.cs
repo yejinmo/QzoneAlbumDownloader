@@ -220,6 +220,8 @@ namespace QzoneAlbumDownloader.Controls
         private Bitmap GetSquareBitmap(Bitmap img)
         {
             int temp = 0;
+            if (img == null)
+                return null;
             if (img.Width > img.Height)
             {
                 temp = (img.Width - img.Height) / 2;
