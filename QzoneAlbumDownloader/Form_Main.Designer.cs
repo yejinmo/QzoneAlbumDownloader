@@ -42,6 +42,8 @@
             this.ProcessBar_Detect = new MaterialSkin.Controls.MaterialProcessBar();
             this.TabPage_Album = new System.Windows.Forms.TabPage();
             this.FlowLayoutPanel_Album = new System.Windows.Forms.FlowLayoutPanel();
+            this.TabPage_PhotoList = new System.Windows.Forms.TabPage();
+            this.AlbumControl_PhotoList_Album = new QzoneAlbumDownloader.Controls.AlbumControl();
             this.TipTool = new System.Windows.Forms.ToolTip(this.components);
             this.Label_Header_UserName = new System.Windows.Forms.Label();
             this.Button_Header_Back = new MaterialSkin.Controls.MaterialFlatButton();
@@ -49,14 +51,13 @@
             this.Button_Header_Config = new MaterialSkin.Controls.MaterialFlatButton();
             this.Timer_GetUserHeadIMG = new System.Windows.Forms.Timer(this.components);
             this.Panel_Header = new System.Windows.Forms.Panel();
-            this.TabPage_PhotoList = new System.Windows.Forms.TabPage();
-            this.AlbumControl_PhotoList_Album = new QzoneAlbumDownloader.Controls.AlbumControl();
+            this.FlowLayoutPanel_PhotoList = new System.Windows.Forms.FlowLayoutPanel();
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Detect.SuspendLayout();
             this.Panel_Detect.SuspendLayout();
             this.TabPage_Album.SuspendLayout();
-            this.Panel_Header.SuspendLayout();
             this.TabPage_PhotoList.SuspendLayout();
+            this.Panel_Header.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControl_Main
@@ -264,7 +265,6 @@
             this.TabPage_Album.Size = new System.Drawing.Size(1124, 652);
             this.TabPage_Album.TabIndex = 1;
             this.TabPage_Album.Text = "TabPage_Album";
-            this.TabPage_Album.Resize += new System.EventHandler(this.TabPage_Album_Resize);
             // 
             // FlowLayoutPanel_Album
             // 
@@ -274,6 +274,36 @@
             this.FlowLayoutPanel_Album.Name = "FlowLayoutPanel_Album";
             this.FlowLayoutPanel_Album.Size = new System.Drawing.Size(1084, 612);
             this.FlowLayoutPanel_Album.TabIndex = 0;
+            // 
+            // TabPage_PhotoList
+            // 
+            this.TabPage_PhotoList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.TabPage_PhotoList.Controls.Add(this.FlowLayoutPanel_PhotoList);
+            this.TabPage_PhotoList.Controls.Add(this.AlbumControl_PhotoList_Album);
+            this.TabPage_PhotoList.Location = new System.Drawing.Point(4, 26);
+            this.TabPage_PhotoList.Name = "TabPage_PhotoList";
+            this.TabPage_PhotoList.Size = new System.Drawing.Size(1124, 652);
+            this.TabPage_PhotoList.TabIndex = 2;
+            this.TabPage_PhotoList.Text = "TabPage_PhotoList";
+            // 
+            // AlbumControl_PhotoList_Album
+            // 
+            this.AlbumControl_PhotoList_Album.Depth = 0;
+            this.AlbumControl_PhotoList_Album.HintFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.AlbumControl_PhotoList_Album.HintForeColor = System.Drawing.SystemColors.ControlText;
+            this.AlbumControl_PhotoList_Album.HintString = "";
+            this.AlbumControl_PhotoList_Album.Image = null;
+            this.AlbumControl_PhotoList_Album.ImageURL = "";
+            this.AlbumControl_PhotoList_Album.IsLoading = true;
+            this.AlbumControl_PhotoList_Album.LoadingImage = null;
+            this.AlbumControl_PhotoList_Album.Location = new System.Drawing.Point(23, 23);
+            this.AlbumControl_PhotoList_Album.MouseState = MaterialSkin.MouseState.HOVER;
+            this.AlbumControl_PhotoList_Album.Name = "AlbumControl_PhotoList_Album";
+            this.AlbumControl_PhotoList_Album.Padding = new System.Windows.Forms.Padding(10);
+            this.AlbumControl_PhotoList_Album.Size = new System.Drawing.Size(200, 248);
+            this.AlbumControl_PhotoList_Album.TabIndex = 0;
+            this.AlbumControl_PhotoList_Album.Text = "albumControl1";
+            this.AlbumControl_PhotoList_Album.Title = "";
             // 
             // Label_Header_UserName
             // 
@@ -366,34 +396,16 @@
             this.Panel_Header.Size = new System.Drawing.Size(1124, 50);
             this.Panel_Header.TabIndex = 1;
             // 
-            // TabPage_PhotoList
+            // FlowLayoutPanel_PhotoList
             // 
-            this.TabPage_PhotoList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.TabPage_PhotoList.Controls.Add(this.AlbumControl_PhotoList_Album);
-            this.TabPage_PhotoList.Location = new System.Drawing.Point(4, 26);
-            this.TabPage_PhotoList.Name = "TabPage_PhotoList";
-            this.TabPage_PhotoList.Size = new System.Drawing.Size(1124, 652);
-            this.TabPage_PhotoList.TabIndex = 2;
-            this.TabPage_PhotoList.Text = "TabPage_PhotoList";
-            // 
-            // AlbumControl_PhotoList_Album
-            // 
-            this.AlbumControl_PhotoList_Album.Depth = 0;
-            this.AlbumControl_PhotoList_Album.HintFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.AlbumControl_PhotoList_Album.HintForeColor = System.Drawing.SystemColors.ControlText;
-            this.AlbumControl_PhotoList_Album.HintString = "";
-            this.AlbumControl_PhotoList_Album.Image = null;
-            this.AlbumControl_PhotoList_Album.ImageURL = "";
-            this.AlbumControl_PhotoList_Album.IsLoading = true;
-            this.AlbumControl_PhotoList_Album.LoadingImage = null;
-            this.AlbumControl_PhotoList_Album.Location = new System.Drawing.Point(23, 23);
-            this.AlbumControl_PhotoList_Album.MouseState = MaterialSkin.MouseState.HOVER;
-            this.AlbumControl_PhotoList_Album.Name = "AlbumControl_PhotoList_Album";
-            this.AlbumControl_PhotoList_Album.Padding = new System.Windows.Forms.Padding(10);
-            this.AlbumControl_PhotoList_Album.Size = new System.Drawing.Size(200, 248);
-            this.AlbumControl_PhotoList_Album.TabIndex = 0;
-            this.AlbumControl_PhotoList_Album.Text = "albumControl1";
-            this.AlbumControl_PhotoList_Album.Title = "";
+            this.FlowLayoutPanel_PhotoList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.FlowLayoutPanel_PhotoList.AutoScroll = true;
+            this.FlowLayoutPanel_PhotoList.Location = new System.Drawing.Point(20, 277);
+            this.FlowLayoutPanel_PhotoList.Name = "FlowLayoutPanel_PhotoList";
+            this.FlowLayoutPanel_PhotoList.Size = new System.Drawing.Size(1084, 355);
+            this.FlowLayoutPanel_PhotoList.TabIndex = 1;
             // 
             // Form_Main
             // 
@@ -413,9 +425,9 @@
             this.TabPage_Detect.ResumeLayout(false);
             this.Panel_Detect.ResumeLayout(false);
             this.TabPage_Album.ResumeLayout(false);
+            this.TabPage_PhotoList.ResumeLayout(false);
             this.Panel_Header.ResumeLayout(false);
             this.Panel_Header.PerformLayout();
-            this.TabPage_PhotoList.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -444,6 +456,7 @@
         private MaterialSkin.Controls.MaterialFlatButton Button_Header_Back;
         private System.Windows.Forms.TabPage TabPage_PhotoList;
         private Controls.AlbumControl AlbumControl_PhotoList_Album;
+        private System.Windows.Forms.FlowLayoutPanel FlowLayoutPanel_PhotoList;
     }
 }
 

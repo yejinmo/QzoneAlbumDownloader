@@ -132,18 +132,20 @@ namespace QzoneAlbumDownloader
                                                  select ele;
                 foreach (var ele in elements)
                 {
-                    ImageInfo img = new ImageInfo();
-                    img.Height = Convert.ToInt32(ele.Element("height").Value);
-                    img.ModifyTime = ele.Element("modifytime").Value;
-                    img.Name = ele.Element("name").Value;
-                    img.OriginURL = ele.Element("origin_url").Value;
-                    img.Owner = ele.Element("owner").Value;
-                    img.OwnerName = ele.Element("ownername").Value;
-                    img.PhotoType = ele.Element("phototype").Value;
-                    img.PreviewImagePath = ele.Element("pre").Value;
-                    img.RawShootTime = ele.Element("rawshoottime").Value;
-                    img.UploadTime = ele.Element("uploadtime").Value;
-                    img.Width = Convert.ToInt32(ele.Element("width").Value);
+                    ImageInfo img = new ImageInfo()
+                    {
+                        Height = Convert.ToInt32(ele.Element("height").Value),
+                        ModifyTime = AlbumInfo.ConvertIntDateTime(ele.Element("modifytime").Value).ToLongDateString(),
+                        Name = ele.Element("name").Value,
+                        OriginURL = ele.Element("origin_url").Value,
+                        Owner = ele.Element("owner").Value,
+                        OwnerName = ele.Element("ownername").Value,
+                        PhotoType = ele.Element("phototype").Value,
+                        PreviewImagePath = ele.Element("pre").Value.Replace("/a/", "/m/"),
+                        RawShootTime = ele.Element("rawshoottime").Value,
+                        UploadTime = ele.Element("uploadtime").Value,
+                        Width = Convert.ToInt32(ele.Element("width").Value)
+                    };
                     res.Add(img);
                 }
             }

@@ -392,7 +392,8 @@ namespace QzoneAlbumDownloader
                         HintFont = new Font("微软雅黑", 10),
                         HintForeColor = Color.FromArgb(152, 153, 155),
                         HintString = album.Total + "张",
-                        LoadingImage = Properties.Resources.ic_wallpaper_black_48dp
+                        LoadingImage = Properties.Resources.ic_wallpaper_black_48dp,
+                        Tag = album.Images
                     };
                     ctl.Click += LoadPhotoList;
                     FlowLayoutPanel_Album.Controls.Add(ctl);
@@ -410,67 +411,75 @@ namespace QzoneAlbumDownloader
                     }));
                 });
             }
-            Invoke((EventHandler)delegate
-            {
-                ReloadAlbumPage();
-            });
-        }
-
-        /// <summary>
-        /// 重载相册页面
-        /// </summary>
-        private void ReloadAlbumPage()
-        {
-            int padding = 20;
-            int left = 0;
-            int top = 20;
-            foreach (var ctl in AlbumControlList)
-            {
-                int temp = (left == 0 ? padding : left + ctl.Width + padding);
-                if (temp + ctl.Width + padding < TabPage_Album.Width)
-                {
-                    ctl.Left = temp;
-                    ctl.Top = top;
-                    left = temp;
-                }
-                else
-                {
-                    top += ctl.Height + padding;
-                    left = 0;
-                    ctl.Left = padding;
-                    ctl.Top = top;
-                }
-            }
-        }
-
-        private void TabPage_Album_Resize(object sender, EventArgs e)
-        {
-            ReloadAlbumPage();
         }
 
         #endregion
 
         #region PhotoList
 
+        List<Controls.AlbumControl> AlbumControlPhotoList = new List<Controls.AlbumControl>();
+
         /// <summary>
         /// 加载照片列表页面
         /// </summary>
         private void LoadPhotoList(object sender, EventArgs e)
         {
+            var obj = (Controls.AlbumControl)sender;
+            if (obj == null)
+                return;
             ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
             {
-                Thread.Sleep(250);
                 Invoke((EventHandler)delegate
                 {
-                    var ctl = (Controls.AlbumControl)sender;
-                    AlbumControl_PhotoList_Album.HintFont = ctl.HintFont;
+                    for (int i = AlbumControlPhotoList.Count - 1; i >= 0; i--)
+                    {
+                        var ctl = AlbumControlPhotoList[i];
+                        TipTool.SetToolTip(ctl, string.Empty);
+                        FlowLayoutPanel_PhotoList.Controls.Remove(ctl);
+                        AlbumControlPhotoList.Remove(ctl);
+                    }
+                });
+                foreach (var image in (List<ImageInfo>)obj.Tag)
+                {
+                    Invoke((EventHandler)delegate
+                    {
+                        var ctl = new Controls.AlbumControl()
+                        {
+                            Width = 200,
+                            Title = image.Name,
+                            ImageURL = image.PreviewImagePath,
+                            Font = new Font("微软雅黑", 12),
+                            ForeColor = Color.FromArgb(208, 214, 220),
+                            HintFont = new Font("微软雅黑", 10),
+                            HintForeColor = Color.FromArgb(152, 153, 155),
+                            HintString = image.RawShootTime == "0" ? "" : image.RawShootTime,
+                            LoadingImage = Properties.Resources.ic_wallpaper_black_48dp,
+                        };
+                        FlowLayoutPanel_PhotoList.Controls.Add(ctl);
+                        AlbumControlPhotoList.Add(ctl);
+                        ctl.BackColor = ctl.Parent.BackColor;
+                        ctl.ReloadSize();
+                        TipTool.SetToolTip(ctl, string.Format
+                            ("照片名称：{0}\n拍摄时间：{1}\n上传时间：{2}\n修改时间：{3}\n图片宽度：{4}\n图片高度：{5}",
+                            image.Name, image.RawShootTime, image.UploadTime, image.ModifyTime, image.Width, image.Height));
+                        ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
+                        {
+                            var img = AlbumHelper.GetImageByURL(image.PreviewImagePath, UserInformation.Cookie);
+                            ctl.Image = img;
+                            ctl.IsLoading = false;
+                        }));
+                    });
+                }
+                Invoke((EventHandler)delegate
+                {
+                    AlbumControl_PhotoList_Album.HintFont = obj.HintFont;
                     AlbumControl_PhotoList_Album.IsLoading = false;
-                    AlbumControl_PhotoList_Album.HintForeColor = ctl.HintForeColor;
-                    AlbumControl_PhotoList_Album.ForeColor = ctl.ForeColor;
-                    AlbumControl_PhotoList_Album.Font = ctl.Font;
-                    AlbumControl_PhotoList_Album.Image = ctl.Image;
-                    AlbumControl_PhotoList_Album.Title = ctl.Title;
-                    AlbumControl_PhotoList_Album.HintString = ctl.HintString;
+                    AlbumControl_PhotoList_Album.HintForeColor = obj.HintForeColor;
+                    AlbumControl_PhotoList_Album.ForeColor = obj.ForeColor;
+                    AlbumControl_PhotoList_Album.Font = obj.Font;
+                    AlbumControl_PhotoList_Album.Image = obj.Image;
+                    AlbumControl_PhotoList_Album.Title = obj.Title;
+                    AlbumControl_PhotoList_Album.HintString = obj.HintString;
                     TabControl_Main.SelectedTab = TabPage_PhotoList;
                 });
             }));
