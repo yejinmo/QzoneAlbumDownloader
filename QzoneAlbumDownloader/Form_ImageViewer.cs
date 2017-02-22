@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace QzoneAlbumDownloader
@@ -12,7 +13,15 @@ namespace QzoneAlbumDownloader
     public partial class Form_ImageViewer : Form
     {
 
+        #region global
+
+        ImageInfo ImageInfo = null;
+
+        #endregion
+
         #region UI
+
+        bool FORM_SHOULD_CLOSE = false;
 
         const int Guying_HTLEFT = 10;
         const int Guying_HTRIGHT = 11;
@@ -23,14 +32,46 @@ namespace QzoneAlbumDownloader
         const int Guying_HTBOTTOMLEFT = 0x10;
         const int Guying_HTBOTTOMRIGHT = 17;
 
-        public Form_ImageViewer()
+        public Form_ImageViewer(ImageInfo II)
         {
+            ImageInfo = II;
             InitializeComponent();
         }
 
         private void Form_ImageViewer_Load(object sender, EventArgs e)
         {
+            Opacity = 0.0; 
+            Timer_Fade.Start(); 
+        }
 
+        private void Timer_Fade_Tick(object sender, EventArgs e)
+        {
+            double d = 0.10;
+            if (!FORM_SHOULD_CLOSE)
+            {
+                if (Opacity + d >= 1.0)
+                {
+                    Opacity = 1.0;
+                    Timer_Fade.Stop();
+                }
+                else
+                {
+                    Opacity += d;
+                }
+            }
+            else
+            {
+                if (Opacity - d <= 0.0)
+                {
+                    Opacity = 0.0;
+                    Timer_Fade.Stop();
+                    Close();
+                }
+                else
+                {
+                    Opacity -= d;
+                }
+            }
         }
 
         protected override void WndProc(ref Message m)
@@ -69,6 +110,38 @@ namespace QzoneAlbumDownloader
                     base.WndProc(ref m);
                     break;
             }
+        }
+
+        #endregion
+
+        #region control
+
+        private void Button_Control_Close_Click(object sender, EventArgs e)
+        {
+            if (FORM_SHOULD_CLOSE)
+                return;
+            FORM_SHOULD_CLOSE = true;
+            Timer_Fade.Start();
+        }
+
+        #endregion
+
+        #region event
+
+        public void LoadImage()
+        {
+            if (ImageInfo == null || string.IsNullOrEmpty(ImageInfo.OriginURL))
+                return;
+            ProcessBar_LoadImage.Visible = true;
+            ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
+            {
+                var img = AlbumHelper.GetImageByURL(ImageInfo.PreviewImagePath);
+                Invoke((EventHandler)delegate
+                {
+                    ProcessBar_LoadImage.Visible = false;
+                    BackgroundImage = img;
+                });
+            }));
         }
 
         #endregion

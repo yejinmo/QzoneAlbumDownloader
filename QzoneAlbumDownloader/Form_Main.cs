@@ -439,7 +439,6 @@ namespace QzoneAlbumDownloader
                     AlbumControl_PhotoList_Album.Image = obj.Image;
                     AlbumControl_PhotoList_Album.Title = obj.Title;
                     AlbumControl_PhotoList_Album.HintString = obj.HintString;
-                    TabControl_Main.SelectedTab = TabPage_PhotoList;
                     SuspendLayout();
                     for (int i = AlbumControlPhotoList.Count - 1; i >= 0; i--)
                     {
@@ -464,28 +463,39 @@ namespace QzoneAlbumDownloader
                             HintForeColor = Color.FromArgb(152, 153, 155),
                             HintString = image.RawShootTime == "0" ? "" : image.RawShootTime,
                             LoadingImage = Properties.Resources.ic_wallpaper_black_48dp,
-                            Tag = image.OriginURL
+                            Tag = image
                         };
                         FlowLayoutPanel_PhotoList.Controls.Add(ctl);
                         AlbumControlPhotoList.Add(ctl);
-                        ctl.Click += ShowImageViewerForm;
                         ctl.BackColor = ctl.Parent.BackColor;
                         ctl.ReloadSize();
                         TipTool.SetToolTip(ctl, string.Format
                             ("照片名称：{0}\n拍摄时间：{1}\n上传时间：{2}\n修改时间：{3}\n图片宽度：{4}\n图片高度：{5}",
                             image.Name, image.RawShootTime, image.UploadTime, image.ModifyTime, image.Width, image.Height));
-                        ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
-                        {
-                            var img = AlbumHelper.GetImageByURL(image.PreviewImagePath, UserInformation.Cookie);
-                            ctl.Image = img;
-                            ctl.IsLoading = false;
-                        }));
                     });
                 }
                 Invoke((EventHandler)delegate
                 {
                     ResumeLayout();
+                    TabControl_Main.SelectedTab = TabPage_PhotoList;
                 });
+                foreach (var ctl in AlbumControlPhotoList)
+                {
+                    ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
+                    {
+                        if (ctl == null)
+                            return;
+                        ctl.Click += ShowImageViewerForm;
+                        var img = AlbumHelper.GetImageByURL(((ImageInfo)ctl.Tag).PreviewImagePath, UserInformation.Cookie);
+                        if (ctl == null)
+                            return;
+                        Invoke((EventHandler)delegate
+                        {
+                            ctl.Image = img;
+                            ctl.IsLoading = false;
+                        });
+                    }));
+                }
             }));
         }
 
@@ -496,8 +506,13 @@ namespace QzoneAlbumDownloader
         /// <param name="e"></param>
         private void ShowImageViewerForm(object sender, EventArgs e)
         {
-                var frm = new Form_ImageViewer();
-                frm.Show();
+            var frm = new Form_ImageViewer((ImageInfo)((Controls.AlbumControl)sender).Tag)
+            {
+                Width = ((ImageInfo)((Controls.AlbumControl)sender).Tag).Width,
+                Height = ((ImageInfo)((Controls.AlbumControl)sender).Tag).Height
+            };
+            frm.LoadImage();
+            frm.Show();
         }
 
         #endregion

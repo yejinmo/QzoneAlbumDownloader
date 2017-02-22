@@ -103,7 +103,7 @@
             this.Panel_Detect.Controls.Add(this.Text_Detect_Number);
             this.Panel_Detect.Controls.Add(this.Button_Detect_Enter);
             this.Panel_Detect.Controls.Add(this.ProcessBar_Detect);
-            this.Panel_Detect.Location = new System.Drawing.Point(125, 129);
+            this.Panel_Detect.Location = new System.Drawing.Point(125, 125);
             this.Panel_Detect.Name = "Panel_Detect";
             this.Panel_Detect.Size = new System.Drawing.Size(857, 311);
             this.Panel_Detect.TabIndex = 2;
@@ -254,7 +254,7 @@
             this.FlowLayoutPanel_Album.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FlowLayoutPanel_Album.Location = new System.Drawing.Point(20, 20);
             this.FlowLayoutPanel_Album.Name = "FlowLayoutPanel_Album";
-            this.FlowLayoutPanel_Album.Size = new System.Drawing.Size(1084, 616);
+            this.FlowLayoutPanel_Album.Size = new System.Drawing.Size(1084, 612);
             this.FlowLayoutPanel_Album.TabIndex = 0;
             // 
             // TabPage_PhotoList
