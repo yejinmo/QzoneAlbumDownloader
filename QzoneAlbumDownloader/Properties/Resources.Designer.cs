@@ -83,6 +83,36 @@ namespace QzoneAlbumDownloader.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ic_highlight_off_black_48dp {
+            get {
+                object obj = ResourceManager.GetObject("ic_highlight_off_black_48dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ic_save_black_48dp {
+            get {
+                object obj = ResourceManager.GetObject("ic_save_black_48dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ic_settings_backup_restore_black_48dp {
+            get {
+                object obj = ResourceManager.GetObject("ic_settings_backup_restore_black_48dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ic_settings_black_50px {
             get {
                 object obj = ResourceManager.GetObject("ic_settings_black_50px", resourceCulture);
@@ -96,6 +126,26 @@ namespace QzoneAlbumDownloader.Properties {
         internal static System.Drawing.Bitmap ic_wallpaper_black_48dp {
             get {
                 object obj = ResourceManager.GetObject("ic_wallpaper_black_48dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ic_zoom_in_black_48dp {
+            get {
+                object obj = ResourceManager.GetObject("ic_zoom_in_black_48dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ic_zoom_out_black_48dp {
+            get {
+                object obj = ResourceManager.GetObject("ic_zoom_out_black_48dp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

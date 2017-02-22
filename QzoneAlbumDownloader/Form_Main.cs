@@ -431,6 +431,16 @@ namespace QzoneAlbumDownloader
             {
                 Invoke((EventHandler)delegate
                 {
+                    AlbumControl_PhotoList_Album.HintFont = obj.HintFont;
+                    AlbumControl_PhotoList_Album.IsLoading = false;
+                    AlbumControl_PhotoList_Album.HintForeColor = obj.HintForeColor;
+                    AlbumControl_PhotoList_Album.ForeColor = obj.ForeColor;
+                    AlbumControl_PhotoList_Album.Font = obj.Font;
+                    AlbumControl_PhotoList_Album.Image = obj.Image;
+                    AlbumControl_PhotoList_Album.Title = obj.Title;
+                    AlbumControl_PhotoList_Album.HintString = obj.HintString;
+                    TabControl_Main.SelectedTab = TabPage_PhotoList;
+                    SuspendLayout();
                     for (int i = AlbumControlPhotoList.Count - 1; i >= 0; i--)
                     {
                         var ctl = AlbumControlPhotoList[i];
@@ -454,9 +464,11 @@ namespace QzoneAlbumDownloader
                             HintForeColor = Color.FromArgb(152, 153, 155),
                             HintString = image.RawShootTime == "0" ? "" : image.RawShootTime,
                             LoadingImage = Properties.Resources.ic_wallpaper_black_48dp,
+                            Tag = image.OriginURL
                         };
                         FlowLayoutPanel_PhotoList.Controls.Add(ctl);
                         AlbumControlPhotoList.Add(ctl);
+                        ctl.Click += ShowImageViewerForm;
                         ctl.BackColor = ctl.Parent.BackColor;
                         ctl.ReloadSize();
                         TipTool.SetToolTip(ctl, string.Format
@@ -472,17 +484,20 @@ namespace QzoneAlbumDownloader
                 }
                 Invoke((EventHandler)delegate
                 {
-                    AlbumControl_PhotoList_Album.HintFont = obj.HintFont;
-                    AlbumControl_PhotoList_Album.IsLoading = false;
-                    AlbumControl_PhotoList_Album.HintForeColor = obj.HintForeColor;
-                    AlbumControl_PhotoList_Album.ForeColor = obj.ForeColor;
-                    AlbumControl_PhotoList_Album.Font = obj.Font;
-                    AlbumControl_PhotoList_Album.Image = obj.Image;
-                    AlbumControl_PhotoList_Album.Title = obj.Title;
-                    AlbumControl_PhotoList_Album.HintString = obj.HintString;
-                    TabControl_Main.SelectedTab = TabPage_PhotoList;
+                    ResumeLayout();
                 });
             }));
+        }
+
+        /// <summary>
+        /// 加载并显示照片查看器窗口
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ShowImageViewerForm(object sender, EventArgs e)
+        {
+                var frm = new Form_ImageViewer();
+                frm.Show();
         }
 
         #endregion

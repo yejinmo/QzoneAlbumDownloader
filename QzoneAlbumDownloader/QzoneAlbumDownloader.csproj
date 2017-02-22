@@ -57,6 +57,12 @@
     <Compile Include="Form_Debug.Designer.cs">
       <DependentUpon>Form_Debug.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_ImageViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ImageViewer.Designer.cs">
+      <DependentUpon>Form_ImageViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +83,9 @@
     <Compile Include="XmlHelper.cs" />
     <EmbeddedResource Include="Form_Debug.resx">
       <DependentUpon>Form_Debug.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ImageViewer.resx">
+      <DependentUpon>Form_ImageViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Main.resx">
       <DependentUpon>Form_Main.cs</DependentUpon>
@@ -134,6 +143,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ic_wallpaper_black_48dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_save_black_48dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_settings_backup_restore_black_48dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_zoom_in_black_48dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_zoom_out_black_48dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_highlight_off_black_48dp.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
