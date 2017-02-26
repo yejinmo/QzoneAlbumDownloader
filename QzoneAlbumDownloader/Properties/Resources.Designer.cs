@@ -153,9 +153,9 @@ namespace QzoneAlbumDownloader.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] MaterialSkin {
+        internal static byte[] MaterialSkin_dll {
             get {
-                object obj = ResourceManager.GetObject("MaterialSkin", resourceCulture);
+                object obj = ResourceManager.GetObject("MaterialSkin.dll", resourceCulture);
                 return ((byte[])(obj));
             }
         }
