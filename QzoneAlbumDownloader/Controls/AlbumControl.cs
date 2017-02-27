@@ -8,6 +8,7 @@ using MaterialSkin.Animations;
 using System.Drawing.Drawing2D;
 using MaterialSkin;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 /// <summary>
 /// QQ空间相册控件
@@ -217,6 +218,11 @@ namespace QzoneAlbumDownloader.Controls
 
         #region 函数
 
+        /// <summary>
+        /// 获取方形照片
+        /// </summary>
+        /// <param name="img"></param>
+        /// <returns></returns>
         private Bitmap GetSquareBitmap(Bitmap img)
         {
             int temp = 0;
@@ -236,6 +242,12 @@ namespace QzoneAlbumDownloader.Controls
                 return img;
         }
 
+        /// <summary>
+        /// 裁切照片
+        /// </summary>
+        /// <param name="sourceBitmap"></param>
+        /// <param name="rc"></param>
+        /// <returns></returns>
         private Bitmap CutImage(Bitmap sourceBitmap, Rectangle rc)
         {
             if (rc.Bottom < 0)

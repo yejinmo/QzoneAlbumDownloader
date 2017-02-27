@@ -196,14 +196,15 @@ namespace QzoneAlbumDownloader
                     Bitmap head = new Bitmap(100, 100);
                     string name = string.Empty;
                     string qqnumber = string.Empty;
+                    string outnumber = string.Empty;
                     Invoke((EventHandler)delegate
                     {
                         qqnumber = Text_Detect_Number.Text;
                     });
-                    var MethodSuccessed = PortraitHelper.GetUserPortrait(qqnumber, out head, out name);
-                    if (CancellationTokenSourceGetUserHeadIMG.Token.IsCancellationRequested)
+                    var MethodSuccessed = PortraitHelper.GetUserPortrait(qqnumber, out head, out name, out outnumber);
+                    if (CancellationTokenSourceGetUserHeadIMG.Token.IsCancellationRequested || !MethodSuccessed)
                         return;
-                    if (MethodSuccessed)
+                    if (outnumber == qqnumber)
                     {
                         Invoke((EventHandler)delegate
                         {
@@ -330,10 +331,11 @@ namespace QzoneAlbumDownloader
                 {
                     Bitmap head = new Bitmap(100, 100);
                     string name = string.Empty;
-                    var MethodSuccessed = PortraitHelper.GetUserPortrait(UserInformation.QQNumber, out head, out name);
-                    if (CancellationTokenSourceGetUserHeadIMG.Token.IsCancellationRequested)
+                    string outnumber = string.Empty;
+                    var MethodSuccessed = PortraitHelper.GetUserPortrait(UserInformation.QQNumber, out head, out name, out outnumber);
+                    if (CancellationTokenSourceGetUserHeadIMG.Token.IsCancellationRequested || !MethodSuccessed)
                         return;
-                    if (MethodSuccessed)
+                    if (outnumber == UserInformation.QQNumber)
                     {
                         Invoke((EventHandler)delegate
                         {
@@ -481,20 +483,20 @@ namespace QzoneAlbumDownloader
                 }
                 Invoke((EventHandler)delegate
                 {
-                    TabControl_PhotoList.SelectedTab = TabPage_PhotoList_Info;
+                    FlowLayoutPanel_PhotoList.Visible = true;
                 });
                 Thread.Sleep(500);
                 Invoke((EventHandler)delegate
                 {
-                    FlowLayoutPanel_PhotoList.Visible = true;
+                    TabControl_PhotoList.SelectedTab = TabPage_PhotoList_Info;
                 });
+                Console.WriteLine("Begin Load Image.");
                 foreach (var ctl in AlbumControlPhotoList)
                 {
                     ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
                     {
                         try
                         {
-                            GC.Collect();
                             if (ctl == null || ctl.Parent == null)
                                 return;
                             ctl.Click += ShowImageViewerForm;
@@ -511,6 +513,7 @@ namespace QzoneAlbumDownloader
                         { }
                     }));
                 }
+                Console.WriteLine("Load Image Done.");
             })).Start();
         }
 

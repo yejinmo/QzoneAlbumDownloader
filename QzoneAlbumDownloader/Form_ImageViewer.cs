@@ -137,7 +137,7 @@ namespace QzoneAlbumDownloader
             {
                 try
                 {
-                    var img = AlbumHelper.GetImageByURL(ImageInfo.PreviewImagePath);
+                    var img = AlbumHelper.GetImageByURL(ImageInfo.OriginURL);
                     Invoke((EventHandler)delegate
                     {
                         ProcessBar_LoadImage.Visible = false;
@@ -145,7 +145,10 @@ namespace QzoneAlbumDownloader
                     });
                 }
                 catch { }
-            })).Start();
+            }))
+            {
+                IsBackground = true
+            }.Start();
         }
 
         #endregion

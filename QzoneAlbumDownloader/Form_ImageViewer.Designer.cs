@@ -176,7 +176,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form_ImageViewer";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "图片查看器";
             this.Load += new System.EventHandler(this.Form_ImageViewer_Load);
             this.Panel_Control.ResumeLayout(false);
