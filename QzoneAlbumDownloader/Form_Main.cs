@@ -67,8 +67,6 @@ namespace QzoneAlbumDownloader
 
         Thread ThreadDetect;
 
-        bool DetectUserCancel = false;
-
         /// <summary>
         /// 解析相册
         /// </summary>
@@ -107,7 +105,15 @@ namespace QzoneAlbumDownloader
                                     var xml = AlbumHelper.GetImageListXml(UserInformation.TargetQQNumber, UserInformation.Cookie, alb.ID);
                                     Label_Detect_Tip_SetText(string.Format
                                         ("正在获取 {0}/{1} 相册照片列表", album_index, UserInformation.AlbumList.Count), Color.White);
-                                    alb.Images = AlbumHelper.ResolveImage(xml);
+                                    if (AlbumHelper.ResolveImage(xml, out List<ImageInfo> list, out Exception e))
+                                        alb.Images = list;
+                                    else
+                                    {
+                                        Label_Detect_Tip_SetText("抓取数据时发生异常 - 网络异常", Color.Red);
+                                        if(ThreadDetect != null)
+                                            ThreadDetect.Abort();
+                                        return;
+                                    }
                                     album_index++;
                                 }));
                             }
@@ -155,10 +161,7 @@ namespace QzoneAlbumDownloader
             }
             catch (Exception e)
             {
-                Invoke((EventHandler)delegate
-                {
-                    MessageBox.Show(this, "抓取数据时发生异常\n\n" + e.Message, "错误");
-                });
+                Label_Detect_Tip_SetText("抓取数据时发生异常", Color.Red);
             }
             finally
             {
@@ -427,7 +430,7 @@ namespace QzoneAlbumDownloader
             var obj = (Controls.AlbumControl)sender;
             if (obj == null)
                 return;
-            ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
+            new Thread(new ThreadStart(delegate
             {
                 Invoke((EventHandler)delegate
                 {
@@ -439,7 +442,9 @@ namespace QzoneAlbumDownloader
                     AlbumControl_PhotoList_Album.Image = obj.Image;
                     AlbumControl_PhotoList_Album.Title = obj.Title;
                     AlbumControl_PhotoList_Album.HintString = obj.HintString;
-                    SuspendLayout();
+                    FlowLayoutPanel_PhotoList.Visible = false;
+                    TabControl_PhotoList.SelectedTab = TabPage_PhotoList_Loading;
+                    TabControl_Main.SelectedTab = TabPage_PhotoList;
                     for (int i = AlbumControlPhotoList.Count - 1; i >= 0; i--)
                     {
                         var ctl = AlbumControlPhotoList[i];
@@ -476,27 +481,37 @@ namespace QzoneAlbumDownloader
                 }
                 Invoke((EventHandler)delegate
                 {
-                    ResumeLayout();
-                    TabControl_Main.SelectedTab = TabPage_PhotoList;
+                    TabControl_PhotoList.SelectedTab = TabPage_PhotoList_Info;
+                });
+                Thread.Sleep(500);
+                Invoke((EventHandler)delegate
+                {
+                    FlowLayoutPanel_PhotoList.Visible = true;
                 });
                 foreach (var ctl in AlbumControlPhotoList)
                 {
                     ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
                     {
-                        if (ctl == null)
-                            return;
-                        ctl.Click += ShowImageViewerForm;
-                        var img = AlbumHelper.GetImageByURL(((ImageInfo)ctl.Tag).PreviewImagePath, UserInformation.Cookie);
-                        if (ctl == null)
-                            return;
-                        Invoke((EventHandler)delegate
+                        try
                         {
-                            ctl.Image = img;
-                            ctl.IsLoading = false;
-                        });
+                            GC.Collect();
+                            if (ctl == null || ctl.Parent == null)
+                                return;
+                            ctl.Click += ShowImageViewerForm;
+                            var img = AlbumHelper.GetImageByURL(((ImageInfo)ctl.Tag).PreviewImagePath, UserInformation.Cookie);
+                            if (ctl == null || ctl.Parent == null)
+                                return;
+                            Invoke((EventHandler)delegate
+                            {
+                                ctl.Image = img;
+                                ctl.IsLoading = false;
+                            });
+                        }
+                        catch
+                        { }
                     }));
                 }
-            }));
+            })).Start();
         }
 
         /// <summary>

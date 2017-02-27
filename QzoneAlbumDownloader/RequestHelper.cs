@@ -15,6 +15,8 @@ namespace QzoneAlbumDownloader
             try
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.Timeout = 60000;
+                request.ReadWriteTimeout = 60000;
                 request.Method = "GET";
                 request.Referer = referer;
                 request.Headers["Upgrade-Insecure-Requests"] = "1";

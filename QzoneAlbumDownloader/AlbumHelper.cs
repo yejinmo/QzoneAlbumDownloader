@@ -122,7 +122,7 @@ namespace QzoneAlbumDownloader
         /// </summary>
         /// <param name="xmldata">照片列表XML数据</param>
         /// <returns></returns>
-        public static List<ImageInfo> ResolveImage(string xmldata)
+        public static bool ResolveImage(string xmldata, out List<ImageInfo> list, out Exception exc)
         {
             List<ImageInfo> res = new List<ImageInfo>();
             try
@@ -149,11 +149,15 @@ namespace QzoneAlbumDownloader
                     res.Add(img);
                 }
             }
-            catch
+            catch(Exception e)
             {
-
+                exc = e;
+                list = res;
+                return false;
             }
-            return res;
+            exc = null;
+            list = res;
+            return true;
         }
 
         /// <summary>

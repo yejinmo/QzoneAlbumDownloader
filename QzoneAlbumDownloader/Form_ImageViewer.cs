@@ -133,15 +133,19 @@ namespace QzoneAlbumDownloader
             if (ImageInfo == null || string.IsNullOrEmpty(ImageInfo.OriginURL))
                 return;
             ProcessBar_LoadImage.Visible = true;
-            ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
+            new Thread(new ThreadStart(delegate
             {
-                var img = AlbumHelper.GetImageByURL(ImageInfo.PreviewImagePath);
-                Invoke((EventHandler)delegate
+                try
                 {
-                    ProcessBar_LoadImage.Visible = false;
-                    BackgroundImage = img;
-                });
-            }));
+                    var img = AlbumHelper.GetImageByURL(ImageInfo.PreviewImagePath);
+                    Invoke((EventHandler)delegate
+                    {
+                        ProcessBar_LoadImage.Visible = false;
+                        BackgroundImage = img;
+                    });
+                }
+                catch { }
+            })).Start();
         }
 
         #endregion
