@@ -52,7 +52,7 @@
             this.Panel_Control.Controls.Add(this.Button_Control_Rotate);
             this.Panel_Control.Location = new System.Drawing.Point(302, 563);
             this.Panel_Control.Name = "Panel_Control";
-            this.Panel_Control.Size = new System.Drawing.Size(298, 50);
+            this.Panel_Control.Size = new System.Drawing.Size(298, 51);
             this.Panel_Control.TabIndex = 13;
             // 
             // Button_Control_Save
@@ -190,6 +190,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form_ImageViewer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "图片查看器";
             this.Load += new System.EventHandler(this.Form_ImageViewer_Load);
             this.Panel_Control.ResumeLayout(false);

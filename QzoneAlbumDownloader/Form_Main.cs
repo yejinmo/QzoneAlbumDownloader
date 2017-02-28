@@ -432,6 +432,7 @@ namespace QzoneAlbumDownloader
             var obj = (Controls.AlbumControl)sender;
             if (obj == null)
                 return;
+            GC.Collect();
             new Thread(new ThreadStart(delegate
             {
                 Invoke((EventHandler)delegate
@@ -455,6 +456,7 @@ namespace QzoneAlbumDownloader
                         AlbumControlPhotoList.Remove(ctl);
                     }
                 });
+                Debug.WriteLine("Begin Load Control.");
                 foreach (var image in (List<ImageInfo>)obj.Tag)
                 {
                     Invoke((EventHandler)delegate
@@ -481,6 +483,13 @@ namespace QzoneAlbumDownloader
                             image.Name, image.RawShootTime, image.UploadTime, image.ModifyTime, image.Width, image.Height));
                     });
                 }
+                Debug.WriteLine("Load Control Done.");
+                Debug.WriteLine("Begin Binding Event.");
+                foreach (var ctl in AlbumControlPhotoList)
+                {
+                    ctl.Click += ShowImageViewerForm;
+                }
+                Debug.WriteLine("Binding Event Done.");
                 Invoke((EventHandler)delegate
                 {
                     FlowLayoutPanel_PhotoList.Visible = true;
@@ -493,25 +502,6 @@ namespace QzoneAlbumDownloader
                 Debug.WriteLine("Begin Load Image.");
                 foreach (var ctl in AlbumControlPhotoList)
                 {
-                    ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
-                    {
-                        try
-                        {
-                            if (ctl == null || ctl.Parent == null)
-                                return;
-                            ctl.Click += ShowImageViewerForm;
-                            //var img = AlbumHelper.GetImageByURL(((ImageInfo)ctl.Tag).PreviewImagePath, UserInformation.Cookie);
-                            //if (ctl == null || ctl.Parent == null)
-                            //    return;
-                            //Invoke((EventHandler)delegate
-                            //{
-                            //    ctl.Image = img;
-                            //    ctl.IsLoading = false;
-                            //});
-                        }
-                        catch
-                        { }
-                    }));
                     ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
                     {
                         try
