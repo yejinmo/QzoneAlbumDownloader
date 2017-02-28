@@ -270,9 +270,13 @@ namespace QzoneAlbumDownloader
 
         private void Timer_Panel_Tick(object sender, EventArgs e)
         {
-            int offset = 3;
+            int offset = 4;
             if (MouseMoveNeedShowPanel)
             {
+                if (Button_Control_Close.Top + offset >= 0)
+                    Button_Control_Close.Top = 0;
+                else
+                    Button_Control_Close.Top += offset;
                 if (Panel_Control.Top - offset <= Height - Panel_Control.Height)
                 {
                     Panel_Control.Top = Height - Panel_Control.Height;
@@ -284,6 +288,10 @@ namespace QzoneAlbumDownloader
             }
             else
             {
+                if (Button_Control_Close.Top - offset <= -50)
+                    Button_Control_Close.Top = -50;
+                else
+                    Button_Control_Close.Top -= offset;
                 if (Panel_Control.Top + offset >= Height)
                 {
                     Panel_Control.Top = Height;

@@ -129,7 +129,7 @@
             // 
             // Timer_Fade
             // 
-            this.Timer_Fade.Interval = 10;
+            this.Timer_Fade.Interval = 20;
             this.Timer_Fade.Tick += new System.EventHandler(this.Timer_Fade_Tick);
             // 
             // ProcessBar_LoadImage
@@ -138,7 +138,7 @@
             this.ProcessBar_LoadImage.Depth = 0;
             this.ProcessBar_LoadImage.Interval = 10;
             this.ProcessBar_LoadImage.LengthValue = 300;
-            this.ProcessBar_LoadImage.Location = new System.Drawing.Point(12, 296);
+            this.ProcessBar_LoadImage.Location = new System.Drawing.Point(12, 303);
             this.ProcessBar_LoadImage.MouseState = MaterialSkin.MouseState.HOVER;
             this.ProcessBar_LoadImage.Name = "ProcessBar_LoadImage";
             this.ProcessBar_LoadImage.Processing = true;
@@ -154,7 +154,7 @@
             this.Button_Control_Close.DrawHoverMode = false;
             this.Button_Control_Close.DrawImageMode = true;
             this.Button_Control_Close.Image = global::QzoneAlbumDownloader.Properties.Resources.ic_highlight_off_black_48dp;
-            this.Button_Control_Close.Location = new System.Drawing.Point(843, 9);
+            this.Button_Control_Close.Location = new System.Drawing.Point(852, 0);
             this.Button_Control_Close.Margin = new System.Windows.Forms.Padding(0);
             this.Button_Control_Close.MouseState = MaterialSkin.MouseState.HOVER;
             this.Button_Control_Close.Name = "Button_Control_Close";
@@ -167,7 +167,7 @@
             // 
             // Timer_Panel
             // 
-            this.Timer_Panel.Interval = 5;
+            this.Timer_Panel.Interval = 10;
             this.Timer_Panel.Tick += new System.EventHandler(this.Timer_Panel_Tick);
             // 
             // Timer_GetCurPos

@@ -110,7 +110,7 @@ namespace QzoneAlbumDownloader
                                     else
                                     {
                                         Label_Detect_Tip_SetText("抓取数据时发生异常 - 网络异常", Color.Red);
-                                        if(ThreadDetect != null)
+                                        if (ThreadDetect != null)
                                             ThreadDetect.Abort();
                                         return;
                                     }
@@ -408,7 +408,7 @@ namespace QzoneAlbumDownloader
                     TipTool.SetToolTip(ctl, string.Format
                         ("相册名称：{0}\n创建时间：{1}\n照片总数：{2}\n修改时间：{3}\n最后一次上传时间：{4}\n评论数：{5}",
                         album.Name, album.CreateTime, album.Total, album.ModifyTime, album.LastUploadTime, album.Comment));
-                    ThreadPool.QueueUserWorkItem(new WaitCallback(delegate 
+                    ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
                     {
                         var img = AlbumHelper.GetImageByURL(album.PreviewImagePath, UserInformation.Cookie);
                         ctl.Image = img;
