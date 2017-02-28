@@ -43,6 +43,10 @@
             this.TabPage_Album = new System.Windows.Forms.TabPage();
             this.FlowLayoutPanel_Album = new System.Windows.Forms.FlowLayoutPanel();
             this.TabPage_PhotoList = new System.Windows.Forms.TabPage();
+            this.TabControl_PhotoList = new MaterialSkin.Controls.MaterialTabControl();
+            this.TabPage_PhotoList_Loading = new System.Windows.Forms.TabPage();
+            this.ProcessBar_PhotoList_Loading = new MaterialSkin.Controls.MaterialProcessBar();
+            this.TabPage_PhotoList_Info = new System.Windows.Forms.TabPage();
             this.FlowLayoutPanel_PhotoList = new System.Windows.Forms.FlowLayoutPanel();
             this.AlbumControl_PhotoList_Album = new QzoneAlbumDownloader.Controls.AlbumControl();
             this.TipTool = new System.Windows.Forms.ToolTip(this.components);
@@ -52,18 +56,14 @@
             this.Button_Header_Config = new MaterialSkin.Controls.MaterialFlatButton();
             this.Timer_GetUserHeadIMG = new System.Windows.Forms.Timer(this.components);
             this.Panel_Header = new System.Windows.Forms.Panel();
-            this.TabControl_PhotoList = new MaterialSkin.Controls.MaterialTabControl();
-            this.TabPage_PhotoList_Loading = new System.Windows.Forms.TabPage();
-            this.TabPage_PhotoList_Info = new System.Windows.Forms.TabPage();
-            this.ProcessBar_PhotoList_Loading = new MaterialSkin.Controls.MaterialProcessBar();
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Detect.SuspendLayout();
             this.Panel_Detect.SuspendLayout();
             this.TabPage_Album.SuspendLayout();
             this.TabPage_PhotoList.SuspendLayout();
-            this.Panel_Header.SuspendLayout();
             this.TabControl_PhotoList.SuspendLayout();
             this.TabPage_PhotoList_Loading.SuspendLayout();
+            this.Panel_Header.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControl_Main
@@ -220,7 +220,7 @@
             this.Text_Detect_Number.Size = new System.Drawing.Size(703, 37);
             this.Text_Detect_Number.TabIndex = 3;
             this.Text_Detect_Number.TabStop = false;
-            this.Text_Detect_Number.Text = "861732201";
+            this.Text_Detect_Number.Text = "894578350";
             this.Text_Detect_Number.UseSystemPasswordChar = false;
             this.Text_Detect_Number.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Text_Detect_Number_KeyDown);
             this.Text_Detect_Number.TextChanged += new System.EventHandler(this.Text_Detect_Number_TextChanged);
@@ -292,6 +292,55 @@
             this.TabPage_PhotoList.Size = new System.Drawing.Size(1124, 652);
             this.TabPage_PhotoList.TabIndex = 2;
             this.TabPage_PhotoList.Text = "TabPage_PhotoList";
+            // 
+            // TabControl_PhotoList
+            // 
+            this.TabControl_PhotoList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TabControl_PhotoList.Controls.Add(this.TabPage_PhotoList_Loading);
+            this.TabControl_PhotoList.Controls.Add(this.TabPage_PhotoList_Info);
+            this.TabControl_PhotoList.Depth = 0;
+            this.TabControl_PhotoList.Location = new System.Drawing.Point(229, 12);
+            this.TabControl_PhotoList.MouseState = MaterialSkin.MouseState.HOVER;
+            this.TabControl_PhotoList.Name = "TabControl_PhotoList";
+            this.TabControl_PhotoList.SelectedIndex = 0;
+            this.TabControl_PhotoList.Size = new System.Drawing.Size(875, 259);
+            this.TabControl_PhotoList.TabIndex = 2;
+            // 
+            // TabPage_PhotoList_Loading
+            // 
+            this.TabPage_PhotoList_Loading.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.TabPage_PhotoList_Loading.Controls.Add(this.ProcessBar_PhotoList_Loading);
+            this.TabPage_PhotoList_Loading.Location = new System.Drawing.Point(4, 26);
+            this.TabPage_PhotoList_Loading.Name = "TabPage_PhotoList_Loading";
+            this.TabPage_PhotoList_Loading.Padding = new System.Windows.Forms.Padding(3);
+            this.TabPage_PhotoList_Loading.Size = new System.Drawing.Size(867, 229);
+            this.TabPage_PhotoList_Loading.TabIndex = 0;
+            this.TabPage_PhotoList_Loading.Text = "TabPage_PhotoList_Loading";
+            // 
+            // ProcessBar_PhotoList_Loading
+            // 
+            this.ProcessBar_PhotoList_Loading.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProcessBar_PhotoList_Loading.Depth = 0;
+            this.ProcessBar_PhotoList_Loading.Interval = 5;
+            this.ProcessBar_PhotoList_Loading.LengthValue = 500;
+            this.ProcessBar_PhotoList_Loading.Location = new System.Drawing.Point(6, 116);
+            this.ProcessBar_PhotoList_Loading.MouseState = MaterialSkin.MouseState.HOVER;
+            this.ProcessBar_PhotoList_Loading.Name = "ProcessBar_PhotoList_Loading";
+            this.ProcessBar_PhotoList_Loading.Processing = true;
+            this.ProcessBar_PhotoList_Loading.Size = new System.Drawing.Size(855, 5);
+            this.ProcessBar_PhotoList_Loading.StepValue = 10;
+            this.ProcessBar_PhotoList_Loading.TabIndex = 2;
+            // 
+            // TabPage_PhotoList_Info
+            // 
+            this.TabPage_PhotoList_Info.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.TabPage_PhotoList_Info.Location = new System.Drawing.Point(4, 26);
+            this.TabPage_PhotoList_Info.Name = "TabPage_PhotoList_Info";
+            this.TabPage_PhotoList_Info.Padding = new System.Windows.Forms.Padding(3);
+            this.TabPage_PhotoList_Info.Size = new System.Drawing.Size(867, 229);
+            this.TabPage_PhotoList_Info.TabIndex = 1;
+            this.TabPage_PhotoList_Info.Text = "TabPage_PhotoList_Info";
             // 
             // FlowLayoutPanel_PhotoList
             // 
@@ -414,55 +463,6 @@
             this.Panel_Header.Size = new System.Drawing.Size(1124, 50);
             this.Panel_Header.TabIndex = 1;
             // 
-            // TabControl_PhotoList
-            // 
-            this.TabControl_PhotoList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TabControl_PhotoList.Controls.Add(this.TabPage_PhotoList_Loading);
-            this.TabControl_PhotoList.Controls.Add(this.TabPage_PhotoList_Info);
-            this.TabControl_PhotoList.Depth = 0;
-            this.TabControl_PhotoList.Location = new System.Drawing.Point(229, 12);
-            this.TabControl_PhotoList.MouseState = MaterialSkin.MouseState.HOVER;
-            this.TabControl_PhotoList.Name = "TabControl_PhotoList";
-            this.TabControl_PhotoList.SelectedIndex = 0;
-            this.TabControl_PhotoList.Size = new System.Drawing.Size(875, 259);
-            this.TabControl_PhotoList.TabIndex = 2;
-            // 
-            // TabPage_PhotoList_Loading
-            // 
-            this.TabPage_PhotoList_Loading.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.TabPage_PhotoList_Loading.Controls.Add(this.ProcessBar_PhotoList_Loading);
-            this.TabPage_PhotoList_Loading.Location = new System.Drawing.Point(4, 26);
-            this.TabPage_PhotoList_Loading.Name = "TabPage_PhotoList_Loading";
-            this.TabPage_PhotoList_Loading.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPage_PhotoList_Loading.Size = new System.Drawing.Size(867, 229);
-            this.TabPage_PhotoList_Loading.TabIndex = 0;
-            this.TabPage_PhotoList_Loading.Text = "TabPage_PhotoList_Loading";
-            // 
-            // TabPage_PhotoList_Info
-            // 
-            this.TabPage_PhotoList_Info.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.TabPage_PhotoList_Info.Location = new System.Drawing.Point(4, 26);
-            this.TabPage_PhotoList_Info.Name = "TabPage_PhotoList_Info";
-            this.TabPage_PhotoList_Info.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPage_PhotoList_Info.Size = new System.Drawing.Size(867, 229);
-            this.TabPage_PhotoList_Info.TabIndex = 1;
-            this.TabPage_PhotoList_Info.Text = "TabPage_PhotoList_Info";
-            // 
-            // ProcessBar_PhotoList_Loading
-            // 
-            this.ProcessBar_PhotoList_Loading.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProcessBar_PhotoList_Loading.Depth = 0;
-            this.ProcessBar_PhotoList_Loading.Interval = 5;
-            this.ProcessBar_PhotoList_Loading.LengthValue = 500;
-            this.ProcessBar_PhotoList_Loading.Location = new System.Drawing.Point(6, 112);
-            this.ProcessBar_PhotoList_Loading.MouseState = MaterialSkin.MouseState.HOVER;
-            this.ProcessBar_PhotoList_Loading.Name = "ProcessBar_PhotoList_Loading";
-            this.ProcessBar_PhotoList_Loading.Processing = true;
-            this.ProcessBar_PhotoList_Loading.Size = new System.Drawing.Size(855, 5);
-            this.ProcessBar_PhotoList_Loading.StepValue = 10;
-            this.ProcessBar_PhotoList_Loading.TabIndex = 2;
-            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -482,10 +482,10 @@
             this.Panel_Detect.ResumeLayout(false);
             this.TabPage_Album.ResumeLayout(false);
             this.TabPage_PhotoList.ResumeLayout(false);
-            this.Panel_Header.ResumeLayout(false);
-            this.Panel_Header.PerformLayout();
             this.TabControl_PhotoList.ResumeLayout(false);
             this.TabPage_PhotoList_Loading.ResumeLayout(false);
+            this.Panel_Header.ResumeLayout(false);
+            this.Panel_Header.PerformLayout();
             this.ResumeLayout(false);
 
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -149,6 +150,58 @@ namespace QzoneAlbumDownloader
             {
                 IsBackground = true
             }.Start();
+        }
+
+        #endregion
+
+        #region mouse move
+
+        private void Timer_GetCurPos_Tick(object sender, EventArgs e)
+        {
+            int x = Cursor.Position.X;
+            int y = Cursor.Position.Y;
+            if (x >= Left && x <= Left + Width && y >= Top && y <= Top + Height)
+            {
+                MouseMoveNeedShowPanel = true;
+                Timer_Panel.Start();
+            }
+            else
+            {
+                MouseMoveNeedShowPanel = false;
+                Timer_Panel.Start();
+            }
+        }
+
+        #endregion
+
+        #region panel
+
+        bool MouseMoveNeedShowPanel = false;
+
+        private void Timer_Panel_Tick(object sender, EventArgs e)
+        {
+            int offset = 3;
+            if (MouseMoveNeedShowPanel)
+            {
+                if (Panel_Control.Top - offset <= Height - Panel_Control.Height)
+                {
+                    Panel_Control.Top = Height - Panel_Control.Height;
+                    MouseMoveNeedShowPanel = false;
+                    Timer_Panel.Stop();
+                }
+                else
+                    Panel_Control.Top -= offset;
+            }
+            else
+            {
+                if (Panel_Control.Top + offset >= Height)
+                {
+                    Panel_Control.Top = Height;
+                    Timer_Panel.Stop();
+                }
+                else
+                    Panel_Control.Top += offset;
+            }
         }
 
         #endregion

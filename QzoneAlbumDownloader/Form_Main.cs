@@ -490,7 +490,7 @@ namespace QzoneAlbumDownloader
                 {
                     TabControl_PhotoList.SelectedTab = TabPage_PhotoList_Info;
                 });
-                Console.WriteLine("Begin Load Image.");
+                Debug.WriteLine("Begin Load Image.");
                 foreach (var ctl in AlbumControlPhotoList)
                 {
                     ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
@@ -500,6 +500,25 @@ namespace QzoneAlbumDownloader
                             if (ctl == null || ctl.Parent == null)
                                 return;
                             ctl.Click += ShowImageViewerForm;
+                            //var img = AlbumHelper.GetImageByURL(((ImageInfo)ctl.Tag).PreviewImagePath, UserInformation.Cookie);
+                            //if (ctl == null || ctl.Parent == null)
+                            //    return;
+                            //Invoke((EventHandler)delegate
+                            //{
+                            //    ctl.Image = img;
+                            //    ctl.IsLoading = false;
+                            //});
+                        }
+                        catch
+                        { }
+                    }));
+                    ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
+                    {
+                        try
+                        {
+                            //if (ctl == null || ctl.Parent == null)
+                            //    return;
+                            //ctl.Click += ShowImageViewerForm;
                             var img = AlbumHelper.GetImageByURL(((ImageInfo)ctl.Tag).PreviewImagePath, UserInformation.Cookie);
                             if (ctl == null || ctl.Parent == null)
                                 return;
@@ -513,7 +532,7 @@ namespace QzoneAlbumDownloader
                         { }
                     }));
                 }
-                Console.WriteLine("Load Image Done.");
+                Debug.WriteLine("Load Image Done.");
             })).Start();
         }
 

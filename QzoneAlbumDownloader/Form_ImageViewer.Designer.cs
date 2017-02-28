@@ -34,20 +34,23 @@
             this.Button_Control_ZoomIn = new MaterialSkin.Controls.MaterialFlatButton();
             this.Button_Control_ZoomOut = new MaterialSkin.Controls.MaterialFlatButton();
             this.Button_Control_Rotate = new MaterialSkin.Controls.MaterialFlatButton();
-            this.Button_Control_Close = new MaterialSkin.Controls.MaterialFlatButton();
             this.Timer_Fade = new System.Windows.Forms.Timer(this.components);
             this.ProcessBar_LoadImage = new MaterialSkin.Controls.MaterialProcessBar();
+            this.Button_Control_Close = new MaterialSkin.Controls.MaterialFlatButton();
+            this.Timer_Panel = new System.Windows.Forms.Timer(this.components);
+            this.Timer_GetCurPos = new System.Windows.Forms.Timer(this.components);
             this.Panel_Control.SuspendLayout();
             this.SuspendLayout();
             // 
             // Panel_Control
             // 
             this.Panel_Control.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.Panel_Control.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
             this.Panel_Control.Controls.Add(this.Button_Control_Save);
             this.Panel_Control.Controls.Add(this.Button_Control_ZoomIn);
             this.Panel_Control.Controls.Add(this.Button_Control_ZoomOut);
             this.Panel_Control.Controls.Add(this.Button_Control_Rotate);
-            this.Panel_Control.Location = new System.Drawing.Point(302, 559);
+            this.Panel_Control.Location = new System.Drawing.Point(302, 563);
             this.Panel_Control.Name = "Panel_Control";
             this.Panel_Control.Size = new System.Drawing.Size(298, 50);
             this.Panel_Control.TabIndex = 13;
@@ -124,6 +127,25 @@
             this.Button_Control_Rotate.Text = "后退";
             this.Button_Control_Rotate.UseVisualStyleBackColor = false;
             // 
+            // Timer_Fade
+            // 
+            this.Timer_Fade.Interval = 10;
+            this.Timer_Fade.Tick += new System.EventHandler(this.Timer_Fade_Tick);
+            // 
+            // ProcessBar_LoadImage
+            // 
+            this.ProcessBar_LoadImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProcessBar_LoadImage.Depth = 0;
+            this.ProcessBar_LoadImage.Interval = 10;
+            this.ProcessBar_LoadImage.LengthValue = 300;
+            this.ProcessBar_LoadImage.Location = new System.Drawing.Point(12, 296);
+            this.ProcessBar_LoadImage.MouseState = MaterialSkin.MouseState.HOVER;
+            this.ProcessBar_LoadImage.Name = "ProcessBar_LoadImage";
+            this.ProcessBar_LoadImage.Processing = true;
+            this.ProcessBar_LoadImage.Size = new System.Drawing.Size(878, 5);
+            this.ProcessBar_LoadImage.StepValue = 7;
+            this.ProcessBar_LoadImage.TabIndex = 17;
+            // 
             // Button_Control_Close
             // 
             this.Button_Control_Close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -143,24 +165,16 @@
             this.Button_Control_Close.UseVisualStyleBackColor = false;
             this.Button_Control_Close.Click += new System.EventHandler(this.Button_Control_Close_Click);
             // 
-            // Timer_Fade
+            // Timer_Panel
             // 
-            this.Timer_Fade.Interval = 10;
-            this.Timer_Fade.Tick += new System.EventHandler(this.Timer_Fade_Tick);
+            this.Timer_Panel.Interval = 5;
+            this.Timer_Panel.Tick += new System.EventHandler(this.Timer_Panel_Tick);
             // 
-            // ProcessBar_LoadImage
+            // Timer_GetCurPos
             // 
-            this.ProcessBar_LoadImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProcessBar_LoadImage.Depth = 0;
-            this.ProcessBar_LoadImage.Interval = 10;
-            this.ProcessBar_LoadImage.LengthValue = 300;
-            this.ProcessBar_LoadImage.Location = new System.Drawing.Point(12, 296);
-            this.ProcessBar_LoadImage.MouseState = MaterialSkin.MouseState.HOVER;
-            this.ProcessBar_LoadImage.Name = "ProcessBar_LoadImage";
-            this.ProcessBar_LoadImage.Processing = true;
-            this.ProcessBar_LoadImage.Size = new System.Drawing.Size(878, 5);
-            this.ProcessBar_LoadImage.StepValue = 7;
-            this.ProcessBar_LoadImage.TabIndex = 17;
+            this.Timer_GetCurPos.Enabled = true;
+            this.Timer_GetCurPos.Interval = 10;
+            this.Timer_GetCurPos.Tick += new System.EventHandler(this.Timer_GetCurPos_Tick);
             // 
             // Form_ImageViewer
             // 
@@ -193,5 +207,7 @@
         private MaterialSkin.Controls.MaterialFlatButton Button_Control_Close;
         private System.Windows.Forms.Timer Timer_Fade;
         private MaterialSkin.Controls.MaterialProcessBar ProcessBar_LoadImage;
+        private System.Windows.Forms.Timer Timer_Panel;
+        private System.Windows.Forms.Timer Timer_GetCurPos;
     }
 }

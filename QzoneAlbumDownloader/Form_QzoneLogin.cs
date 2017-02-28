@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -49,13 +50,14 @@ namespace QzoneAlbumDownloader
 
         private void WebBrowser_Login_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            string reg_str = @"\[http://(\d+).qzone.qq.com\]";
+            string reg_str = @"http://user.qzone.qq.com/(\d+)";
             Regex reg = new Regex(reg_str);
-            MatchCollection mc = reg.Matches(WebBrowser_Login.DocumentTitle);
+            MatchCollection mc = reg.Matches(WebBrowser_Login.Url.ToString());
             if (mc.Count == 0)
                 return;
             else
             {
+                Visible = false;
                 QQNumber = mc[0].Groups[1].ToString();
                 Cookie = WebBrowser_Login.Document.Cookie;
                 WebBrowser_Login.Stop();
