@@ -270,7 +270,7 @@ namespace QzoneAlbumDownloader
 
         private void Timer_Panel_Tick(object sender, EventArgs e)
         {
-            int offset = 5;
+            int offset = 6;
             if (MouseMoveNeedShowPanel)
             {
                 if (Button_Control_Close.Top + offset >= 0)
