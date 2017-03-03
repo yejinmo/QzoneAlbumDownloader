@@ -51,6 +51,7 @@ namespace QzoneAlbumDownloader
         private void WebBrowser_Login_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
             string reg_str = @"http://user.qzone.qq.com/(\d+)";
+            MessageBox.Show(WebBrowser_Login.Url.ToString());
             Regex reg = new Regex(reg_str);
             MatchCollection mc = reg.Matches(WebBrowser_Login.Url.ToString());
             if (mc.Count == 0)
