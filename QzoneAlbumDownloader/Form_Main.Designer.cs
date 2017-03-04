@@ -220,7 +220,7 @@
             this.Text_Detect_Number.Size = new System.Drawing.Size(703, 37);
             this.Text_Detect_Number.TabIndex = 3;
             this.Text_Detect_Number.TabStop = false;
-            this.Text_Detect_Number.Text = "894578350";
+            this.Text_Detect_Number.Text = "861732201";
             this.Text_Detect_Number.UseSystemPasswordChar = false;
             this.Text_Detect_Number.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Text_Detect_Number_KeyDown);
             this.Text_Detect_Number.TextChanged += new System.EventHandler(this.Text_Detect_Number_TextChanged);
@@ -324,7 +324,7 @@
             this.ProcessBar_PhotoList_Loading.Depth = 0;
             this.ProcessBar_PhotoList_Loading.Interval = 5;
             this.ProcessBar_PhotoList_Loading.LengthValue = 500;
-            this.ProcessBar_PhotoList_Loading.Location = new System.Drawing.Point(6, 116);
+            this.ProcessBar_PhotoList_Loading.Location = new System.Drawing.Point(6, 118);
             this.ProcessBar_PhotoList_Loading.MouseState = MaterialSkin.MouseState.HOVER;
             this.ProcessBar_PhotoList_Loading.Name = "ProcessBar_PhotoList_Loading";
             this.ProcessBar_PhotoList_Loading.Processing = true;

@@ -117,7 +117,8 @@ namespace QzoneAlbumDownloader
                                     album_index++;
                                 }));
                             }
-                            while (album_index <= UserInformation.AlbumList.Count) ;
+                            while (album_index <= UserInformation.AlbumList.Count)
+                                Thread.Sleep(10);
                             Label_Detect_Tip_SetText("正在加载相册缩略图", Color.White);
                             LoadAlbumPage();
                             Thread.Sleep(100);

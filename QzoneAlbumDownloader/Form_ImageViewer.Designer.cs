@@ -129,7 +129,7 @@
             // 
             // Timer_Fade
             // 
-            this.Timer_Fade.Interval = 20;
+            this.Timer_Fade.Interval = 10;
             this.Timer_Fade.Tick += new System.EventHandler(this.Timer_Fade_Tick);
             // 
             // ProcessBar_LoadImage
@@ -188,11 +188,13 @@
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form_ImageViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "图片查看器";
             this.Load += new System.EventHandler(this.Form_ImageViewer_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_ImageViewer_KeyDown);
             this.Panel_Control.ResumeLayout(false);
             this.ResumeLayout(false);
 

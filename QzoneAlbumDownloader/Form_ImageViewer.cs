@@ -50,7 +50,7 @@ namespace QzoneAlbumDownloader
 
         private void Timer_Fade_Tick(object sender, EventArgs e)
         {
-            double d = 0.10;
+            double d = 0.05;
             if (!FORM_SHOULD_CLOSE)
             {
                 if (Opacity + d >= 1.0)
@@ -213,6 +213,12 @@ namespace QzoneAlbumDownloader
                 return;
             FORM_SHOULD_CLOSE = true;
             Timer_Fade.Start();
+        }
+
+        private void Form_ImageViewer_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+                Button_Control_Close.PerformClick();
         }
 
         #endregion
