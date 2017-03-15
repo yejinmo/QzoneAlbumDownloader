@@ -50,7 +50,7 @@
             this.Panel_Control.Controls.Add(this.Button_Control_ZoomIn);
             this.Panel_Control.Controls.Add(this.Button_Control_ZoomOut);
             this.Panel_Control.Controls.Add(this.Button_Control_Rotate);
-            this.Panel_Control.Location = new System.Drawing.Point(302, 563);
+            this.Panel_Control.Location = new System.Drawing.Point(302, 615);
             this.Panel_Control.Name = "Panel_Control";
             this.Panel_Control.Size = new System.Drawing.Size(298, 51);
             this.Panel_Control.TabIndex = 13;
@@ -154,7 +154,7 @@
             this.Button_Control_Close.DrawHoverMode = false;
             this.Button_Control_Close.DrawImageMode = true;
             this.Button_Control_Close.Image = global::QzoneAlbumDownloader.Properties.Resources.ic_highlight_off_black_48dp;
-            this.Button_Control_Close.Location = new System.Drawing.Point(852, 0);
+            this.Button_Control_Close.Location = new System.Drawing.Point(852, -52);
             this.Button_Control_Close.Margin = new System.Windows.Forms.Padding(0);
             this.Button_Control_Close.MouseState = MaterialSkin.MouseState.HOVER;
             this.Button_Control_Close.Name = "Button_Control_Close";

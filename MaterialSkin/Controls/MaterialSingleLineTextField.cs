@@ -1239,8 +1239,7 @@ namespace MaterialSkin.Controls
 
             private void ContextMenuStripOnOpening(object sender, CancelEventArgs cancelEventArgs)
             {
-                var strip = sender as TextBoxContextMenuStrip;
-                if (strip != null)
+                if (sender is TextBoxContextMenuStrip strip)
                 {
                     strip.undo.Enabled = CanUndo;
                     strip.cut.Enabled = !string.IsNullOrEmpty(SelectedText);

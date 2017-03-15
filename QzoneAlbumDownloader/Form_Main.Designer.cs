@@ -56,6 +56,7 @@
             this.Button_Header_Config = new MaterialSkin.Controls.MaterialFlatButton();
             this.Timer_GetUserHeadIMG = new System.Windows.Forms.Timer(this.components);
             this.Panel_Header = new System.Windows.Forms.Panel();
+            this.Label_PhotoList_Info = new System.Windows.Forms.Label();
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Detect.SuspendLayout();
             this.Panel_Detect.SuspendLayout();
@@ -63,6 +64,7 @@
             this.TabPage_PhotoList.SuspendLayout();
             this.TabControl_PhotoList.SuspendLayout();
             this.TabPage_PhotoList_Loading.SuspendLayout();
+            this.TabPage_PhotoList_Info.SuspendLayout();
             this.Panel_Header.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -335,6 +337,7 @@
             // TabPage_PhotoList_Info
             // 
             this.TabPage_PhotoList_Info.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.TabPage_PhotoList_Info.Controls.Add(this.Label_PhotoList_Info);
             this.TabPage_PhotoList_Info.Location = new System.Drawing.Point(4, 26);
             this.TabPage_PhotoList_Info.Name = "TabPage_PhotoList_Info";
             this.TabPage_PhotoList_Info.Padding = new System.Windows.Forms.Padding(3);
@@ -463,6 +466,19 @@
             this.Panel_Header.Size = new System.Drawing.Size(1124, 50);
             this.Panel_Header.TabIndex = 1;
             // 
+            // Label_PhotoList_Info
+            // 
+            this.Label_PhotoList_Info.BackColor = System.Drawing.Color.Transparent;
+            this.Label_PhotoList_Info.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Label_PhotoList_Info.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.Label_PhotoList_Info.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(214)))), ((int)(((byte)(220)))));
+            this.Label_PhotoList_Info.Location = new System.Drawing.Point(3, 3);
+            this.Label_PhotoList_Info.Name = "Label_PhotoList_Info";
+            this.Label_PhotoList_Info.Size = new System.Drawing.Size(861, 223);
+            this.Label_PhotoList_Info.TabIndex = 0;
+            this.Label_PhotoList_Info.Text = "Label_PhotoList_Info";
+            this.Label_PhotoList_Info.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -484,6 +500,7 @@
             this.TabPage_PhotoList.ResumeLayout(false);
             this.TabControl_PhotoList.ResumeLayout(false);
             this.TabPage_PhotoList_Loading.ResumeLayout(false);
+            this.TabPage_PhotoList_Info.ResumeLayout(false);
             this.Panel_Header.ResumeLayout(false);
             this.Panel_Header.PerformLayout();
             this.ResumeLayout(false);
@@ -519,6 +536,7 @@
         private System.Windows.Forms.TabPage TabPage_PhotoList_Loading;
         private System.Windows.Forms.TabPage TabPage_PhotoList_Info;
         private MaterialSkin.Controls.MaterialProcessBar ProcessBar_PhotoList_Loading;
+        private System.Windows.Forms.Label Label_PhotoList_Info;
     }
 }
 

@@ -31,8 +31,7 @@ namespace QzoneAlbumDownloader
         public Form_Main()
         {
             AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(CurrentDomain_AssemblyResolve);
-            //ThreadPool.SetMinThreads(5, 5);
-            //ThreadPool.SetMaxThreads(10, 10);
+            string currentScreenSize_OutTaskBar = SystemInformation.WorkingArea.Width.ToString() + "," + SystemInformation.WorkingArea.Height.ToString();
             InitializeComponent();
         }
 
@@ -399,7 +398,7 @@ namespace QzoneAlbumDownloader
                         HintForeColor = Color.FromArgb(152, 153, 155),
                         HintString = album.Total + "张",
                         LoadingImage = Properties.Resources.ic_wallpaper_black_48dp,
-                        Tag = album.Images
+                        Tag = album
                     };
                     ctl.Click += LoadPhotoList;
                     FlowLayoutPanel_Album.Controls.Add(ctl);
@@ -447,6 +446,13 @@ namespace QzoneAlbumDownloader
                     AlbumControl_PhotoList_Album.Title = obj.Title;
                     AlbumControl_PhotoList_Album.HintString = obj.HintString;
                     FlowLayoutPanel_PhotoList.Visible = false;
+                    var ai = (AlbumInfo)obj.Tag;
+                    Label_PhotoList_Info.Text = "相册名称： " + ai.Name + " \n" +
+                                                "照片总数： " + ai.Total + " 张\n" +
+                                                "评论数量： " + ai.Comment + " 条\n" +
+                                                "创建时间： " + ai.CreateTime + " \n" +
+                                                "上传时间： " + ai.LastUploadTime + " \n" +
+                                                "修改时间： " + ai.ModifyTime;
                     TabControl_PhotoList.SelectedTab = TabPage_PhotoList_Loading;
                     TabControl_Main.SelectedTab = TabPage_PhotoList;
                     for (int i = AlbumControlPhotoList.Count - 1; i >= 0; i--)
@@ -457,8 +463,10 @@ namespace QzoneAlbumDownloader
                         AlbumControlPhotoList.Remove(ctl);
                     }
                 });
+#if DEBUG
                 Debug.WriteLine("Begin Load Control.");
-                foreach (var image in (List<ImageInfo>)obj.Tag)
+#endif
+                foreach (var image in ((AlbumInfo)obj.Tag).Images)
                 {
                     Invoke((EventHandler)delegate
                     {
@@ -484,13 +492,17 @@ namespace QzoneAlbumDownloader
                             image.Name, image.RawShootTime, image.UploadTime, image.ModifyTime, image.Width, image.Height));
                     });
                 }
+#if DEBUG
                 Debug.WriteLine("Load Control Done.");
                 Debug.WriteLine("Begin Binding Event.");
+#endif
                 foreach (var ctl in AlbumControlPhotoList)
                 {
                     ctl.Click += ShowImageViewerForm;
                 }
+#if DEBUG
                 Debug.WriteLine("Binding Event Done.");
+#endif
                 Invoke((EventHandler)delegate
                 {
                     FlowLayoutPanel_PhotoList.Visible = true;
@@ -500,7 +512,9 @@ namespace QzoneAlbumDownloader
                 {
                     TabControl_PhotoList.SelectedTab = TabPage_PhotoList_Info;
                 });
+#if DEBUG
                 Debug.WriteLine("Begin Load Image.");
+#endif
                 foreach (var ctl in AlbumControlPhotoList)
                 {
                     ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
@@ -523,7 +537,9 @@ namespace QzoneAlbumDownloader
                         { }
                     }));
                 }
+#if DEBUG
                 Debug.WriteLine("Load Image Done.");
+#endif
             })).Start();
         }
 

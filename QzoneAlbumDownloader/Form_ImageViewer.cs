@@ -207,7 +207,10 @@ namespace QzoneAlbumDownloader
 
         #region control
 
-        private void Button_Control_Close_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 关闭窗体
+        /// </summary>
+        private void CloseForm()
         {
             if (FORM_SHOULD_CLOSE)
                 return;
@@ -215,16 +218,9 @@ namespace QzoneAlbumDownloader
             Timer_Fade.Start();
         }
 
-        private void Form_ImageViewer_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape)
-                Button_Control_Close.PerformClick();
-        }
-
-        #endregion
-
-        #region event
-
+        /// <summary>
+        /// 加载图片
+        /// </summary>
         public void LoadImage()
         {
             if (ImageInfo == null || string.IsNullOrEmpty(ImageInfo.OriginURL))
@@ -246,6 +242,22 @@ namespace QzoneAlbumDownloader
             {
                 IsBackground = true
             }.Start();
+        }
+
+        private void Button_Control_Close_Click(object sender, EventArgs e)
+        {
+            CloseForm();
+        }
+
+        private void Form_ImageViewer_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+                CloseForm();
+        }
+
+        protected override void OnMouseWheel(MouseEventArgs e)
+        {
+            base.OnMouseWheel(e);
         }
 
         #endregion
@@ -276,6 +288,8 @@ namespace QzoneAlbumDownloader
 
         private void Timer_Panel_Tick(object sender, EventArgs e)
         {
+            if (Opacity < 0.5)
+                return;
             int offset = 6;
             if (MouseMoveNeedShowPanel)
             {
