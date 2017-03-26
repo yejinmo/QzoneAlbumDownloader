@@ -47,6 +47,7 @@
             this.TabPage_PhotoList_Loading = new System.Windows.Forms.TabPage();
             this.ProcessBar_PhotoList_Loading = new MaterialSkin.Controls.MaterialProcessBar();
             this.TabPage_PhotoList_Info = new System.Windows.Forms.TabPage();
+            this.Label_PhotoList_Info = new System.Windows.Forms.Label();
             this.FlowLayoutPanel_PhotoList = new System.Windows.Forms.FlowLayoutPanel();
             this.AlbumControl_PhotoList_Album = new QzoneAlbumDownloader.Controls.AlbumControl();
             this.TipTool = new System.Windows.Forms.ToolTip(this.components);
@@ -56,7 +57,6 @@
             this.Button_Header_Config = new MaterialSkin.Controls.MaterialFlatButton();
             this.Timer_GetUserHeadIMG = new System.Windows.Forms.Timer(this.components);
             this.Panel_Header = new System.Windows.Forms.Panel();
-            this.Label_PhotoList_Info = new System.Windows.Forms.Label();
             this.TabControl_Main.SuspendLayout();
             this.TabPage_Detect.SuspendLayout();
             this.Panel_Detect.SuspendLayout();
@@ -222,7 +222,7 @@
             this.Text_Detect_Number.Size = new System.Drawing.Size(703, 37);
             this.Text_Detect_Number.TabIndex = 3;
             this.Text_Detect_Number.TabStop = false;
-            this.Text_Detect_Number.Text = "861732201";
+            this.Text_Detect_Number.Text = "985189148";
             this.Text_Detect_Number.UseSystemPasswordChar = false;
             this.Text_Detect_Number.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Text_Detect_Number_KeyDown);
             this.Text_Detect_Number.TextChanged += new System.EventHandler(this.Text_Detect_Number_TextChanged);
@@ -326,7 +326,7 @@
             this.ProcessBar_PhotoList_Loading.Depth = 0;
             this.ProcessBar_PhotoList_Loading.Interval = 5;
             this.ProcessBar_PhotoList_Loading.LengthValue = 500;
-            this.ProcessBar_PhotoList_Loading.Location = new System.Drawing.Point(6, 118);
+            this.ProcessBar_PhotoList_Loading.Location = new System.Drawing.Point(6, 120);
             this.ProcessBar_PhotoList_Loading.MouseState = MaterialSkin.MouseState.HOVER;
             this.ProcessBar_PhotoList_Loading.Name = "ProcessBar_PhotoList_Loading";
             this.ProcessBar_PhotoList_Loading.Processing = true;
@@ -344,6 +344,19 @@
             this.TabPage_PhotoList_Info.Size = new System.Drawing.Size(867, 229);
             this.TabPage_PhotoList_Info.TabIndex = 1;
             this.TabPage_PhotoList_Info.Text = "TabPage_PhotoList_Info";
+            // 
+            // Label_PhotoList_Info
+            // 
+            this.Label_PhotoList_Info.BackColor = System.Drawing.Color.Transparent;
+            this.Label_PhotoList_Info.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Label_PhotoList_Info.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.Label_PhotoList_Info.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(214)))), ((int)(((byte)(220)))));
+            this.Label_PhotoList_Info.Location = new System.Drawing.Point(3, 3);
+            this.Label_PhotoList_Info.Name = "Label_PhotoList_Info";
+            this.Label_PhotoList_Info.Size = new System.Drawing.Size(861, 223);
+            this.Label_PhotoList_Info.TabIndex = 0;
+            this.Label_PhotoList_Info.Text = "Label_PhotoList_Info";
+            this.Label_PhotoList_Info.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // FlowLayoutPanel_PhotoList
             // 
@@ -465,19 +478,6 @@
             this.Panel_Header.Name = "Panel_Header";
             this.Panel_Header.Size = new System.Drawing.Size(1124, 50);
             this.Panel_Header.TabIndex = 1;
-            // 
-            // Label_PhotoList_Info
-            // 
-            this.Label_PhotoList_Info.BackColor = System.Drawing.Color.Transparent;
-            this.Label_PhotoList_Info.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Label_PhotoList_Info.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.Label_PhotoList_Info.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(214)))), ((int)(((byte)(220)))));
-            this.Label_PhotoList_Info.Location = new System.Drawing.Point(3, 3);
-            this.Label_PhotoList_Info.Name = "Label_PhotoList_Info";
-            this.Label_PhotoList_Info.Size = new System.Drawing.Size(861, 223);
-            this.Label_PhotoList_Info.TabIndex = 0;
-            this.Label_PhotoList_Info.Text = "Label_PhotoList_Info";
-            this.Label_PhotoList_Info.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Form_Main
             // 
