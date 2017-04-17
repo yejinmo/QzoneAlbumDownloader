@@ -60,7 +60,7 @@ namespace QzoneAlbumDownloader
          style=22
          target=self
          s_url=http%3A%2F%2Fqzs.qq.com%2Fqzone%2Fv5%2Floginsucc.html%3Fpara%3Dizone
-         pt_qr_app=手机QQ空间
+         pt_qr_app=手机QQ空间'
          pt_qr_link=http%3A//z.qzone.com/download.html
          self_regurl=http%3A//qzs.qq.com/qzone/v6/reg/index.html
          pt_qr_help_link=http%3A//z.qzone.com/download.html

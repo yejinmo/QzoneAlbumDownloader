@@ -151,6 +151,14 @@ namespace QzoneAlbumDownloader
             }
         }
 
+        private void Form_ImageViewer_SizeChanged(object sender, EventArgs e)
+        {
+            if (PictureBox_Main.Width < Width)
+                PictureBox_Main.Left = (Width - PictureBox_Main.Width) / 2;
+            if (PictureBox_Main.Height < Height)
+                PictureBox_Main.Top = (Height - PictureBox_Main.Height) / 2;
+        }
+
         #region shadow
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
@@ -234,7 +242,10 @@ namespace QzoneAlbumDownloader
                     Invoke((EventHandler)delegate
                     {
                         ProcessBar_LoadImage.Visible = false;
-                        BackgroundImage = img;
+                        PictureBox_Main.Size = new Size(Width - 2, Height - 2);
+                        PictureBox_Main.Location = new Point(1, 1);
+                        PictureBox_Main.Image = img;
+                        PictureBox_Main.Visible = true;
                     });
                 }
                 catch { }
@@ -257,6 +268,23 @@ namespace QzoneAlbumDownloader
 
         protected override void OnMouseWheel(MouseEventArgs e)
         {
+            if(e.Delta < 0)
+            {
+                float w = PictureBox_Main.Width * 0.9f; //每次縮小 20%  
+                float h = PictureBox_Main.Height * 0.9f;
+                PictureBox_Main.Size = Size.Ceiling(new SizeF(w, h));
+            }
+            else if(e.Delta > 0)
+            {
+                float w = PictureBox_Main.Width * 1.1f; //每次放大 20%
+                float h = PictureBox_Main.Height * 1.1f;
+                PictureBox_Main.Size = Size.Ceiling(new SizeF(w, h));
+            }
+            PictureBox_Main.Invalidate();
+            if (PictureBox_Main.Width < Width)
+                PictureBox_Main.Left = (Width - PictureBox_Main.Width) / 2;
+            if (PictureBox_Main.Height < Height)
+                PictureBox_Main.Top = (Height - PictureBox_Main.Height) / 2;
             base.OnMouseWheel(e);
         }
 
@@ -280,6 +308,64 @@ namespace QzoneAlbumDownloader
             }
         }
 
+        bool beginMove = false;//初始化鼠标位置  
+        int currentXPosition;
+        int currentYPosition;
+
+        private void PictureBox_Main_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (PictureBox_Main.Width < Width && PictureBox_Main.Height < Height)
+            {
+                if (beginMove)
+                {
+                    Left += MousePosition.X - currentXPosition;//根据鼠标x坐标确定窗体的左边坐标x  
+                    Top += MousePosition.Y - currentYPosition;//根据鼠标的y坐标窗体的顶部，即Y坐标  
+                    currentXPosition = MousePosition.X;
+                    currentYPosition = MousePosition.Y;
+                }
+            }
+            else
+            {
+                if (beginMove)
+                {
+                    int Target_Left = MousePosition.X - currentXPosition + PictureBox_Main.Left;
+                    int Target_Top = MousePosition.Y - currentYPosition + PictureBox_Main.Top;
+                    if (Target_Left > 1)
+                        Target_Left = 1;
+                    else if (Target_Left + PictureBox_Main.Width < Width - 1)
+                        Target_Left = Width - 1 - PictureBox_Main.Width;
+                    if (Target_Top > 1)
+                        Target_Top = 1;
+                    else if(Target_Top + PictureBox_Main.Height < Height - 1)
+                        Target_Top = Height - 1 - PictureBox_Main.Height;
+                    PictureBox_Main.Left = Target_Left;//根据鼠标x坐标确定窗体的左边坐标x  
+                    PictureBox_Main.Top = Target_Top;//根据鼠标的y坐标窗体的顶部，即Y坐标  
+                    currentXPosition = MousePosition.X;
+                    currentYPosition = MousePosition.Y;
+                }
+            }
+        }
+
+        private void PictureBox_Main_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                beginMove = true;
+                currentXPosition = MousePosition.X;//鼠标的x坐标为当前窗体左上角x坐标  
+                currentYPosition = MousePosition.Y;//鼠标的y坐标为当前窗体左上角y坐标  
+            }
+        }
+
+        private void PictureBox_Main_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                currentXPosition = 0; //设置初始状态  
+                currentYPosition = 0;
+                beginMove = false;
+            }
+        }
+
         #endregion
 
         #region panel
@@ -293,8 +379,8 @@ namespace QzoneAlbumDownloader
             int offset = 6;
             if (MouseMoveNeedShowPanel)
             {
-                if (Button_Control_Close.Top + offset >= 0)
-                    Button_Control_Close.Top = 0;
+                if (Button_Control_Close.Top + offset >= 1)
+                    Button_Control_Close.Top = 1;
                 else
                     Button_Control_Close.Top += offset;
                 if (Panel_Control.Top - offset <= Height - Panel_Control.Height)

@@ -39,7 +39,9 @@
             this.Button_Control_Close = new MaterialSkin.Controls.MaterialFlatButton();
             this.Timer_Panel = new System.Windows.Forms.Timer(this.components);
             this.Timer_GetCurPos = new System.Windows.Forms.Timer(this.components);
+            this.PictureBox_Main = new System.Windows.Forms.PictureBox();
             this.Panel_Control.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Main)).BeginInit();
             this.SuspendLayout();
             // 
             // Panel_Control
@@ -154,7 +156,7 @@
             this.Button_Control_Close.DrawHoverMode = false;
             this.Button_Control_Close.DrawImageMode = true;
             this.Button_Control_Close.Image = global::QzoneAlbumDownloader.Properties.Resources.ic_highlight_off_black_48dp;
-            this.Button_Control_Close.Location = new System.Drawing.Point(852, -52);
+            this.Button_Control_Close.Location = new System.Drawing.Point(851, -52);
             this.Button_Control_Close.Margin = new System.Windows.Forms.Padding(0);
             this.Button_Control_Close.MouseState = MaterialSkin.MouseState.HOVER;
             this.Button_Control_Close.Name = "Button_Control_Close";
@@ -176,6 +178,20 @@
             this.Timer_GetCurPos.Interval = 10;
             this.Timer_GetCurPos.Tick += new System.EventHandler(this.Timer_GetCurPos_Tick);
             // 
+            // PictureBox_Main
+            // 
+            this.PictureBox_Main.Location = new System.Drawing.Point(10, 10);
+            this.PictureBox_Main.Margin = new System.Windows.Forms.Padding(1);
+            this.PictureBox_Main.Name = "PictureBox_Main";
+            this.PictureBox_Main.Size = new System.Drawing.Size(882, 593);
+            this.PictureBox_Main.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PictureBox_Main.TabIndex = 18;
+            this.PictureBox_Main.TabStop = false;
+            this.PictureBox_Main.Visible = false;
+            this.PictureBox_Main.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBox_Main_MouseDown);
+            this.PictureBox_Main.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PictureBox_Main_MouseMove);
+            this.PictureBox_Main.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PictureBox_Main_MouseUp);
+            // 
             // Form_ImageViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -185,6 +201,7 @@
             this.Controls.Add(this.ProcessBar_LoadImage);
             this.Controls.Add(this.Button_Control_Close);
             this.Controls.Add(this.Panel_Control);
+            this.Controls.Add(this.PictureBox_Main);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -194,8 +211,10 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "图片查看器";
             this.Load += new System.EventHandler(this.Form_ImageViewer_Load);
+            this.SizeChanged += new System.EventHandler(this.Form_ImageViewer_SizeChanged);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_ImageViewer_KeyDown);
             this.Panel_Control.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Main)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -212,5 +231,6 @@
         private MaterialSkin.Controls.MaterialProcessBar ProcessBar_LoadImage;
         private System.Windows.Forms.Timer Timer_Panel;
         private System.Windows.Forms.Timer Timer_GetCurPos;
+        private System.Windows.Forms.PictureBox PictureBox_Main;
     }
 }
