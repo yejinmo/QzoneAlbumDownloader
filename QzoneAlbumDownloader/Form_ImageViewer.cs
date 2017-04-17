@@ -268,23 +268,29 @@ namespace QzoneAlbumDownloader
 
         protected override void OnMouseWheel(MouseEventArgs e)
         {
-            if(e.Delta < 0)
+            SuspendLayout();
+            Size old_size = PictureBox_Main.Size;
+            if (e.Delta < 0)
             {
                 float w = PictureBox_Main.Width * 0.9f; //每次縮小 20%  
                 float h = PictureBox_Main.Height * 0.9f;
                 PictureBox_Main.Size = Size.Ceiling(new SizeF(w, h));
+                PictureBox_Main.Left = PictureBox_Main.Left + (PictureBox_Main.Width - old_size.Width) / 2;
+                PictureBox_Main.Top = PictureBox_Main.Top + (PictureBox_Main.Height - old_size.Height) / 2;
             }
             else if(e.Delta > 0)
             {
                 float w = PictureBox_Main.Width * 1.1f; //每次放大 20%
                 float h = PictureBox_Main.Height * 1.1f;
                 PictureBox_Main.Size = Size.Ceiling(new SizeF(w, h));
+                PictureBox_Main.Left = PictureBox_Main.Left - (PictureBox_Main.Width - old_size.Width) / 2;
+                PictureBox_Main.Top = PictureBox_Main.Top - (PictureBox_Main.Height - old_size.Height) / 2;
             }
-            PictureBox_Main.Invalidate();
             if (PictureBox_Main.Width < Width)
                 PictureBox_Main.Left = (Width - PictureBox_Main.Width) / 2;
             if (PictureBox_Main.Height < Height)
                 PictureBox_Main.Top = (Height - PictureBox_Main.Height) / 2;
+            ResumeLayout();
             base.OnMouseWheel(e);
         }
 
