@@ -550,11 +550,27 @@ namespace QzoneAlbumDownloader
         /// <param name="e"></param>
         private void ShowImageViewerForm(object sender, EventArgs e)
         {
-            var frm = new Form_ImageViewer((ImageInfo)((Controls.AlbumControl)sender).Tag)
+            int max_width = SystemInformation.WorkingArea.Width;
+            int max_height = SystemInformation.WorkingArea.Height;
+            int width;
+            int height;
+            var frm = new Form_ImageViewer((ImageInfo)((Controls.AlbumControl)sender).Tag);
+            if (((ImageInfo)((Controls.AlbumControl)sender).Tag).Width > max_width)
             {
-                Width = ((ImageInfo)((Controls.AlbumControl)sender).Tag).Width,
-                Height = ((ImageInfo)((Controls.AlbumControl)sender).Tag).Height
-            };
+                width = max_width;
+                height = width * ((ImageInfo)((Controls.AlbumControl)sender).Tag).Height / ((ImageInfo)((Controls.AlbumControl)sender).Tag).Width;
+            }
+            else
+                width = ((ImageInfo)((Controls.AlbumControl)sender).Tag).Width;
+            if (((ImageInfo)((Controls.AlbumControl)sender).Tag).Height > max_height)
+            {
+                height = max_height;
+                width = height * ((ImageInfo)((Controls.AlbumControl)sender).Tag).Width / ((ImageInfo)((Controls.AlbumControl)sender).Tag).Height;
+            }
+            else
+                height = ((ImageInfo)((Controls.AlbumControl)sender).Tag).Height;
+            frm.Width = width;
+            frm.Height = height;
             frm.LoadImage();
             frm.Show();
         }

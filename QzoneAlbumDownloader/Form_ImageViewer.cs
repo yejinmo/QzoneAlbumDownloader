@@ -275,8 +275,16 @@ namespace QzoneAlbumDownloader
                 float w = PictureBox_Main.Width * 0.9f; //每次縮小 20%  
                 float h = PictureBox_Main.Height * 0.9f;
                 PictureBox_Main.Size = Size.Ceiling(new SizeF(w, h));
-                PictureBox_Main.Left = PictureBox_Main.Left + (PictureBox_Main.Width - old_size.Width) / 2;
-                PictureBox_Main.Top = PictureBox_Main.Top + (PictureBox_Main.Height - old_size.Height) / 2;
+                PictureBox_Main.Left = PictureBox_Main.Left + (old_size.Width - PictureBox_Main.Width) / 2;
+                PictureBox_Main.Top = PictureBox_Main.Top + (old_size.Height - PictureBox_Main.Height) / 2;
+                if (PictureBox_Main.Left > 1)
+                    PictureBox_Main.Left = 1;
+                else if (PictureBox_Main.Left + PictureBox_Main.Width < Width - 1)
+                    PictureBox_Main.Left = Width - 1 - PictureBox_Main.Width;
+                if (PictureBox_Main.Top > 1)
+                    PictureBox_Main.Top = 1;
+                else if (PictureBox_Main.Top + PictureBox_Main.Height < Height - 1)
+                    PictureBox_Main.Top = Height - 1 - PictureBox_Main.Height;
             }
             else if(e.Delta > 0)
             {
