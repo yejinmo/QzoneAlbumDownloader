@@ -120,7 +120,6 @@ namespace QzoneAlbumDownloader.Controls
                 AnimationType = AnimationType.EaseOut
             };
             animationManager.OnAnimationProgress += sender => Invalidate();
-
         }
 
         protected override void OnCreateControl()
