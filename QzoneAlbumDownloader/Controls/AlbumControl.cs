@@ -135,7 +135,7 @@ namespace QzoneAlbumDownloader.Controls
 
             MouseDown += (sender, args) =>
             {
-                if (args.Button == MouseButtons.Left)
+                if (args.Button == MouseButtons.Left || args.Button == MouseButtons.Right)
                 {
                     MouseState = MouseState.DOWN;
 
