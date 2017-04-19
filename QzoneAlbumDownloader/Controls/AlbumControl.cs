@@ -9,6 +9,7 @@ using System.Drawing.Drawing2D;
 using MaterialSkin;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
+using MaterialSkin.Controls;
 
 /// <summary>
 /// QQ空间相册控件
@@ -114,6 +115,12 @@ namespace QzoneAlbumDownloader.Controls
             SetStyle(ControlStyles.ResizeRedraw, true);
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+
+            MaterialContextMenuStrip cms = new AlbumControlContextMenuStrip();
+            cms.Opening += ContextMenuStripOnOpening;
+            cms.OnItemClickStart += ContextMenuStripOnItemClickStart;
+            ContextMenuStrip = cms;
+
             animationManager = new AnimationManager(false)
             {
                 Increment = 0.03,
@@ -143,6 +150,63 @@ namespace QzoneAlbumDownloader.Controls
                 Invalidate();
             };
 
+        }
+
+        #endregion
+
+        #region 右键菜单
+
+        private class AlbumControlContextMenuStrip : MaterialContextMenuStrip
+        {
+            public readonly ToolStripItem undo = new MaterialToolStripMenuItem { Text = "撤销" };
+            public readonly ToolStripItem seperator1 = new ToolStripSeparator();
+            public readonly ToolStripItem cut = new MaterialToolStripMenuItem { Text = "剪切" };
+            public readonly ToolStripItem copy = new MaterialToolStripMenuItem { Text = "复制" };
+            public readonly ToolStripItem paste = new MaterialToolStripMenuItem { Text = "粘贴" };
+            public readonly ToolStripItem delete = new MaterialToolStripMenuItem { Text = "删除" };
+            public readonly ToolStripItem seperator2 = new ToolStripSeparator();
+            public readonly ToolStripItem selectAll = new MaterialToolStripMenuItem { Text = "全选" };
+
+            public AlbumControlContextMenuStrip()
+            {
+                Items.AddRange(new[]
+                {
+                    undo,
+                    seperator1,
+                    cut,
+                    copy,
+                    paste,
+                    delete,
+                    seperator2,
+                    selectAll
+                });
+            }
+        }
+
+        private void ContextMenuStripOnItemClickStart(object sender, ToolStripItemClickedEventArgs toolStripItemClickedEventArgs)
+        {
+            switch (toolStripItemClickedEventArgs.ClickedItem.Text)
+            {
+                case "撤销":
+                    break;
+                case "剪切":
+                    break;
+                case "复制":
+                    break;
+                case "粘贴":
+                    break;
+                case "删除":
+                    break;
+                case "全选":
+                    break;
+            }
+        }
+        private void ContextMenuStripOnOpening(object sender, CancelEventArgs cancelEventArgs)
+        {
+            if (sender is AlbumControlContextMenuStrip strip)
+            {
+
+            }
         }
 
         #endregion

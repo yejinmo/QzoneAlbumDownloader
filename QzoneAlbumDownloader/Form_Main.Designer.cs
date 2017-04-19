@@ -326,7 +326,7 @@
             this.ProcessBar_PhotoList_Loading.Depth = 0;
             this.ProcessBar_PhotoList_Loading.Interval = 5;
             this.ProcessBar_PhotoList_Loading.LengthValue = 500;
-            this.ProcessBar_PhotoList_Loading.Location = new System.Drawing.Point(6, 120);
+            this.ProcessBar_PhotoList_Loading.Location = new System.Drawing.Point(6, 122);
             this.ProcessBar_PhotoList_Loading.MouseState = MaterialSkin.MouseState.HOVER;
             this.ProcessBar_PhotoList_Loading.Name = "ProcessBar_PhotoList_Loading";
             this.ProcessBar_PhotoList_Loading.Processing = true;
