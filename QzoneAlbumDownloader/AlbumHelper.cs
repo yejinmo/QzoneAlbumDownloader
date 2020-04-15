@@ -23,7 +23,7 @@ namespace QzoneAlbumDownloader
             try
             {
                 string res = RequestHelper.GetResponse(
-                    string.Format("http://photo.qq.com/fcgi-bin/fcg_list_album?uin={0}", QQNumber),
+                    string.Format("https://photo.qq.com/fcgi-bin/fcg_list_album?uin={0}", QQNumber),
                     "", "", "GBK");
                 string check_str = @"<err>\n<errCode>(.\d+?)</errCode>\n<errMsg>(.+?)</errMsg>\n<msg>(.+?)</msg>\n<ret>(.\d+?)</ret>\n</err>";
                 Regex reg = new Regex(check_str);
@@ -50,7 +50,7 @@ namespace QzoneAlbumDownloader
             try
             {
                 res = RequestHelper.GetResponse(
-                                string.Format("http://photo.qq.com/fcgi-bin/fcg_list_album?uin={0}", QQNumber),
+                                string.Format("https://photo.qq.com/fcgi-bin/fcg_list_album?uin={0}", QQNumber),
                                 Cookie, "", "GBK");
                 if (res.IndexOf("<errCode>-900</errCode>") > 0)
                     return AccessState.NeedLogin;
@@ -171,7 +171,7 @@ namespace QzoneAlbumDownloader
         {
             try
             {
-                return RequestHelper.GetResponse(string.Format("http://photo.qq.com/fcgi-bin/fcg_list_photo?uin={0}&albumid={1}",
+                return RequestHelper.GetResponse(string.Format("https://photo.qq.com/fcgi-bin/fcg_list_photo?uin={0}&albumid={1}",
                     QQNumber, AlbumID), Cookie, "", "GBK");
             }
             catch
